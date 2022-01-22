@@ -1,0 +1,196 @@
+<div class="app sidebar-mini Left-menu-Default  Sidemenu-left-icons">
+    <div class="page">
+        <div class="page-main" style="background-color: #f7f7f7;">
+            <!--APP-SIDEBAR-->
+                <div class="app-header header-search-icon">
+                    <div class="header-style1">
+                        <a class="header-brand" href="#">
+                            <img src="../../../assets/admin/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+                            <img src="../../../assets/admin/images/brand/logo-1.png" class="header-brand-img mobile-logo" alt="logo">
+                        </a><!-- LOGO -->
+                        <a class="header-brand header-brand1" href="#">
+                            <img src="../../../assets/admin/images/brand/logo-white.png" class="header-brand-img desktop-logo" alt="logo">
+                            <img src="../../../assets/admin/images/brand/logo-1.png" class="header-brand-img mobile-logo" alt="logo">
+                        </a><!-- LOGO -->
+                    </div>
+                    <div class="app-sidebar__toggle" data-toggle="sidebar">
+                        <a class="open-toggle" href="javascript:void(0)"><i class="fe fe-align-left"></i></a>
+                        <a class="close-toggle" href="javascript:void(0)"><i class="fe fe-x"></i></a>
+                    </div>
+                    <div class="d-flex  ml-auto header-right-icons">
+                        <div class="d-sm-flex">
+                            <a href="javascript:void(0)" class="nav-link icon search-btn">
+                                <i class="fe fe-search" style="margin-top:-8px;"></i>
+                            </a>
+                            <div class="search-area">
+                                <div class="close-btn pull-right"><button class="btn"><i class="fe fe-x"></i></button></div>
+                                <form>
+                                    <div class="row">
+                                        <div class="input-group form-btn">
+                                            <div class="input-group-append">
+                                                <button class="btn" type="button"><i class="fa fa-search"></i></button>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- SEARCH -->
+                        
+                        <div class="dropdown profile-1">
+                            <a href="javascript:void(0)" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex" (click)="IsProfileShow = !IsProfileShow">
+                                <span>
+                                    <img src="../../../assets/admin/images/users/15.jpg" alt="profile-user" class="avatar  profile-user brround cover-image">
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" [ngClass]="{'show': IsProfileShow}" (click)="IsProfileShow = !IsProfileShow">
+                                <div class="drop-heading">
+                                    <div class="text-center">
+                                        <h5 class="text-dark mb-0">Devid Antoni</h5>
+                                        <small class="text-muted">Administrator</small>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider m-0"></div>
+                                <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['./profile']">
+                                    <i class="dropdown-icon mdi mdi-account-outline"></i> Profile
+                                </a>
+                                <a class="dropdown-item" href="login.html">
+                                    <i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
+                                </a>
+                            </div>
+                        </div>
+                        <!-- <div class="dropdown d-md-flex header-settings">
+                            <a href="javascript:void(0)" class="nav-link icon" data-toggle="sidebar-right" data-target=".sidebar-right">
+                                <i class="fe fe-align-right"></i>
+                            </a>
+                        </div> -->
+                        <!-- SIDE-MENU -->
+                    </div>
+                </div>
+            <!--APP-SIDEBAR-->
+            <!--APP-SIDEBAR-->
+                <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+                <aside class="app-sidebar">
+                    <div class="sidebar-user-settings">
+                        <div class="app-sidebar__user mb-4 mt-4">
+                            <div class="dropdown user-pro-body text-center">
+                                <a href="javascript:void(0)" class="user-box">
+                                    <div class="user-pic">
+                                        <span class="avatar avatar-md brround cover-image" data-image-src="../../../assets/admin/images/users/15.jpg" style="background: url('../../../assets/admin/images/users/15.jpg') center center;">
+                                            <span class="avatar-status bg-primary"></span><span class="avatar-border"></span>
+                                        </span>
+                                    </div>
+                                    <div class="user-info">
+                                        <h5 class=" mb-1 font-weight-bold text-dark">Devid Antoni</h5>
+                                        <span class="text-muted app-sidebar__user-name text-sm">Administrator</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="side-menu">
+                        <!-- <li><h3>FLAIRA</h3></li> -->
+                        <li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="javascript:void(0)"><i class="angle fe fe-chevron-right"></i><span class="side-menu__label">Master</span><i class="side-menu__icon fe fe-airplay"></i></a>
+							<ul class="slide-menu">
+								<li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/state']" routerLinkActive="active" ><i class="sidemenu-icon fe fe-chevrons-right"></i>State</a></li>
+								<li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/district']"><i class="sidemenu-icon fe fe-chevrons-right"></i> District</a></li>
+							</ul>
+						</li>
+                    </ul>
+                </aside>
+            <!--/APP-SIDEBAR-->
+            <!-- Mobile Header -->
+                <div class="mobile-header">
+                    <div class="container-fluid">
+                        <div class="d-flex">
+                            <div class="app-sidebar__toggle" data-toggle="sidebar">
+                                <a class="open-toggle" href="javascript:void(0)"><i class="fe fe-align-left"></i></a>
+                                <a class="close-toggle" href="javascript:void(0)"><i class="fe fe-x"></i></a>
+                            </div>
+                            <a class="header-brand" href="#">
+                                <img src="../../../assets/admin/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+                            </a>
+                            <a class="header-brand header-brand1" href="#">
+                                <img src="../../../assets/admin/images/brand/logo-white.png" class="header-brand-img desktop-logo" alt="logo">
+                            </a><!-- LOGO -->
+                            <div class="d-flex order-lg-2 ml-auto header-right-icons">
+                                <button class="navbar-toggler navresponsive-toggler d-md-none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+                                    aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon fe fe-more-vertical text-white"></span>
+                                </button>
+                                <div class="dropdown profile-1" (click)="IsProfileShow = !IsProfileShow">
+                                    <a href="javascript:void(0)" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex" (click)="IsProfileShow = !IsProfileShow">
+                                        <span>
+                                            <img src="../../../assets/admin/images/users/15.jpg" alt="profile-user" class="avatar  profile-user brround cover-image">
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                        <div class="drop-heading">
+                                            <div class="text-center">
+                                                <h5 class="text-dark mb-0">Devid Antoni</h5>
+                                                <small class="text-muted">Administrator</small>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-divider m-0"></div>
+                                        <a class="dropdown-item" href="javascript:void(0)">
+                                            <i class="dropdown-icon mdi mdi-account-outline"></i> Profile
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-1 navbar navbar-expand-lg  responsive-navbar navbar-dark d-md-none bg-white">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                        <div class="d-flex order-lg-2 ml-auto">
+                            <div class="d-sm-flex">
+                                <a href="javascript:void(0)" class="nav-link icon search-btn">
+                                    <i class="fe fe-search"></i>
+                                </a>
+                                <div class="search-area">
+                                    <div class="close-btn pull-right"><button class="btn"><i class="fe fe-x"></i></button></div>
+                                    <form>
+                                        <div class="row">
+                                            <div class="input-group form-btn">
+                                                <div class="input-group-append">
+                                                    <button class="btn" type="button" id="button-addon3"><i class="fa fa-search"></i></button>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- /Mobile Header -->
+             <!--app-content open-->
+                <div class="app-content">
+                    <div class="side-app">
+                        <!-- ROW-1 OPEN -->
+                        <!-- <div class="row mt-100"> -->
+                            <router-outlet></router-outlet>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            <!-- CONTAINER END -->
+        </div> 
+        <!-- SIDE-BAR CLOSED -- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12 text-center">
+                        Copyright © 2019 <a href="javascript:void(0)">Flaira</a>. Designed by <a href="javascript:void(0)">  Spruko Technologies Pvt.Ltd </a> All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
+    </div>
+</div>
