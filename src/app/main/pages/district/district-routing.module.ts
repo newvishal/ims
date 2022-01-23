@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ListComponent
   },
   {
-    path: "addEditDistrict",
+    path: "addEditDist",
     component: AddEditComponent
   }
 ];

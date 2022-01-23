@@ -19,24 +19,50 @@
                     </div>
                     <div class="d-flex  ml-auto header-right-icons">
                         <div class="d-sm-flex">
-                            <a href="javascript:void(0)" class="nav-link icon search-btn">
-                                <i class="fe fe-search" style="margin-top:-8px;"></i>
+                            <a href="javascript:void(0)" class="nav-link icon">
+                                <i class="fa fa-question-circle" style="margin-top:-8px;"></i>
                             </a>
-                            <div class="search-area">
-                                <div class="close-btn pull-right"><button class="btn"><i class="fe fe-x"></i></button></div>
-                                <form>
-                                    <div class="row">
-                                        <div class="input-group form-btn">
-                                            <div class="input-group-append">
-                                                <button class="btn" type="button"><i class="fa fa-search"></i></button>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        </div>
+                        <!-- SEARCH -->
+                        <div class="dropdown d-md-flex notifications">
+							<a class="nav-link icon" data-toggle="dropdown"  (click)="IsNotificationShow = !IsNotificationShow">
+								<i class="fe fe-bell" style="margin-top: -8px;"></i>
+								<span class="nav-unread badge badge-success badge-pill">2</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"  [ngClass]="{'show': IsNotificationShow}" (click)="IsNotificationShow = !IsNotificationShow">
+								<a href="#" class="dropdown-item text-center">Notifications</a>
+								<div class="dropdown-divider"></div>
+                                <div class="notifications-menu">
+                                    <a class="dropdown-item d-flex pb-3" href="#">
+                                        <div class="fs-16 text-primary mr-3">
+                                            <i class="fa fa-thumbs-o-up"></i>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div><!-- SEARCH -->
-                        
+                                        <div class="">
+                                            <strong>Event today</strong>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex pb-3" href="#">
+                                        <div class="fs-16 text-primary mr-3">
+                                            <i class="fa fa-commenting-o"></i>
+                                        </div>
+                                        <div class="">
+                                            <strong>Settings</strong>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex pb-3" href="#">
+                                        <div class="fs-16 text-danger mr-3">
+                                            <i class="fa fa-cogs"></i>
+                                        </div>
+                                        <div class="">
+                                            <strong>Your Admin Lanuch</strong>
+                                        </div>
+                                    </a>
+                                </div>
+								<div class="dropdown-divider"></div>
+								<a href="#" class="dropdown-item text-center">View all Notification</a>
+							</div>
+						</div>
+						<!-- NOTIFICATIONS -->
                         <div class="dropdown profile-1">
                             <a href="javascript:void(0)" data-toggle="dropdown" class="nav-link pr-2 leading-none d-flex" (click)="IsProfileShow = !IsProfileShow">
                                 <span>
@@ -95,6 +121,39 @@
 							<ul class="slide-menu">
 								<li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/state']" routerLinkActive="active" ><i class="sidemenu-icon fe fe-chevrons-right"></i>State</a></li>
 								<li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/district']"><i class="sidemenu-icon fe fe-chevrons-right"></i> District</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/location-type']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Location type</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/location']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Location</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/designation']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Designation</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/bank']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Bank</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/document-type']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Document Type</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/service-type']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Service Type</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/channel']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Channel</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/leave-type']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Leave Type</a></li>
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/leave-limit']"><i class="sidemenu-icon fe fe-chevrons-right"></i> Leave Limit</a></li>
+							</ul>
+						</li>
+                        <li>
+							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">Employee</span><i class="side-menu__icon fe fe-users"></i></a>
+						</li>
+                        <li>
+							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">Employee Document Upload</span><i class="side-menu__icon fe fe-upload"></i></a>
+						</li>
+                        <li>
+							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">FDS</span><i class="side-menu__icon fe fe-list"></i></a>
+						</li>
+                        <li>
+							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">NHM</span><i class="side-menu__icon fe fe-list"></i></a>
+						</li>
+                        <li>
+							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">Graphs</span><i class="side-menu__icon fe fe-list"></i></a>
+						</li>
+                        <li>
+							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">Reports</span><i class="side-menu__icon fe fe-file"></i></a>
+						</li>
+                        <li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="javascript:void(0)"><i class="angle fe fe-chevron-right"></i><span class="side-menu__label">Configuration</span><i class="side-menu__icon fe fe-settings"></i></a>
+							<ul class="slide-menu">
+								<li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/state']" routerLinkActive="active" ><i class="sidemenu-icon fe fe-chevrons-right"></i>Reset Password</a></li>
 							</ul>
 						</li>
                     </ul>

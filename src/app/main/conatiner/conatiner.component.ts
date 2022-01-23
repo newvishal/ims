@@ -8,7 +8,7 @@ declare var $:any;
 })
 export class ConatinerComponent implements OnInit {
   IsProfileShow: Boolean = false;
-  IsExpanded: Boolean = false;
+  IsNotificationShow: Boolean = false;
   constructor() { }
 
   ngOnInit(): void {

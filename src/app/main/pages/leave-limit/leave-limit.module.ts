@@ -1,0 +1,19 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { LeaveLimitRoutingModule } from './leave-limit-routing.module';
+import { ListComponent } from './list/list.component';
+import { AddEditComponent } from './add-edit/add-edit.component';
+
+
+@NgModule({
+  declarations: [
+    ListComponent,
+    AddEditComponent
+  ],
+  imports: [
+    CommonModule,
+    LeaveLimitRoutingModule
+  ]
+})
+export class LeaveLimitModule { }

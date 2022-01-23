@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+
 import { DistrictRoutingModule } from './district-routing.module';
+import { ListComponent } from './list/list.component';
+import { AddEditComponent } from './add-edit/add-edit.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ListComponent,
+    AddEditComponent
+  ],
   imports: [
     CommonModule,
-    RouterModule,
     DistrictRoutingModule
   ]
 })

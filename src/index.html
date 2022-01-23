@@ -15,8 +15,9 @@
   <!-- COLOR SKIN CSS -->
   <link id="theme" rel="stylesheet" type="text/css" media="all" href="./assets/admin/colors/color1.css" />
   <link href="./assets/admin/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body class="app sidebar-mini Left-menu-Default Sidemenu-left-icons sidebar-gone">
   <app-root></app-root>
   <script src="./assets/js/jquery-2.2.4.min.js"></script>
   <script src="./assets/js/jquery-ui.min.js"></script>
@@ -28,5 +29,11 @@
   <script src="./assets/admin/plugins/datatable/datatable.js"></script>
   <script src="./assets/admin/plugins/datatable/datatable-2.js"></script>
   <script src="./assets/admin/plugins/datatable/dataTables.responsive.min.js"></script>
+  <script>
+    $(document).on('click','[data-toggle="sidebar"]',function(event) {
+        event.preventDefault();
+        $('.app').toggleClass('sidenav-toggled');
+      });
+  </script>
 </body>
 </html>
