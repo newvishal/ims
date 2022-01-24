@@ -65,6 +65,11 @@ const routes: Routes = [
         path: "leave-limit",
         loadChildren: () =>
           import("./pages/leave-limit/leave-limit.module").then((m) => m.LeaveLimitModule)
+      },
+      {
+        path: "employee",
+        loadChildren: () =>
+          import("./pages/employee/employee.module").then((m) => m.EmployeeModule)
       }
     ]
   }
