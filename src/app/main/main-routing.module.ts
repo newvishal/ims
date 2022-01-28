@@ -70,6 +70,16 @@ const routes: Routes = [
         path: "employee",
         loadChildren: () =>
           import("./pages/employee/employee.module").then((m) => m.EmployeeModule)
+      },
+      {
+        path: "configuration",
+        loadChildren: () =>
+          import("./pages/configuration/configuration.module").then((m) => m.ConfigurationModule)
+      },
+      {
+        path: "approve-leave",
+        loadChildren: () =>
+          import("./pages/approve-leave/approve-leave.module").then((m) => m.ApproveLeaveModule)
       }
     ]
   }

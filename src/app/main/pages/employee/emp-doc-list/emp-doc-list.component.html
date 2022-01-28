@@ -1,0 +1,82 @@
+<!-- PAGE-HEADER -->
+<div class="page-header">
+    <ol class="breadcrumb"><!-- breadcrumb -->
+        <li class="breadcrumb-item"><a href="#">Employee Document</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Employee Document List</li>
+    </ol><!-- End breadcrumb -->
+    <!-- <div class="ml-auto">
+        <div class="input-group">
+            
+            <a href="javascript:void(0)" class="btn btn-primary button-icon mr-3 mt-1 mb-1" routerLink="./addEditEmployee">
+                <span><i class="fe fe-plus"></i>Add Employee</span>
+            </a>
+        </div>
+    </div> -->
+</div>
+<!-- PAGE-HEADER END -->
+
+<!-- ROW-1 OPEN -->
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example" class="table table-striped table-bordered text-nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th class="wd-15p">Employee Id</th>
+                                <th class="wd-15p">Employee name</th>
+                                <th class="wd-15p">Father Name</th>
+                                <th class="wd-15p">Gender</th>
+                                <th class="wd-15p">Mobile No.</th>
+                                <th class="wd-15p">Pan No</th>
+                                <th class="wd-15p">Designation</th>
+                                <th class="wd-20p">Status</th>
+                                <th class="wd-20p">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>EMP1</td>
+                                <td>Test Employee</td>
+                                <td>Test Father Name</td>
+                                <td>Male</td>
+                                <td>9125478596</td>
+                                <td>FGHTY12345G</td>
+                                <td>Developer</td>
+                                <td>Status</td>
+                                <td class="btn-list">
+                                    <a href="javascript:void(0)" [routerLink]="['../doc-upload','1']" class="btn btn-icon  btn-primary"> <i class="fe fe-upload"></i> Upload Doc </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- TABLE WRAPPER -->
+        </div>
+        <!-- SECTION WRAPPER -->
+    </div>
+</div>
+<!-- MODAL -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Modal body text goes here.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- MODAL CLOSED -->
+<!-- ROW-1 CLOSED -->

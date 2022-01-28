@@ -133,10 +133,16 @@
 							</ul>
 						</li>
                         <li>
-							<a class="side-menu__item" href="javascript:void(0)" [routerLink]="['/dashboard/employee']" routerLinkActive="active"><span class="side-menu__label">Employee</span><i class="side-menu__icon fe fe-users"></i></a>
+							<a class="side-menu__item" href="javascript:void(0)" [routerLink]="['/dashboard/employee']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span class="side-menu__label">Employee</span><i class="side-menu__icon fe fe-users"></i></a>
 						</li>
                         <li>
-							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">Employee Document Upload</span><i class="side-menu__icon fe fe-upload"></i></a>
+							<a class="side-menu__item" href="javascript:void(0)" [routerLink]="['/dashboard/employee/doc-list']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span class="side-menu__label">Employee Document Upload</span><i class="side-menu__icon fe fe-upload"></i></a>
+						</li>
+                        <li>
+							<a class="side-menu__item" href="javascript:void(0)" [routerLink]="['/dashboard/employee/apply-leave-list']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span class="side-menu__label">Apply For Leave</span><i class="side-menu__icon fe fe-list"></i></a>
+						</li>
+                        <li>
+							<a class="side-menu__item" href="javascript:void(0)" [routerLink]="['/dashboard/approve-leave']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span class="side-menu__label">Approve Leave</span><i class="side-menu__icon fe fe-list"></i></a>
 						</li>
                         <li>
 							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">FDS</span><i class="side-menu__icon fe fe-list"></i></a>
@@ -153,7 +159,7 @@
                         <li class="slide">
 							<a class="side-menu__item" data-toggle="slide" href="javascript:void(0)"><i class="angle fe fe-chevron-right"></i><span class="side-menu__label">Configuration</span><i class="side-menu__icon fe fe-settings"></i></a>
 							<ul class="slide-menu">
-								<li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/state']" routerLinkActive="active" ><i class="sidemenu-icon fe fe-chevrons-right"></i>Reset Password</a></li>
+								<li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/configuration']" routerLinkActive="active" ><i class="sidemenu-icon fe fe-chevrons-right"></i>Reset Password</a></li>
 							</ul>
 						</li>
                     </ul>
