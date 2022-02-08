@@ -9,10 +9,19 @@ export class ListComponent implements OnInit {
 
   constructor() { }
   isShow: boolean = false;
+  showDropdown: boolean = false;
   ngOnInit(): void {
     $(function(e) {
-      $('#example').DataTable();
+      $('#approveLeaveexample').DataTable();
     } );
+  }
+  showPopup(e){
+     if(e.target.value === "Reject"){
+        this.isShow = true;
+     }
+     if(e.target.value === "Approve"){
+      this.isShow = false;
+    }
   }
 
 }

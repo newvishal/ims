@@ -9,9 +9,10 @@ export class ApplyLeaveListComponent implements OnInit {
 
   constructor() { }
   isShow: boolean = false;
+  
   ngOnInit(): void {
     $(function(e) {
-      $('#example').DataTable();
+      $('#applyLeaveListexample').DataTable();
     } );
   }
 }

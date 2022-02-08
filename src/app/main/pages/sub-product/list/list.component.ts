@@ -10,10 +10,9 @@ export class ListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
- $(function(e) {
-  $('#serviceTypeexample').DataTable();
-} );
+    $(function(e) {
+      $('#subexample').DataTable();
+    } );
   }
 
 }

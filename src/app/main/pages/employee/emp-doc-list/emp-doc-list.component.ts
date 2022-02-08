@@ -11,7 +11,7 @@ export class EmpDocListComponent implements OnInit {
 
   ngOnInit(): void {
     $(function(e) {
-      $('#example').DataTable();
+      $('#empDocListexample').DataTable();
     } );
   }
 

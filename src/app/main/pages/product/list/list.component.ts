@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 declare var $:any;
 @Component({
   selector: 'app-list',
@@ -10,10 +11,9 @@ export class ListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
- $(function(e) {
-  $('#serviceTypeexample').DataTable();
-} );
+    $(function(e) {
+      $('#pexample').DataTable();
+    } );
   }
 
 }

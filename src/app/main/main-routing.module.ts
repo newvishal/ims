@@ -80,6 +80,16 @@ const routes: Routes = [
         path: "approve-leave",
         loadChildren: () =>
           import("./pages/approve-leave/approve-leave.module").then((m) => m.ApproveLeaveModule)
+      },
+      {
+        path: "product",
+        loadChildren: () =>
+          import("./pages/product/product.module").then((m) => m.ProductModule)
+      },
+      {
+        path: "sub-product",
+        loadChildren: () =>
+          import("./pages/sub-product/sub-product.module").then((m) => m.SubProductModule)
       }
     ]
   }

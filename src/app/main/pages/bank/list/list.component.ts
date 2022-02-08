@@ -13,7 +13,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     $(function(e) {
-      $('#example').DataTable();
+      $('#bankexample').DataTable();
     } );
   }
 
