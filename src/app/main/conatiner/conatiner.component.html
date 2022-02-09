@@ -156,7 +156,13 @@
 							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">Graphs</span><i class="side-menu__icon fe fe-list"></i></a>
 						</li>
                         <li>
-							<a class="side-menu__item" href="javascript:void(0)"><span class="side-menu__label">Reports</span><i class="side-menu__icon fe fe-file"></i></a>
+							<a class="side-menu__item" href="javascript:void(0)" [routerLink]="['/dashboard/purchase-order']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span class="side-menu__label">Purchase Order</span><i class="side-menu__icon fe fe-list"></i></a>
+						</li>
+                        <li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="javascript:void(0)"><i class="angle fe fe-chevron-right"></i><span class="side-menu__label">Reports</span><i class="side-menu__icon fe fe-file"></i></a>
+                            <ul class="slide-menu">
+                                <li><a href="javascript:void(0)" class="slide-item" [routerLink]="['/dashboard/reports/attendance']" routerLinkActive="active" ><i class="sidemenu-icon fe fe-chevrons-right"></i>Attendance</a></li>
+                            </ul>
 						</li>
                         <li class="slide">
 							<a class="side-menu__item" data-toggle="slide" href="javascript:void(0)"><i class="angle fe fe-chevron-right"></i><span class="side-menu__label">Configuration</span><i class="side-menu__icon fe fe-settings"></i></a>

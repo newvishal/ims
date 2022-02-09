@@ -90,6 +90,16 @@ const routes: Routes = [
         path: "sub-product",
         loadChildren: () =>
           import("./pages/sub-product/sub-product.module").then((m) => m.SubProductModule)
+      },
+      {
+        path: "reports",
+        loadChildren: () =>
+          import("./pages/reports/reports.module").then((m) => m.ReportsModule)
+      },
+      {
+        path: "purchase-order",
+        loadChildren: () =>
+          import("./pages/purchase-order/purchase-order.module").then((m) => m.PurchaseOrderModule)
       }
     ]
   }
