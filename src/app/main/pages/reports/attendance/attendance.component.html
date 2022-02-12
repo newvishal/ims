@@ -56,6 +56,15 @@
                     </div>
                     <div class="col-lg-2">
                         <div class="form-group">
+                            <label class="form-label">Month</label>
+                            <select name="stateddl" id="" class="form-control">
+                                <option [value]="item" *ngFor="let item of ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];let i=index">
+                                    {{item}} ({{i+1}})</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
                             <label class="form-label">Year</label>
                             <select name="stateddl" id="" class="form-control">
                                 <option value="br" selected>2022</option>

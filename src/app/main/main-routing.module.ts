@@ -100,6 +100,11 @@ const routes: Routes = [
         path: "purchase-order",
         loadChildren: () =>
           import("./pages/purchase-order/purchase-order.module").then((m) => m.PurchaseOrderModule)
+      },
+      {
+        path: "stock",
+        loadChildren: () =>
+          import("./pages/stock/stock.module").then((m) => m.StockModule)
       }
     ]
   }
