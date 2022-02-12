@@ -28,7 +28,11 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <button class="btn btn-primary mt-6"><i class="fe fe-search"></i> Search</button>
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control" placeholder="Location">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button class="btn btn-primary mt-2 float-right"><i class="fe fe-search"></i> Search</button>
                         </div>
                 </div>
                 <form [formGroup]="StockForm">
@@ -43,6 +47,8 @@
                                         <th >Vendor Name</th>
                                         <th >Vendor Branch</th>
                                         <th >Quantity</th>
+                                        <th>Bacth No</th>
+                                        <th>Exp Date</th>
                                         <th >UOM</th>
                                         <th >Rate</th>
                                         <th >Amount</th>
@@ -85,6 +91,16 @@
                                         <td>
                                             <div class="form-group">
                                                 <input type="number" formControlName="Quantity" name="" class="form-control"  id="" placeholder="Qty">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" formControlName="BatchNo" name="" class="form-control"  id="" placeholder="Qty">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" formControlName="ExpDate" name="" class="form-control"  id="" placeholder="Qty">
                                             </div>
                                         </td>
                                         <td>

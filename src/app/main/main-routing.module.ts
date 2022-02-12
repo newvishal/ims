@@ -105,6 +105,21 @@ const routes: Routes = [
         path: "stock",
         loadChildren: () =>
           import("./pages/stock/stock.module").then((m) => m.StockModule)
+      },
+      {
+        path: "inventory",
+        loadChildren: () =>
+          import("./pages/inventory/inventory.module").then((m) => m.InventoryModule)
+      },
+      {
+        path: "newBornLeave",
+        loadChildren: () =>
+          import("./pages/new-born-leave/new-born-leave.module").then((m) => m.NewBornLeaveModule)
+      },
+      {
+        path: "leave",
+        loadChildren: () =>
+          import("./pages/leave/leave.module").then((m) => m.LeaveModule)
       }
     ]
   }

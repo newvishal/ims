@@ -1,6 +1,6 @@
 <div class="page-header">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"> Stock Received</a></li>
+        <li class="breadcrumb-item"><a href="#"> Supply Detail List</a></li>
     </ol>
 </div>
 <div class="row">
@@ -9,22 +9,8 @@
             <div class="card-body">
                 <div class="row">
                         <div class="form-group col-md-3">
-                            <label class="form-label">State</label>
-                            <select class="form-control ">
-                                <option>Uttar Pradesh</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label class="form-label">District</label>
-                            <select class="form-control ">
-                                <option>Uttar Pradesh</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label class="form-label">Location type</label>
-                            <select class="form-control ">
-                                <option>Uttar Pradesh</option>
-                            </select>
+                            <label class="form-label">PO Code</label>
+                            <input type="text" class="form-control" placeholder="eg: PO!234">
                         </div>
                         <div class="form-group col-md-3">
                             <button class="btn btn-primary mt-6"><i class="fe fe-search"></i> Search</button>
@@ -36,11 +22,11 @@
                                 <thead>
                                     <tr>
                                         <th >Sr No.</th>
-                                        <th >Transfer State</th>
-                                        <th >District</th>
-                                        <th >Location Type</th>
-                                        <th >Location</th>
-                                        <th >Transfer Date</th>
+                                        <th >PO Code</th>
+                                        <th >Vendor</th>
+                                        <th >State</th>
+                                        <th >PO No</th>
+                                        <th >Supply State Name</th>
                                         <th >Action</th>
                                     </tr>
                                 </thead>
@@ -51,7 +37,7 @@
                                         <td>Up</td>
                                         <td>LT</td>
                                         <td>L</td>
-                                        <td>18-12-2022</td>
+                                        <td>UP,Punjab</td>
                                         <td class="btn-list">
                                             <button type="button" class="btn btn-icon btn-info" (click)="isShow=true" data-toggle="modal" data-target="#staticBackdrop"> <i class="fa fa-eye"></i> View </button>
                                         </td>
@@ -69,7 +55,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Recevied details</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">Supply details</h5>
             <button type="button" (click)="isShow=false" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -83,15 +69,10 @@
                                     <th >Sr No.</th>
                                     <th >Product Type</th>
                                     <th >Sub Product</th>
-                                    <th >Quantity</th>
-                                    <th >UOM</th>
-                                    <th >Batch Number</th>
+                                    <th >Supply Quantity</th>
+                                    <th >Batch No</th>
                                     <th >Exp Date</th>
-                                    <th >Rate</th>
-                                    <th >Amount</th>
-                                    <th >GST</th>
-                                    <th >Net Amount</th>
-                                    <th >Received Qunt</th>
+                                    <th >UOM</th>
                                     <th >Action</th>
                                 </tr>
                             </thead>
@@ -101,14 +82,9 @@
                                     <td >test</td>
                                     <td >Sub test</td>
                                     <td >1</td>
+                                    <td >1</td>
+                                    <td >1</td>
                                     <td >Pices</td>
-                                    <td >B1</td>
-                                    <td >18/12/2022</td>
-                                    <td >10.2</td>
-                                    <td >12450</td>
-                                    <td >ABC87887</td>
-                                    <td >1241466</td>
-                                    <td >500</td>
                                     <td >
                                         <a href="javascript:void(0)" class="btn btn-icon  btn-primary" > Save </a>
                                         <a href="javascript:void(0)" class="btn btn-icon  btn-primary ml-2" > Freaze </a>
