@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-stock',
-  templateUrl: './add-stock.component.html',
-  styleUrls: ['./add-stock.component.scss']
+  selector: 'app-stock-transfer',
+  templateUrl: './stock-transfer.component.html',
+  styleUrls: ['./stock-transfer.component.scss']
 })
-export class AddStockComponent implements OnInit {
+export class StockTransferComponent implements OnInit {
 
   StockForm: FormGroup;
 
@@ -16,10 +16,10 @@ export class AddStockComponent implements OnInit {
       id: 1,
       ProductType: "Test",
       Subproduct: "Sub text",
-      VendorId: "Vendor",
-      VendorBranch: "V Branch",
       Quantity: 1,
       UOM: "Pices",
+      BatchNo: "Vendor",
+      ExpDate: "18/12/2022",
       Rate: "20",
       GST: "ABS676BACG",
       Amount: "50",
@@ -29,10 +29,10 @@ export class AddStockComponent implements OnInit {
       id:2,
       ProductType: "Test",
       Subproduct: "Sub text",
-      VendorId: "Vendor",
-      VendorBranch: "V Branch",
       Quantity: 1,
       UOM: "Pices",
+      BatchNo: "Vendor",
+      ExpDate: "18/12/2022",
       Rate: "20",
       GST: "ABS676BACG",
       Amount: "50",
@@ -60,8 +60,8 @@ export class AddStockComponent implements OnInit {
       id: [row['id']],
       ProductType: [row['ProductType']],
       Subproduct: [row['Subproduct']],
-      VendorId: [row['VendorId']],
-      VendorBranch: [row['VendorBranch']],
+      BatchNo: [row['BatchNo']],
+      ExpDate: [row['ExpDate']],
       Quantity: [row['Quantity']],
       UOM: [row['UOM']],
       Rate: [row['Rate']],
@@ -91,8 +91,8 @@ export class AddStockComponent implements OnInit {
           id: [''],
           ProductType: [''],
           Subproduct: [''],
-          VendorId: [''],
-          VendorBranch: [''],
+          BatchNo: [''],
+          ExpDate: [''],
           Quantity: [''],
           UOM: [''],
           Rate: [''],
@@ -103,6 +103,5 @@ export class AddStockComponent implements OnInit {
     );
     console.log( this.StockForm.value);
   }
+
 }
-
-

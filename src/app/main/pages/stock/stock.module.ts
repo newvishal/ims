@@ -4,6 +4,9 @@ import { AddStockComponent } from './add-stock/add-stock.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { StockListComponent } from './stock-list/stock-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { StockTransferComponent } from './stock-transfer/stock-transfer.component';
+import { StockReceivedComponent } from './stock-received/stock-received.component';
 
 const routes: Routes = [
   {
@@ -13,16 +16,27 @@ const routes: Routes = [
   {
     path: "AddStock",
     component: AddStockComponent
+  },
+  {
+    path: "StockTransfer",
+    component: StockTransferComponent
+  },
+  {
+    path: "StockReceived",
+    component: StockReceivedComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    AddStockComponent
+    AddStockComponent,
+    StockTransferComponent,
+    StockReceivedComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ]
 })
 export class StockModule { }
