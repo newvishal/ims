@@ -1,0 +1,95 @@
+<div class="page-header">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#"> Attendance</a></li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="form-label">Employee Id</label>
+                            <input type="text" class="form-control" placeholder="eg:EMP1234">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button class="btn btn-primary mt-6"><i class="fe fe-search"></i> Search</button>
+                        </div>
+                </div>
+                    <div class="row p-2" >
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Employee Id</label>
+                                <input type="text" class="form-control" readonly name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Employee Name</label>
+                                <input type="text" class="form-control" readonly name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <input type="text" class="form-control" readonly name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">District</label>
+                                <input type="text" class="form-control" readonly name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" readonly name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Designation</label>
+                                <input type="text" class="form-control" readonly name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Date</label>
+                                <input type="date" value="{{curDate | date:'yyyy-MM-dd'}}" min="2022-02-07" max="{{curDate | date:'yyyy-MM-dd'}}" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <select name="stateddl" id="" class="form-control" (change)="showPopup($event)">
+                                    <option value="" selected>Select Status</option>
+                                    <option value="Present">Present</option>
+                                    <option value="Absent" >Absent</option>
+                                    <option value="Leave" >Leave</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4" *ngIf="time">
+                            <div class="form-group">
+                                <label class="form-label">Time</label>
+                                <input type="time" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-4" *ngIf="reason">
+                            <div class="form-group">
+                                <label class="form-label">Reason</label>
+                                <textarea name="" id="" style="resize: none;" cols="30" rows="3" class="form-control" placeholder="Reason..."></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary float-right ml-2">Freeze</button>
+                            <button type="button" class="btn btn-primary float-right ">Save</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ROW-1 CLOSED -->

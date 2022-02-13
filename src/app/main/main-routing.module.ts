@@ -120,6 +120,11 @@ const routes: Routes = [
         path: "leave",
         loadChildren: () =>
           import("./pages/leave/leave.module").then((m) => m.LeaveModule)
+      },
+      {
+        path: "mark-attendance",
+        loadChildren: () =>
+          import("./pages/mark-attendance/mark-attendance.module").then((m) => m.MarkAttendanceModule)
       }
     ]
   }
