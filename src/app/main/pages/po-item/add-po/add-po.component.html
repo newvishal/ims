@@ -1,7 +1,7 @@
 
 <div class="page-header">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"> Add Stock</a></li>
+        <li class="breadcrumb-item"><a href="#"> PO Item</a></li>
     </ol>
 </div>
 <div class="row">
@@ -9,82 +9,47 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                        <div class="form-group col-md-3">
-                            <label class="form-label">State</label>
-                            <select class="form-control ">
-                                <option>Uttar Pradesh</option>
-                            </select>
+                        <div class="form-group col-md-5">
+                            <label class="form-label">PO Unique Code</label>
+                            <input type="text" name="" class="form-control" id="">
                         </div>
-                        <div class="form-group col-md-3">
-                            <label class="form-label">District</label>
-                            <select class="form-control ">
-                                <option>Uttar Pradesh</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label class="form-label">Location type</label>
-                            <select class="form-control ">
-                                <option>Uttar Pradesh</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label class="form-label">Location</label>
-                            <input type="text" class="form-control" placeholder="Location">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <button class="btn btn-primary mt-2 float-right"><i class="fe fe-search"></i> Search</button>
+                        <div class="form-group col-md-2">
+                            <button class="btn btn-primary mt-6"><i class="fe fe-search"></i> Search</button>
                         </div>
                 </div>
-                
-                <form [formGroup]="StockForm">
+                <form [formGroup]="POForm">
                     <div class="row p-2" >
                         <div class="table-responsive">
                             <table id="POexample" class="table table-bordered text-nowrap w-100">
                                 <thead>
                                     <tr>
                                         <th >Sr No.</th>
-                                        <th >Product Type</th>
+                                        <th >Product </th>
                                         <th >Sub Product</th>
-                                        <th >Vendor Name</th>
-                                        <th >Vendor Branch</th>
                                         <th >Quantity</th>
-                                        <th>Bacth No</th>
-                                        <th>Exp Date</th>
                                         <th >UOM</th>
+                                        <th >Batch Number</th>
+                                        <th >Exp Date</th>
                                         <th >Rate</th>
                                         <th >Amount</th>
                                         <th >GST</th>
-                                        <th >net Amount</th>
+                                        <th >Net Amount</th>
                                         <th >Action</th>
                                     </tr>
                                 </thead>
-                                <tbody formArrayName="Stocks">
+                                <tbody formArrayName="POItems">
                                     <tr formGroupName={{i}}  *ngFor="let cd of StockAliases.controls;let i = index;" >
                                         <td>{{i+1}}</td>
                                         <td>
                                             <div class="form-group col-md-12">
-                                                <select name="" id="" class="form-control" formControlName="ProductType">
+                                                <select name="" id="" class="form-control" formControlName="Product">
                                                     <option value="" >UP</option>
                                                 </select>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group col-md-12">
-                                                <select name="" id="" class="form-control" formControlName="Subproduct">
-                                                    <option value="" >UP</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group col-md-12">
-                                                <select name="" id=""  class="form-control" formControlName="VendorId">
-                                                    <option value="">ram</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group col-md-12">
-                                                <select name="" id=""  class="form-control" formControlName="VendorBranch">
+                                                <select name="" id="" class="form-control" formControlName="SubProduct">
                                                     <option value="" >UP</option>
                                                 </select>
                                             </div>
@@ -96,19 +61,20 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="number" formControlName="BacthNo" name="" class="form-control"  id="" placeholder="Qty">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input type="number" formControlName="ExpDate" name="" class="form-control"  id="" placeholder="Qty">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
                                                 <input type="number" formControlName="UOM" name="" id="" class="form-control" placeholder="UOM">
                                             </div>
                                         </td>
+                                        <td>
+                                            <div class="form-group col-md-12">
+                                                <input type="number" formControlName="BatchNo" name="" id="" class="form-control" placeholder="Batch No">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col-md-12">
+                                                <input type="number" formControlName="ExpDate" name="" id="" class="form-control" placeholder="Batch No">
+                                            </div>
+                                        </td>
+                                        
                                         <td>
                                             <div class="form-group">
                                                 <input type="number" formControlName="Rate" name="" id="" class="form-control" placeholder="Rate">
@@ -140,7 +106,7 @@
                     </div>
                     <div class="row ml-1">
                         <input type="submit" value="Submit" class="btn btn-primary ">
-                        <button class="btn btn-danger ml-2" type="button">Freeze</button>
+                        <!-- <button class="btn btn-danger ml-2" type="button">Freeze</button> -->
                     </div>
                 </form>
             </div>

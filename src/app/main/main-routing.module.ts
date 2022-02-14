@@ -107,6 +107,11 @@ const routes: Routes = [
           import("./pages/stock/stock.module").then((m) => m.StockModule)
       },
       {
+        path: "poItem",
+        loadChildren: () =>
+          import("./pages/po-item/po-item.module").then((m) => m.POItemModule)
+      },
+      {
         path: "inventory",
         loadChildren: () =>
           import("./pages/inventory/inventory.module").then((m) => m.InventoryModule)

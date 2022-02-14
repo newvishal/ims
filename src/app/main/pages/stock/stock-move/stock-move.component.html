@@ -1,0 +1,122 @@
+
+<div class="page-header">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#"> Stock Move</a></li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="form-label">Employee Id</label>
+                            <input type="text" name="" class="form-control" id="">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="form-label">Use For FDS</label>
+                            <input type="text" name="" class="form-control" id="">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="form-label">Enter FDS Id</label>
+                            <input type="text" name="" class="form-control" id="">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button class="btn btn-primary mt-6"><i class="fe fe-search"></i> Search</button>
+                        </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <p class="h5">Name</p> Ashu singh
+                    </div>
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <p class="h5">Address</p> chandauli bisauri 232104 Uttar pradesh India
+                    </div>
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <p class="h5">FDS Date</p> 18/12/2022
+                    </div>
+                   
+                </div>
+                <div class="row mb-5">
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <p class="h5">State</p> UP
+                    </div>
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <p class="h5">District</p> Varanasi
+                    </div>
+                    <div class="col-sm-12 col-lg-4 col-md-4">
+                        <p class="h5">Location</p> UP
+                    </div>
+                </div>
+                <form [formGroup]="StockForm">
+                    <div class="row p-2" >
+                        <div class="table-responsive">
+                            <table id="POexample" class="table table-bordered text-nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th >Sr No.</th>
+                                        <th >Product </th>
+                                        <th >Sub Product</th>
+                                        <th >Quantity</th>
+                                        <th >UOM</th>
+                                        <th >Batch Number</th>
+                                        <th >Exp Date</th>
+                                        <th >Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody formArrayName="Stocks">
+                                    <tr formGroupName={{i}}  *ngFor="let cd of StockAliases.controls;let i = index;" >
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <div class="form-group col-md-12">
+                                                <select name="" id="" class="form-control" formControlName="Product">
+                                                    <option value="" >UP</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col-md-12">
+                                                <select name="" id="" class="form-control" formControlName="SubProduct">
+                                                    <option value="" >UP</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" formControlName="Quantity" name="" class="form-control"  id="" placeholder="Qty">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" formControlName="UOM" name="" id="" class="form-control" placeholder="UOM">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col-md-12">
+                                                <input type="number" formControlName="BatchNo" name="" id="" class="form-control" placeholder="Batch No">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col-md-12">
+                                                <input type="number" formControlName="ExpDate" name="" id="" class="form-control" placeholder="Batch No">
+                                            </div>
+                                        </td>
+                                        <td class="btn-list">
+                                            <a href="javascript:void(0)" class="btn btn-icon  btn-primary" (click)="addStock()"> <i class="fe fe-plus"></i> </a>
+                                            <a href="javascript:void(0)" class="btn btn-icon  btn-danger" (click)="DeleteStock(i)" *ngIf="i!=0"> <i class="fe fe-delete"></i> </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row ml-1">
+                        <input type="submit" value="Submit" class="btn btn-primary ">
+                        <button class="btn btn-danger ml-2" type="button">Freeze</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ROW-1 CLOSED -->
