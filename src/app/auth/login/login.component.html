@@ -13,36 +13,46 @@
             <!-- CONTAINER OPEN -->
             <div class="col col-login mx-auto">
                 <div class="text-center">
-                    <img src="../../../../assets/admin/images/brand/logo-white.png" class="header-brand-img" alt="">
+                    <h2 style="color:white;font-weight:bolder;">FRHS</h2>
                 </div>
             </div>
             <div class="container-login100">
                 <div class="wrap-login100 p-6">
-                    <form class="login100-form validate-form">
+                    <form class="login100-form validate-form"  [formGroup]="loginForm" (ngSubmit)="loginUser()">
                         <span class="login100-form-title">
                             Login
                         </span>
-                        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                            <input class="input100" type="text" name="email" placeholder="Email">
+                        <div class="wrap-input100 validate-input" style="margin-bottom: 0px;">
+                            <input class="input100" type="text" name="userName" placeholder="Email" formControlName="userName"
+                            [class.is-invalid]="myForm['userName'].invalid && myForm['userName'].touched">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                             </span>
+                            
                         </div>
-                        <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="password" name="pass" placeholder="Password">
+                        <small style="padding: 0px;" class="text-danger" [class.d-none]="myForm['userName'].valid || myForm['userName'].untouched">Please
+                            Enter User Name</small>
+                            <br>
+                        <div class="wrap-input100 validate-input" style="margin-bottom: 0px;">
+                            <input class="input100" type="password" name="pass" placeholder="Password" formControlName="password">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="zmdi zmdi-lock" aria-hidden="true"></i>
                             </span>
+                            
                         </div>
+                        <small class="text-danger"
+                            [class.d-none]="myForm['password'].valid || myForm['password'].untouched">Please
+                            Enter Password</small>
                         <!-- <div class="text-right pt-1">
                             <p class="mb-0"><a href="forgot-password.html" class="text-primary ml-1">Forgot Password?</a></p>
                         </div> -->
                         <div class="container-login100-form-btn">
-                            <a href="javascript:void(0)" routerLink="/dashboard" class="login100-form-btn btn-primary">
+                            <!-- <a href="javascript:void(0)" routerLink="/dashboard" class="login100-form-btn btn-primary">
                                 Login
-                            </a>
+                            </a> -->
+                            <input type="submit" class="login100-form-btn btn-primary" value="Login">
                         </div>
                         <!-- <div class="text-center pt-3">
                             <p class="text-dark mb-0">Not a member?<a href="register.html" class="text-primary ml-1">Sign UP now</a></p>

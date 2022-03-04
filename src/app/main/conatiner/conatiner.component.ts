@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 declare var $:any;
 @Component({
@@ -9,7 +11,7 @@ declare var $:any;
 export class ConatinerComponent implements OnInit {
   IsProfileShow: Boolean = false;
   IsNotificationShow: Boolean = false;
-  constructor() { }
+  constructor(public router: Router,public toastr: ToastrManager) { }
 
   ngOnInit(): void {
     $(document).ready(function(){
@@ -123,5 +125,10 @@ export class ConatinerComponent implements OnInit {
         
     });
   }
-
+  
+  logoutUser(){
+    localStorage.clear();
+    this.router.navigate(["/"]);
+    this.toastr.successToastr("Logged Out Successfully.");
+  }
 }

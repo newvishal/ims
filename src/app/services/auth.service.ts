@@ -15,7 +15,7 @@ export class AuthService {
         'Access-Control-Allow-Origin': '*'
       });
       const options = { headers: headers};
-      return this.http.post(environment.apiUrl + "api/Authentication", data,options)
+      return this.http.post(environment.apiUrl + "authenticate", data,options)
           .pipe(
               retry(1),
               catchError(this.handleError)
