@@ -11,33 +11,36 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <!-- <div class="card-header">
-                <h3 class="mb-0 card-title">Default forms</h3>
-            </div> -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Location type</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="br" selected>1</option>
-                                <option value="cz" >2</option>
-                                <option value="de" >3</option>
-                                <option value="pl">4</option>
-                            </select>
+            <form [formGroup]="LocationTypeForm" (ngSubmit)="addLocationType()">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Location type</label>
+                                <select formControlName="locationType" [ngClass]="{ 'is-invalid': submitted && myForm['locationType'].errors }" name="stateddl" id="" class="form-control">
+                                    <option value="br">1</option>
+                                    <option value="cz">2</option>
+                                    <option value="de">3</option>
+                                    <option value="pl">4</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['locationType'].errors?.['required']">Please
+                                    Enter Location type</small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Short code</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Short code</label>
+                                <input formControlName="shortCode" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['locationType'].errors?.['required']">Please
+                                    Enter Short Code</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" value="Submit" class="btn btn-primary mt-6">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <input type="submit" value="Submit" class="btn btn-primary float-right">
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

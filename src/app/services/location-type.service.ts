@@ -10,7 +10,7 @@ import {ILocationType} from '../shared/ts';
   providedIn: 'root'
 })
 export class LocationTypeService {
-  subject = new BehaviorSubject<any>( localStorage.getItem('details') || JSON.stringify({locationTypeId: '', locationType: "", shortCode: '', status: false }));
+  subject = new BehaviorSubject<any>( localStorage.getItem('details') || JSON.stringify({locTypeId: '', locationTypeName: "", shortCode: '', status: false }));
 
   httpOptions = {
     headers: new HttpHeaders({ 
@@ -23,17 +23,17 @@ export class LocationTypeService {
   constructor(private http: HttpClient) { }
    
   add(LocationType:ILocationType): Observable<ILocationType> {
-      return this.http.post<ILocationType>(environment.apiUrl + "api/LocationType", LocationType, this.httpOptions)
+      return this.http.post<ILocationType>(environment.apiUrl + "LocationType", LocationType, this.httpOptions)
                       .pipe(catchError(this.handleError<ILocationType>(`addLocationType`)));
   }
 
   put(LocationType:ILocationType, id: string): Observable<ILocationType> {
-    return this.http.put<ILocationType>(environment.apiUrl + `api/LocationType/${id}`, LocationType, this.httpOptions)
+    return this.http.put<ILocationType>(environment.apiUrl + `LocationType/${id}`, LocationType, this.httpOptions)
                     .pipe(catchError(this.handleError<ILocationType>(`UpdateLocationType`)));
   }
 
   find(): Observable<ILocationType[]> {
-      return this.http.get<ILocationType[]>(environment.apiUrl + "api/LocationType", this.httpOptions)
+      return this.http.get<ILocationType[]>(environment.apiUrl + "LocationType", this.httpOptions)
                       .pipe(catchError(this.handleError<ILocationType[]>('getAllLocationType', [])));
   }
 

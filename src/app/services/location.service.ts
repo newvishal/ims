@@ -14,16 +14,13 @@ export class LocationService {
   subject = new BehaviorSubject<any>(
      localStorage.getItem('details') || 
      JSON.stringify({
-       locationId: '',
-       zoneId: "",
-       districtId: '',
-       locationTypeId: "",
-       locationName: "",
-       shortCode: "",
-       hra: "",
-       ccaStatus: "",
-       cccAmount: "",
-       status: false
+        locationId: '',
+        stateId: '',
+        districtId: '',
+        locTypeId: '',
+        locationName: "",
+        shortCode: "",
+        locationCategory: ""
     }));
 
   httpOptions = {
@@ -37,17 +34,17 @@ export class LocationService {
   constructor(private http: HttpClient) { }
    
   add(Location:ILocation): Observable<ILocation> {
-      return this.http.post<ILocation>(environment.apiUrl + "api/Location", Location, this.httpOptions)
+      return this.http.post<ILocation>(environment.apiUrl + "Location", Location, this.httpOptions)
                       .pipe(catchError(this.handleError<ILocation>(`addLocation`)));
   }
 
-  put(Location:ILocation, id: string): Observable<ILocation> {
-    return this.http.put<ILocation>(environment.apiUrl + `api/Location/${id}`, Location, this.httpOptions)
+  put(Location:ILocation, id: any): Observable<ILocation> {
+    return this.http.put<ILocation>(environment.apiUrl + `Location/${id}`, Location, this.httpOptions)
                     .pipe(catchError(this.handleError<ILocation>(`putLocation`)));
   }
 
   find(): Observable<ILocation[]> {
-      return this.http.get<ILocation[]>(environment.apiUrl + "api/Location", this.httpOptions)
+      return this.http.get<ILocation[]>(environment.apiUrl + "Location", this.httpOptions)
                       .pipe(catchError(this.handleError<ILocation[]>('getAllLocation', [])));
   }
 

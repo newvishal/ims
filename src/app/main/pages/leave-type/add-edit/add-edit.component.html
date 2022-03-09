@@ -15,43 +15,47 @@
                 <h3 class="mb-0 card-title">Default forms</h3>
             </div> -->
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Leave Type Name</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                <form [formGroup]="LeaveTypeForm" (ngSubmit)="addLeaveType()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Leave Type Name</label>
+                                <input formControlName="leaveTypeName" [ngClass]="{ 'is-invalid': submitted && myForm['leaveTypeName']?.errors }" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['zoneId'].errors?.['required']">Please
+                                    Enter Leave Type Name</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Short code</label>
+                                <input formControlName="shortCode" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Gender</label>
+                                <select formControlName="genderApplicable" name="stateddl" id="" class="form-control">
+                                    <option value="" >Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female" >Female</option>
+                                    <option value="Both" >Both</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Carry Forward Statue</label>
+                                <select formControlName="carryForwardStatus" name="stateddl" id="" class="form-control">
+                                    <option value="true" >Yes</option>
+                                    <option value="false" >No</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Short code</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
-                        </div>
+                    <div class="col-md-12">
+                        <input type="submit" value="Submit" class="btn btn-primary float-right">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Gender</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="" selected>Select gender</option>
-                                <option value="Yes">Male</option>
-                                <option value="No" >Female</option>
-                                <option value="No" >Both</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Carry Forward Statue</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Yes" selected>Yes</option>
-                                <option value="No" >No</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" value="Submit" class="btn btn-primary float-right">
-                </div>
+                </form>
             </div>
         </div>
     </div>

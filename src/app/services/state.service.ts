@@ -4,13 +4,13 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-import {IBank} from '../shared/ts';
-
+import {IState} from '../shared/ts';
 @Injectable({
   providedIn: 'root'
 })
-export class BankService {
-  subject = new BehaviorSubject<any>( localStorage.getItem('details') || JSON.stringify({bankName: '', bankId: "", shortCode: '', status: false }));
+export class StateService {
+
+  subject = new BehaviorSubject<any>( localStorage.getItem('details') || JSON.stringify({stateId: '', stateName: '', shortCode: "", status: false }));
 
   httpOptions = {
     headers: new HttpHeaders({ 
@@ -22,22 +22,22 @@ export class BankService {
 
   constructor(private http: HttpClient) { }
    
-  addBank(bank:IBank): Observable<IBank> {
-      return this.http.post<IBank>(environment.apiUrl + "Bank", bank, this.httpOptions)
-                      .pipe(catchError(this.handleError<IBank>(`addBank`)));
+  add(state:IState): Observable<IState> {
+      return this.http.post<IState>(environment.apiUrl + "State", state, this.httpOptions)
+                      .pipe(catchError(this.handleError<IState>(`addDistrict`)));
   }
 
-  put(bank:IBank, id: string): Observable<IBank> {
-    return this.http.put<IBank>(environment.apiUrl + `Bank/${id}`, bank, this.httpOptions)
-                    .pipe(catchError(this.handleError<IBank>(`addBank`)));
+  put(state:IState, id: string): Observable<IState> {
+    return this.http.put<IState>(environment.apiUrl + `State/${id}`, state, this.httpOptions)
+                    .pipe(catchError(this.handleError<IState>(`putState`)));
   }
 
-  getAllBank(): Observable<IBank[]> {
-      return this.http.get<IBank[]>(environment.apiUrl + "Bank", this.httpOptions)
-                      .pipe(catchError(this.handleError<IBank[]>('getAllBank', [])));
+  find(): Observable<IState[]> {
+      return this.http.get<IState[]>(environment.apiUrl + "State", this.httpOptions)
+                      .pipe(catchError(this.handleError<IState[]>('getAllState', [])));
   }
 
-  saveBankById(detail : IBank) {
+  saveDetails(detail : IState) {
     localStorage.setItem('details', JSON.stringify(detail));
     this.subject.next(detail);
   }

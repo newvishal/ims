@@ -24,17 +24,17 @@ export class DistrictService {
   constructor(private http: HttpClient) { }
    
   add(district:IDistrict): Observable<IDistrict> {
-      return this.http.post<IDistrict>(environment.apiUrl + "api/District", district, this.httpOptions)
+      return this.http.post<IDistrict>(environment.apiUrl + "District", district, this.httpOptions)
                       .pipe(catchError(this.handleError<IDistrict>(`addDistrict`)));
   }
 
   put(district:IDistrict, id: string): Observable<IDistrict> {
-    return this.http.put<IDistrict>(environment.apiUrl + `api/District/${id}`, district, this.httpOptions)
+    return this.http.put<IDistrict>(environment.apiUrl + `District/${id}`, district, this.httpOptions)
                     .pipe(catchError(this.handleError<IDistrict>(`putDistrict`)));
   }
 
   find(): Observable<IDistrict[]> {
-      return this.http.get<IDistrict[]>(environment.apiUrl + "api/District", this.httpOptions)
+      return this.http.get<IDistrict[]>(environment.apiUrl + "District", this.httpOptions)
                       .pipe(catchError(this.handleError<IDistrict[]>('getAllDistrict', [])));
   }
 

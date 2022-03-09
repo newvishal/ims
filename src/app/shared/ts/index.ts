@@ -27,8 +27,8 @@ export interface IUserRole {
 }
 
 export interface ILocationType {
-    locationTypeId ?: string,
-    locationType: string,
+    locTypeId ?: string,
+    locationTypeName: string,
     shortCode: string,
     status ?: boolean
 }
@@ -64,7 +64,12 @@ export interface IDistrict {
     shortCode: string,
     status ?: boolean
 }
-
+export interface IState {
+    stateId ?: number,
+    stateName ?: number,
+    shortCode: string,
+    status ?: boolean
+}
 export interface IFinancialYear {
     fyId ?: string,
     financialYear : string,
@@ -106,14 +111,11 @@ export interface ILeaveType {
 
 export interface ILocation {
     locationId ?: string,
-    zoneId : number,
-    districtId : number,
-    locationTypeId : number,
     locationName : string,
+    locTypeId : number | string,
+    stateId: number | string,
+    districtId : number | string,
     shortCode : string,
-    hra : string,
-    ccaStatus : boolean,
-    cccAmount : number,
-    status ?: boolean
+    locationCategory : string
 }
 
