@@ -21,7 +21,7 @@
                             <div class="form-group">
                                 <label class="form-label">Leave Type Name</label>
                                 <input formControlName="leaveTypeName" [ngClass]="{ 'is-invalid': submitted && myForm['leaveTypeName']?.errors }" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
-                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['zoneId'].errors?.['required']">Please
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['leaveTypeName'].errors?.['required']">Please
                                     Enter Leave Type Name</small>
                             </div>
                         </div>
@@ -35,19 +35,18 @@
                             <div class="form-group">
                                 <label class="form-label">Gender</label>
                                 <select formControlName="genderApplicable" name="stateddl" id="" class="form-control">
-                                    <option value="" >Select gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female" >Female</option>
-                                    <option value="Both" >Both</option>
+                                    <option value="" selected>Select gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2" >Female</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Carry Forward Statue</label>
-                                <select formControlName="carryForwardStatus" name="stateddl" id="" class="form-control">
-                                    <option value="true" >Yes</option>
-                                    <option value="false" >No</option>
+                                <label class="form-label">Carry Forward State</label>
+                                <select formControlName="carryForwardStats" name="stateddl" id="" class="form-control">
+                                    <option value="1" >True</option>
+                                    <option value="0" >False</option>
                                 </select>
                             </div>
                         </div>

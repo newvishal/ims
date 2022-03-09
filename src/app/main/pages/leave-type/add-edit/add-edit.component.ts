@@ -21,7 +21,7 @@ export class AddEditComponent implements OnInit {
     this.LeaveTypeForm = this.formBuilder.group({
       leaveTypeName: ['', Validators.required],
       genderApplicable: [''],
-      carryForwardStatus: [''],
+      carryForwardStats: [''],
       shortCode: [''],
     });
 
@@ -35,7 +35,14 @@ export class AddEditComponent implements OnInit {
       } else {
         this.bsubject = res;
       }
+      console.log(this.bsubject.carryForwardStats);
       this.LeaveTypeForm.patchValue(this.bsubject);
+      if(this.bsubject.carryForwardStats == true){
+        this.LeaveTypeForm.get("carryForwardStats").patchValue(0);
+      }else{
+        this.LeaveTypeForm.get("carryForwardStats").patchValue(1);
+      }
+      
     });
   }
   
@@ -47,8 +54,12 @@ export class AddEditComponent implements OnInit {
       return;
     } else {
       if(this.bsubject.leaveTypeId) {
-       
-        this.leaveTypeService.put({...this.LeaveTypeForm.value, leaveTypeId: this.bsubject.leaveTypeId} as ILeaveType, this.bsubject.leaveTypeId).subscribe({
+        let updateObj = {
+          ...this.LeaveTypeForm.value,
+          genderApplicable: parseInt(this.LeaveTypeForm.value['genderApplicable']),
+          carryForwardStats: parseInt(this.LeaveTypeForm.value['carryForwardStats'])
+        };
+        this.leaveTypeService.put({...updateObj, leaveTypeId: this.bsubject.leaveTypeId} as ILeaveType, this.bsubject.leaveTypeId).subscribe({
           next: res =>{
             this._router.navigate(["dashboard/leave-type/"]);
             this.toastr.successToastr(res['message']);
@@ -57,9 +68,8 @@ export class AddEditComponent implements OnInit {
               leaveTypeId: '',
               leaveTypeName: "",
               genderApplicable: 0,
-              carryForwardStatus: false,
-              shortCode: '',
-              status: false
+              carryForwardStats: 0,
+              shortCode: ''
             });
           },
           error: err =>{
@@ -69,7 +79,7 @@ export class AddEditComponent implements OnInit {
         })
         return
       }
-      this.leaveTypeService.add({...this.LeaveTypeForm.value}).subscribe({
+      this.leaveTypeService.add({...this.LeaveTypeForm.value, carryForwardStats: parseInt(this.LeaveTypeForm.value["carryForwardStats"]),genderApplicable: parseInt(this.LeaveTypeForm.value["genderApplicable"])}).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/leave-type/"]);
           this.toastr.successToastr(res['message']);

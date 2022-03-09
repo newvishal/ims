@@ -33,17 +33,17 @@ export class LeaveTypeService {
   constructor(private http: HttpClient) { }
    
   add(LeaveType:ILeaveType): Observable<ILeaveType> {
-      return this.http.post<ILeaveType>(environment.apiUrl + "api/LeaveType", LeaveType, this.httpOptions)
+      return this.http.post<ILeaveType>(environment.apiUrl + "LeaveType", LeaveType, this.httpOptions)
                       .pipe(catchError(this.handleError<ILeaveType>(`addLeaveType`)));
   }
 
   put(LeaveType:ILeaveType, id: string): Observable<ILeaveType> {
-    return this.http.put<ILeaveType>(environment.apiUrl + `api/LeaveType/${id}`, LeaveType, this.httpOptions)
+    return this.http.put<ILeaveType>(environment.apiUrl + `LeaveType/${id}`, LeaveType, this.httpOptions)
                     .pipe(catchError(this.handleError<ILeaveType>(`putLeaveType`)));
   }
 
   find(): Observable<ILeaveType[]> {
-      return this.http.get<ILeaveType[]>(environment.apiUrl + "api/LeaveType", this.httpOptions)
+      return this.http.get<ILeaveType[]>(environment.apiUrl + "LeaveType", this.httpOptions)
                       .pipe(catchError(this.handleError<ILeaveType[]>('getAllLeaveType', [])));
   }
 

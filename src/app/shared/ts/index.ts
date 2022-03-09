@@ -104,9 +104,8 @@ export interface ILeaveType {
     leaveTypeId ?: string,
     leaveTypeName : string,
     genderApplicable ?: number,
-    carryForwardStatus ?: boolean,
-    shortCode ?: string,
-    status ?: boolean
+    carryForwardStats ?: number | boolean,
+    shortCode ?: string
 }
 
 export interface ILocation {

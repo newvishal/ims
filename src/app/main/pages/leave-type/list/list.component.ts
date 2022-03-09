@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ['leaveTypeId', 'leaveTypeName', 'genderApplicable', 'carryForwardStatus', 'shortCode', 'status', 'actions'];
+  displayedColumns: string[] = ['leaveTypeId', 'leaveTypeName', 'genderApplicable', 'carryForwardStats', 'shortCode', 'actions'];
   dataSource: MatTableDataSource<ILeaveType>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
