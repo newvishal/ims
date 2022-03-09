@@ -65,8 +65,8 @@ export interface IDistrict {
     status ?: boolean
 }
 export interface IState {
-    stateId ?: number,
-    stateName ?: number,
+    stateId ?: string,
+    stateName ?: string,
     shortCode: string,
     status ?: boolean
 }

@@ -24,7 +24,7 @@ export class StateService {
    
   add(state:IState): Observable<IState> {
       return this.http.post<IState>(environment.apiUrl + "State", state, this.httpOptions)
-                      .pipe(catchError(this.handleError<IState>(`addDistrict`)));
+                      .pipe(catchError(this.handleError<IState>(`addState`)));
   }
 
   put(state:IState, id: string): Observable<IState> {
