@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
-import { DistrictRoutingModule } from './district-routing.module';
 import { ListComponent } from './list/list.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 
+const routes: Routes = [
+  {
+    path: "",
+    component: ListComponent
+  },
+  {
+    path: "addEditDist",
+    component: AddEditComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -13,7 +24,8 @@ import { AddEditComponent } from './add-edit/add-edit.component';
   ],
   imports: [
     CommonModule,
-    DistrictRoutingModule
+    RouterModule.forChild(routes),
+    SharedModule,
   ]
 })
 export class DistrictModule { }

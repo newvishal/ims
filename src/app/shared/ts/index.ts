@@ -59,7 +59,7 @@ export interface ISection {
 
 export interface IDistrict {
     districtId ?: string,
-    zoneId ?: number,
+    stateId ?: string,
     districtName: string,
     shortCode: string,
     status ?: boolean

@@ -11,7 +11,7 @@ import {IDistrict} from '../shared/ts';
   providedIn: 'root'
 })
 export class DistrictService {
-  subject = new BehaviorSubject<any>( localStorage.getItem('details') || JSON.stringify({districtId: '', zoneId: '', districtName: '', shortCode: "", status: false }));
+  subject = new BehaviorSubject<any>( localStorage.getItem('details') || JSON.stringify({districtId: '', stateId: '', districtName: '', shortCode: "", status: false }));
 
   httpOptions = {
     headers: new HttpHeaders({ 
