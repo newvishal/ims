@@ -33,11 +33,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">State</label>
-                                <select formControlName="state" [ngClass]="{ 'is-invalid': submitted && myForm['state']?.errors }" name="stateddl" id="" class="form-control">
+                                <select formControlName="stateId" [ngClass]="{ 'is-invalid': submitted && myForm['stateId']?.errors }" name="stateddl" id="" class="form-control">
                                     <option value="" selected>Select State</option>
                                     <option [value]="item.stateId" *ngFor="let item of StateList">{{item.stateName}}</option>
                                 </select>
-                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['state'].errors?.['required']">Please
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['stateId'].errors?.['required']">Please
                                     Select State</small>
                             </div>
                         </div>

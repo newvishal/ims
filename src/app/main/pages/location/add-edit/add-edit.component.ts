@@ -33,7 +33,7 @@ export class AddEditComponent implements OnInit {
     this.LocationForm = this.formBuilder.group({
       locationName: ['', Validators.required],
       locTypeId: ['', Validators.required],
-      state: ['', Validators.required],
+      stateId: ['', Validators.required],
       districtId: ['', Validators.required],  
       shortCode: ['', Validators.required],
       locationCategory: ['', Validators.required]
@@ -98,7 +98,12 @@ export class AddEditComponent implements OnInit {
     } else {
       if(this.bsubject.locationId) {
         console.log(this.bsubject);
-        this.locationService.put({...this.LocationForm.value, locationId: this.bsubject.locationId} as ILocation, this.bsubject.locationId).subscribe({
+        let updateObj = {
+          ...this.LocationForm.value,
+          stateId: parseInt(this.LocationForm.value['stateId']),
+          districtId: parseInt(this.LocationForm.value['districtId'])
+        };
+        this.locationService.put({...updateObj, locationId: this.bsubject.locationId} as ILocation, this.bsubject.locationId).subscribe({
           next: res =>{
             this._router.navigate(["dashboard/location/"]);
             this.toastr.successToastr(res['message']);
@@ -120,7 +125,12 @@ export class AddEditComponent implements OnInit {
         })
         return
       }
-      this.locationService.add({...this.LocationForm.value}).subscribe({
+      this.locationService.add({
+        ...this.LocationForm.value,
+        locTypeId: parseInt(this.LocationForm.value['locTypeId']),
+        stateId: parseInt(this.LocationForm.value['stateId']),
+        districtId: parseInt(this.LocationForm.value['districtId'])
+       }).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/location/"]);
           this.toastr.successToastr(res['message']);

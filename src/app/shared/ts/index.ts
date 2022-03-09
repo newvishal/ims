@@ -112,9 +112,9 @@ export interface ILeaveType {
 export interface ILocation {
     locationId ?: string,
     locationName : string,
-    locTypeId : number | string,
-    stateId: number | string,
-    districtId : number | string,
+    locTypeId :  string,
+    stateId: string,
+    districtId : string,
     shortCode : string,
     locationCategory : string
 }
