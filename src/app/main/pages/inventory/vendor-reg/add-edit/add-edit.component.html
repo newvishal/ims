@@ -15,55 +15,67 @@
                 <h3 class="mb-0 card-title">Default forms</h3>
             </div> -->
             <div class="card-body">
+                <form [formGroup]="VendorForm" (onSubmit)="addVendor()">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Vendor Name</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            <input type="text" formControlName="vendorName" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['vendorName'].errors?.['required']">Please
+                                Enter Vendor Name</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Email Id</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            <input type="text" formControlName="emailId" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['emailId'].errors?.['required']">Please
+                                Enter Email</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">PAN No</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            <input type="text" formControlName="panNo" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['panNo'].errors?.['required']">Please
+                                Enter PAN No</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">State</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="br" selected>Rajasthan</option>
-                                <option value="cz" >2</option>
-                                <option value="de" >3</option>
-                                <option value="pl">4</option>
+                            <select name="stateddl" formControlName="regStateId" id="" class="form-control">
+                                <option [value]="item.stateId" *ngFor="let item of StateList">{{item.stateName}}</option>
                             </select>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['regStateId'].errors?.['required']">Please
+                                Enter State</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Approval Status</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="cz" selected>Yes</option>
-                                <option value="de" >No</option>
+                            <select name="stateddl" formControlName="approvalStatus" id="" class="form-control">
+                                <option value="yes" selected>Yes</option>
+                                <option value="no" >No</option>
                             </select>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['approvalStatus'].errors?.['required']">Please
+                                Enter State</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Reg. Office Address</label>
-                            <textarea name="" id="" cols="30" rows="3" placeholder="Address..." style="resize: none;" class="form-control"></textarea>
+                            <textarea name="" formControlName="regOfficeAddress" id="" cols="30" rows="3" placeholder="Address..." style="resize: none;" class="form-control"></textarea>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['regOfficeAddress'].errors?.['required']">Please
+                                Enter State</small>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="col-md-12">
                     <input type="submit" value="Submit" class="btn btn-primary float-right">
                 </div>
+            </form>
             </div>
         </div>
     </div>

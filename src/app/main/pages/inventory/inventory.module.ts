@@ -7,6 +7,7 @@ import { AddEditComponent } from './vendor-reg/add-edit/add-edit.component';
 import { VendorBranchListComponent } from './vendor-branch/vendor-branch-list/vendor-branch-list.component';
 import { AddEditVendorBranchComponent } from './vendor-branch/add-edit-vendor-branch/add-edit-vendor-branch.component';
 import { SupplyDetailListComponent } from './supply-detail/supply-detail-list/supply-detail-list.component';
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SupplyDetailListComponent } from './supply-detail/supply-detail-list/su
   ],
   imports: [
     CommonModule,
-    InventoryRoutingModule
+    InventoryRoutingModule,
+    SharedModule
   ]
 })
 export class InventoryModule { }

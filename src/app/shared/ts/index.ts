@@ -1,3 +1,5 @@
+import { StringMap } from "@angular/compiler/src/compiler_facade_interface"
+
 export interface IBank {
     bankId ?: string,
     bankName: string,
@@ -118,3 +120,15 @@ export interface ILocation {
     locationCategory : string
 }
 
+
+export interface IVendorDetails {
+    vendorId ?: string,
+    vendorName: String,
+    emailId: string,
+    panNo: string,
+    regOfficeAddress: string,
+    regStateId: string,
+    approvalStatus: string,
+    approveByEmpId?: string,
+    approveDateTime?: string
+}
