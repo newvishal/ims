@@ -20,41 +20,72 @@
     <div class="col-md-12 col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div class="table-responsive">
-                    <table id="applyLeaveListexample" class="table table-striped table-bordered text-nowrap w-100">
-                        <thead>
-                            <tr>
-                                <th class="wd-15p">Employee Id</th>
-                                <th class="wd-15p">Employee name</th>
-                                <th class="wd-15p">Designation</th>
-                                <th class="wd-15p">State/District</th>
-                                <th class="wd-15p">Location</th>
-                                <th class="wd-15p">Leave Type</th>
-                                <th class="wd-15p">From</th>
-                                <th class="wd-20p">To</th>
-                                <th class="wd-15p">Reason</th>
-                                <th class="wd-20p">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>EMP1</td>
-                                <td>Test Employee</td>
-                                <td>Developer</td>
-                                <td>UP/Azamgarh</td>
-                                <td>Lucknow</td>
-                                <td>34</td>
-                                <td>8</td>
-                                <td>8</td>
-                                <td>Emergency</td>
-                                <td class="btn-list">
-                                    <a href="javascript:void(0)" [routerLink]="['../apply-leave','1']" class="btn btn-icon  btn-primary"> <i class="fe fe-upload"></i> Apply Leave </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <mat-form-field appearance="standard">
+                  <mat-label>Filter</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                </mat-form-field>
+                
+                <div class="mat-elevation-z8">
+                  <div class="load__spinner" *ngIf="!!loadingBanks">
+                    <mat-spinner></mat-spinner>
+                  </div>
+                  <table class="w-100" mat-table [dataSource]="dataSource" matSort>
+                
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="leaveApplyId">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                      <td mat-cell *matCellDef="let row"> {{row.leaveApplyId}} </td>
+                    </ng-container>
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="empId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee Id </th>
+                        <td mat-cell *matCellDef="let row"> {{row.empId}} </td>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="leaveTypeId">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Leave Type </th>
+                      <td mat-cell *matCellDef="let row"> {{row.leaveTypeId}} </td>
+                    </ng-container>
+                
+                    <!-- Fruit Column -->
+                    <ng-container matColumnDef="dateFrom">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date From </th>
+                      <td mat-cell *matCellDef="let row"> {{row.dateFrom | date:'mediumDate'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateTo">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date To </th>
+                      <td mat-cell *matCellDef="let row"> {{row.dateTo | date:'mediumDate'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="leaveDayStatus">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Leave day Status </th>
+                        <td mat-cell *matCellDef="let row"> {{row.leaveDayStatus}} </td>
+                      </ng-container>
+                    <ng-container matColumnDef="actions">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                      <td mat-cell *matCellDef="let row"> 
+                        <button mat-icon-button matTooltip="Click to Edit" (click)="approveLeave(row.empId)" class="iconbutton" color="primary">
+                            Apply Leave <mat-icon>arrow_right</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn">
+                          <mat-icon aria-label="Delete">delete</mat-icon>
+                        </button> -->
+                      </td>
+                    </ng-container>
+  
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+                  </table>
+                
+                  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
                 </div>
-            </div>
+          </div>
             <!-- TABLE WRAPPER -->
         </div>
         <!-- SECTION WRAPPER -->

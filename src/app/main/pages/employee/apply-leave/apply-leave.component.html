@@ -15,51 +15,73 @@
                 <h3 class="mb-0 card-title">Apply Leave</h3>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="form-label">Leave Type </label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Dr" selected>CL</option>
-                                <option value="Nursing" >ML</option>
-                                <option value="Other" >Other</option>
-                            </select>
+                <form [formGroup]="applyLeaveForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Leave Type </label>
+                                <select formControlName="leaveTypeId" name="stateddl" id="" class="form-control" [ngClass]="{ 'is-invalid': submitted && myForm['leaveTypeId'].errors }">
+                                    <option value="" selected>Select</option>
+                                    <option [value]="item.leaveTypeId" *ngFor="let item of LeavTypeList">{{item.leaveTypeName}}</option>
+                                </select>
+                            </div>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['leaveTypeId'].errors?.['required']">Please
+                                Select Leave Type</small>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Employee Leave Applicable</label>
+                                <select name="stateddl" formControlName="empLeaveApplicableId" id="" class="form-control" [ngClass]="{ 'is-invalid': submitted && myForm['empLeaveApplicableId'].errors }">
+                                    <option value="" selected>Select</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['leaveTypeId'].errors?.['required']">Please
+                                Select Employee Leave Applicable</small>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-label">Date from</div>
+                            <div class="custom-file">
+                                <input type="date" formControlName="dateFrom" [ngClass]="{ 'is-invalid': submitted && myForm['dateFrom'].errors }"class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['dateFrom'].errors?.['required']">Please
+                                Select Date From</small>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Date To</label>
+                                <input type="date" formControlName="dateTo" [ngClass]="{ 'is-invalid': submitted && myForm['dateTo'].errors }" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            </div>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['dateTo'].errors?.['required']">Please
+                                Select Date To</small>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Leave Day Status</label>
+                                <select formControlName="leaveDayStatus" [ngClass]="{ 'is-invalid': submitted && myForm['leaveDayStatus'].errors }" name="stateddl" id="" class="form-control">
+                                    <option value="" selected>Select Leave day Status</option>
+                                    <option value="true">True</option>
+                                    <option value="false" >False</option>
+                                </select>
+                            </div>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['leaveDayStatus'].errors?.['required']">Please
+                                Select Leave Day Status</small>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-label">Date from</div>
-                        <div class="custom-file">
-                            <input type="date" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                    <!-- <div class="row">
+                    
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Reason</label>
+                                <textarea name="" style="resize: none;" class="form-control" id="" cols="30" rows="5"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="form-label">Date To</label>
-                            <input type="date" class="form-control" name="example-text-input" placeholder="eg: UP50...">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="form-label">For Day</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Dr" selected>Full Day</option>
-                                <option value="Nursing" >Half Day</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                   
+                    </div> -->
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">Reason</label>
-                            <textarea name="" style="resize: none;" class="form-control" id="" cols="30" rows="5"></textarea>
-                        </div>
+                        <input type="submit" value="Submit" class="btn btn-primary float-right">
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" value="Submit" class="btn btn-primary float-right">
-                </div>
+                </form>
             </div>
         </div>
     </div>

@@ -43,7 +43,7 @@ export class LeaveTypeService {
   }
 
   find(): Observable<ILeaveType[]> {
-      return this.http.get<ILeaveType[]>(environment.apiUrl + "LeaveType", this.httpOptions)
+      return this.http.get<ILeaveType[]>(environment.apiUrl + "LeaveType" + "/0", this.httpOptions)
                       .pipe(catchError(this.handleError<ILeaveType[]>('getAllLeaveType', [])));
   }
 

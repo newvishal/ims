@@ -33,7 +33,7 @@ export class BankService {
   }
 
   getAllBank(): Observable<IBank[]> {
-      return this.http.get<IBank[]>(environment.apiUrl + "Bank", this.httpOptions)
+      return this.http.get<IBank[]>(environment.apiUrl + "Bank" + "/0", this.httpOptions)
                       .pipe(catchError(this.handleError<IBank[]>('getAllBank', [])));
   }
 

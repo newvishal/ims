@@ -118,3 +118,56 @@ export interface ILocation {
     locationCategory : string
 }
 
+export interface IApplyLeave{
+    leaveApplyId ?: string,
+    leaveTypeId : number,
+    empId: number,
+    empLeaveApplicableId: number,
+    dateFrom: string,
+    dateTo: string,
+    leaveDayStatus: boolean
+}
+
+export interface IEmployee {
+    empId ?: number,
+    empName: string,
+    empFatherName: string,
+    dob: string,
+    mobNo: number,
+    emailId: string,
+    gender: string,
+    image: string,
+    whatsAppNo: number,
+    designationId: number,
+    address1: string,
+    address2: string,
+    districtId: number,
+    stateId: number,
+    pinCode: string,
+    esiNo: string,
+    pfNo: string,
+    serviceStatus: string,
+    status: boolean,
+    doj: string,
+    joiningStateId: number,
+    stateName: string,
+    joiningDistId: number,
+    districtName: string,
+    locationId: number,
+    locationName: string,
+    cl: string,
+    el: string,
+    sl: string,
+    pl: string,
+    panNo: string,
+    channel: string,
+    entity: string,
+    aadharNo: number,
+    bankName: number,
+    ifscCode: string,
+    accountNo: string,
+    officialEmailId: string,
+    empDesigStatus: number,
+    registrationDate: string,
+    expDate: string
+}
