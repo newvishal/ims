@@ -34,7 +34,7 @@ export class DistrictService {
   }
 
   find(): Observable<IDistrict[]> {
-      return this.http.get<IDistrict[]>(environment.apiUrl + "District", this.httpOptions)
+      return this.http.get<IDistrict[]>(environment.apiUrl + "District"  + "/0", this.httpOptions)
                       .pipe(catchError(this.handleError<IDistrict[]>('getAllDistrict', [])));
   }
 

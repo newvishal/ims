@@ -33,7 +33,7 @@ export class StateService {
   }
 
   find(): Observable<IState[]> {
-      return this.http.get<IState[]>(environment.apiUrl + "State", this.httpOptions)
+      return this.http.get<IState[]>(environment.apiUrl + "State"  + "/0", this.httpOptions)
                       .pipe(catchError(this.handleError<IState[]>('getAllState', [])));
   }
 

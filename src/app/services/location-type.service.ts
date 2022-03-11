@@ -33,7 +33,7 @@ export class LocationTypeService {
   }
 
   find(): Observable<ILocationType[]> {
-      return this.http.get<ILocationType[]>(environment.apiUrl + "LocationType", this.httpOptions)
+      return this.http.get<ILocationType[]>(environment.apiUrl + "LocationType"  + "/0", this.httpOptions)
                       .pipe(catchError(this.handleError<ILocationType[]>('getAllLocationType', [])));
   }
 
