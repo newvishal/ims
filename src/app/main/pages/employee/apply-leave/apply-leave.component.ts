@@ -6,7 +6,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { Observable } from 'rxjs';
 import { ApplyLeaveService } from 'src/app/services/apply-leave.service';
 import { LeaveTypeService } from 'src/app/services/leave-type.service';
-import { IApplyLeave, ILeaveType } from 'src/app/shared/ts/index';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { IApplyLeave, ILeaveType, IEmployee } from 'src/app/shared/ts/index';
 @Component({
   selector: 'app-apply-leave',
   templateUrl: './apply-leave.component.html',
@@ -17,12 +18,14 @@ export class ApplyLeaveComponent implements OnInit {
   applyLeaveForm: FormGroup;
   submitted = false;
   LeavTypeList: ILeaveType[] = [];
+  EmployeeList: IEmployee[] = [];
   constructor(
     public activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     public toastr: ToastrManager,
     private applyLeaveService: ApplyLeaveService,
     private leaveTypeService: LeaveTypeService,
+    private employeeService: EmployeeService,
     private _router: Router
     ) { }
 
@@ -30,6 +33,7 @@ export class ApplyLeaveComponent implements OnInit {
     console.log(this.activatedRoute.snapshot.params['empId']);
     this.empId = parseInt(this.activatedRoute.snapshot.params['empId']);
     this.applyLeaveForm = this.formBuilder.group({
+      empId: ['', Validators.required],
       leaveTypeId: ['', Validators.required],
       empLeaveApplicableId: ['', Validators.required],
       dateFrom: ['',Validators.required],
@@ -37,11 +41,24 @@ export class ApplyLeaveComponent implements OnInit {
       leaveDayStatus:['']
     });
     this.getLeaveTypeList();
+    this.getEmployeeList();
   }
   getLeaveTypeList() {
     this.leaveTypeService.find().subscribe(
       (res: ILeaveType[]) => {
         this.LeavTypeList = res['data'];
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
+  getEmployeeList() {
+    this.employeeService.getAllEmployee().subscribe(
+      (res: IEmployee[]) => {
+        this.EmployeeList = res;
+        console.log(res);
       },
       (err) => {
         console.log(err);
@@ -55,7 +72,7 @@ export class ApplyLeaveComponent implements OnInit {
     if (this.applyLeaveForm.invalid) {
       return;
     } else {
-      this.applyLeaveService.applyLeave({...this.applyLeaveForm.value,leaveTypeId: parseInt(this.applyLeaveForm.value['leaveTypeId']) , empid: this.empId, empLeaveApplicableId: parseInt(this.applyLeaveForm.value["empLeaveApplicableId"]), leaveDayStatus: Boolean(this.applyLeaveForm.value['leaveDayStatus'])} as IApplyLeave).subscribe({
+      this.applyLeaveService.applyLeave({...this.applyLeaveForm.value,leaveTypeId: parseInt(this.applyLeaveForm.value['leaveTypeId']) , empId: parseInt(this.applyLeaveForm.value["empId"]), empLeaveApplicableId: parseInt(this.applyLeaveForm.value["empLeaveApplicableId"]), leaveDayStatus: Boolean(this.applyLeaveForm.value['leaveDayStatus'])} as IApplyLeave).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/employee/apply-leave-list"]);
           this.toastr.successToastr(res['message']);

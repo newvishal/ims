@@ -16,6 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   declarations: [],
   imports: [
@@ -33,10 +34,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatSnackBarModule,
     MatButtonModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
   exports: [ReactiveFormsModule, MatProgressSpinnerModule,MatTooltipModule,MatIconModule, MatFormFieldModule, 
             MatTableModule, MatPaginatorModule, MatInputModule, MatSortModule, MatCheckboxModule, MatOptionModule,MatStepperModule,
-            MatSnackBarModule,MatButtonModule,MatSelectModule]
+            MatSnackBarModule,MatButtonModule,MatSelectModule,MatChipsModule]
 })
 export class SharedModule { }

@@ -29,7 +29,7 @@ const routes: Routes = [
     component: ApplyLeaveListComponent
   },
   {
-    path:"apply-leave/:empId",
+    path:"apply-leave",
     component: ApplyLeaveComponent
   }
 ];
