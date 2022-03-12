@@ -15,7 +15,7 @@
                 <h3 class="mb-0 card-title">Default forms</h3>
             </div> -->
             <div class="card-body">
-                <form [formGroup]="VendorForm" (onSubmit)="addVendor()">
+                <form [formGroup]="VendorForm" (ngSubmit)="addVendor()">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -55,8 +55,8 @@
                         <div class="form-group">
                             <label class="form-label">Approval Status</label>
                             <select name="stateddl" formControlName="approvalStatus" id="" class="form-control">
-                                <option value="yes" selected>Yes</option>
-                                <option value="no" >No</option>
+                                <option value="true" selected>Yes</option>
+                                <option value="false" >No</option>
                             </select>
                             <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['approvalStatus'].errors?.['required']">Please
                                 Enter State</small>

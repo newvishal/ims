@@ -15,7 +15,7 @@ export class AddEditComponent implements OnInit {
   VendorForm: FormGroup
   StateList: IState[] = [];
   submitted: boolean = false;
-  VendorId: string
+  VendorId: number
   constructor(
     public fb: FormBuilder,
     public _router: Router,
@@ -31,6 +31,26 @@ export class AddEditComponent implements OnInit {
       console.log('params===========>',params['id']);
       this.VendorId = params['id'];
     })
+    if(this.VendorId) this.getVendorDetails(this.VendorId)
+    
+    this.getState();
+  }
+  getState(){
+    this.stateService.find().subscribe((res: IState[]) => {
+      console.log(res);
+      this.StateList = res["data"] as IState[];
+    }, (err) => {
+      console.log(err)
+    });
+  } 
+  getVendorDetails(VendorId: number) {
+     this.VendorSrv.find(VendorId).subscribe((res) => {
+       const vendorDetails = res['data'][0];
+       this.VendorForm.patchValue(vendorDetails);
+       console.log(res);
+     }, (err) => {
+       console.log(err);
+     })
   }
   createForm() {
     this.VendorForm = this.fb.group({
@@ -51,7 +71,7 @@ export class AddEditComponent implements OnInit {
       return;
     } else {
       if(this.VendorId) {
-        this.VendorSrv.put({...this.VendorForm.value, vendorId: this.VendorId} as IVendorDetails, this.VendorId).subscribe({
+        this.VendorSrv.put({...this.VendorForm.value, vendorId: parseInt(`${this.VendorId}`)} as IVendorDetails, this.VendorId).subscribe({
           next: res =>{
             this._router.navigate(["dashboard/inventory/"]);
             this.toast.successToastr(res['message']);
@@ -63,7 +83,7 @@ export class AddEditComponent implements OnInit {
         })
         return;
       }
-      this.VendorSrv.add(this.VendorForm.value).subscribe({
+      this.VendorSrv.add({...this.VendorForm.value, regStateId: parseInt(`${this.VendorForm.value['regStateId']}`)} as IVendorDetails).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/inventory/"]);
           this.toast.successToastr(res['message']);

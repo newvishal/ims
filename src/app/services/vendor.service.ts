@@ -25,7 +25,7 @@ export class VendorService {
                       .pipe(catchError(this.handleError<IVendorDetails>(`addVendorDetails`)));
   }
 
-  put(VendorDetails:IVendorDetails, id: string): Observable<IVendorDetails> {
+  put(VendorDetails:IVendorDetails, id: number): Observable<IVendorDetails> {
     return this.http.put<IVendorDetails>(environment.apiUrl + `VendorDetails/${id}`, VendorDetails, this.httpOptions)
                     .pipe(catchError(this.handleError<IVendorDetails>(`putVendorDetails`)));
   }
