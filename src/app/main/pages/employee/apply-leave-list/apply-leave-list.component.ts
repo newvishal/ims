@@ -12,17 +12,17 @@ import { IApplyLeave } from '../../../../shared/ts';
   styleUrls: ['./apply-leave-list.component.scss']
 })
 export class ApplyLeaveListComponent implements OnInit {
-  displayedColumns: string[] = ['leaveApplyId', 'leaveTypeId', 'empId', 'dateFrom','dateTo','leaveDayStatus', 'actions'];
+  displayedColumns: string[] = ['leaveApplyId', 'leaveTypeId', 'empId','dateFrom','dateTo','leaveDayStatus','approvalStatus'];
   dataSource: MatTableDataSource<IApplyLeave>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public employeeService: ApplyLeaveService, public route: Router) { }
+  constructor(public applyLeaveService: ApplyLeaveService, public route: Router) { }
   loadingBanks: boolean = false;
  
   isShow: boolean = false;
   
   ngOnInit(): void {
-    this.getEmployee();
+    this.getApplyLeave();
   }
 
   applyFilter(event: Event) {
@@ -34,9 +34,9 @@ export class ApplyLeaveListComponent implements OnInit {
     }
   }
 
-  getEmployee(){
+  getApplyLeave(){
     this.loadingBanks = true;
-    this.employeeService.getAllAppliedLeave().subscribe((res: IApplyLeave[]) => {
+    this.applyLeaveService.getAllAppliedLeave().subscribe((res: IApplyLeave[]) => {
       console.log(res);
       const Bank = res['data'] as IApplyLeave[];
       this.dataSource = new MatTableDataSource(Bank);
@@ -49,9 +49,9 @@ export class ApplyLeaveListComponent implements OnInit {
 
   }
 
-  approveLeave(detail: any) {
-    console.log(detail)
-    // this.bankService.saveBankById(detail);
-    this.route.navigate(['dashboard/employee/apply-leave',detail])
-  }
+  // approveLeave(detail: any) {
+  //   console.log(detail)
+  //   // this.bankService.saveBankById(detail);
+  //   this.route.navigate(['dashboard/employee/apply-leave',detail])
+  // }
 }

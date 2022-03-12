@@ -141,6 +141,12 @@ export interface IApplyLeave{
     leaveDayStatus: boolean
 }
 
+export interface IApprovedLeave{
+    leaveApplyId ?: number,
+    approvalStatus : number,
+    remark: string
+}
+
 export interface IEmployee {
     empId ?: number,
     empName: string,
