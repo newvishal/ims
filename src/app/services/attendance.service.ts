@@ -21,6 +21,11 @@ export class AttendanceService {
                       .pipe(catchError(this.handleError(`addEmployee`)));
   }
 
+  getAttendance(data:any){
+    return this.http.post(environment.apiUrl + "Attendance/AttendanceReport", data, this.httpOptions)
+                    .pipe(catchError(this.handleError(`addEmployee`)));
+  }
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);
