@@ -21,7 +21,7 @@
     <div class="col-md-12 col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form [formGroup]="GetAttendanceForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="GetAttendanceForm" (ngSubmit)="onSearch()">
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
@@ -48,49 +48,54 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label class="form-label">Designation</label>
-                                <select name="stateddl" id="" class="form-control">
-                                    <option value="br" selected>1</option>
-                                    <option value="cz" >2</option>
-                                    <option value="de" >2</option>
-                                    <option value="pl">4</option>
+                                <select name="stateddl" formControlName="designationId" id="" class="form-control">
+                                    <option value="0" >1</option>
                                 </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['designationId'].errors?.['required']">Please
+                                    Select Designation</small>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label class="form-label">Month</label>
-                                <select name="stateddl" id="" class="form-control">
-                                    <option [value]="item" *ngFor="let item of ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];let i=index">
+                                <select name="stateddl" id="" formControlName="month" class="form-control">
+                                    <option [value]="i+1" *ngFor="let item of ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];let i=index">
                                         {{item}} ({{i+1}})</option>
                                 </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['month'].errors?.['required']">Please
+                                    Select Month</small>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label class="form-label">Year</label>
-                                <select name="stateddl" id="" class="form-control">
-                                    <option value="br" selected>2022</option>
-                                    <option value="cz" >2</option>
-                                    <option value="de" >3</option>
-                                    <option value="pl">4</option>
+                                <select name="stateddl" formControlName="year" id="" class="form-control">
+                                    <option value="2022">2022</option>
                                 </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['year'].errors?.['required']">Please
+                                    Select Year</small>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label class="form-label">Employee</label>
-                                <input type="text" class="form-control" placeholder="Employee Id">
+                                <select name="emp" id="" formControlName="empId" class="form-control">
+                                    <option value="0">All</option>
+                                    <option [value]="item.empId" *ngFor="let item of EmployeeList">{{item.empName}}</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empId'].errors?.['required']">Please
+                                    Select Employee</small>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <button class="btn btn-primary mt-6" (click)="showResult = !showResult"> <i class="fe fe-search"></i> Search</button>
+                                <button type="submit" class="btn btn-primary mt-6" > <i class="fe fe-search"></i> Search</button>
                             </div>
                         </div>
                     </div>
                 </form>
                 <hr>
-                <div class="table-responsive" *ngIf="showResult">
+                <div class="table-responsive" *ngIf="AttendanceList?.length > 0">
                     <table id="attendanceexample" class="table table-striped table-bordered text-nowrap w-100">
                         <thead>
                             <tr>
@@ -99,37 +104,15 @@
                                 <th class="wd-15p">Emp Id</th>
                                 <th class="wd-15p">Emp Name</th>
                                 <th class="wd-15p">Designation</th>
-                                <th>1</th>
-                                <th>2</th>
-                                <th>3</th>
-                                <th>4</th>
-                                <th>5</th>
-                                <th>6</th>
-                                <th>7</th>
-                                <th>8</th>
-                                <th>9</th>
-                                <th>10</th>
-                                <th>11</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>EMP1</td>
-                                <td>Test Employee</td>
-                                <td>Developer</td>
-                                <td>UP</td>
-                                <td>Azamgarh</td>
-                                <td>P</td>
-                                <td>P</td>
-                                <td>A</td>
-                                <td>A</td>
-                                <td>A</td>
-                                <td>A</td>
-                                <td>A</td>
-                                <td>L</td>
-                                <td>L</td>
-                                <td>P</td>
-                                <td>P</td>
+                            <tr *ngFor="let item of AttendanceList">
+                                <td>{{item['StateId']}}</td>
+                                <td>{{item['DistrictId']}}</td>
+                                <td>{{item['EmpId']}}</td>
+                                <td>{{item['EmpName']}}</td>
+                                <td>{{item['DesignationName']}}</td>
                             </tr>
                         </tbody>
                     </table>

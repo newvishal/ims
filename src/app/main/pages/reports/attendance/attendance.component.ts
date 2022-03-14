@@ -7,6 +7,7 @@ import { DistrictService } from 'src/app/services/district.service';
 import { DesignationService } from 'src/app/services/designation.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import {IDistrict, IState, IDesignation, IEmployee} from '../../../../shared/ts';
+import { AttendanceService } from 'src/app/services/attendance.service';
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
@@ -20,6 +21,7 @@ export class AttendanceComponent implements OnInit {
   DistrictList: IDistrict[] = [];
   DesignationList: IDesignation[] = [];
   EmployeeList: IEmployee[] = [];
+  AttendanceList: any = []
   constructor(
     private formBuilder: FormBuilder,
     public toastr: ToastrManager,
@@ -27,7 +29,8 @@ export class AttendanceComponent implements OnInit {
     public districtService: DistrictService,
     public designationService: DesignationService,
     public employeeService: EmployeeService,
-    private _router: Router
+    private _router: Router,
+    public AttendanceServ :AttendanceService
   ) { }
 
   ngOnInit(): void {
@@ -36,10 +39,11 @@ export class AttendanceComponent implements OnInit {
       designationId: ['', Validators.required],
       districtId: ['', Validators.required],
       year: ['', Validators.required],
-      empId: ['', Validators.required]
+      empId: ['', Validators.required],
+      month: ['', Validators.required]
     });
     this.getSateList();
-    this.getSateList();
+    this.getDistrictList();
     this.getEmployeeList();
   }
   get myForm() { return this.GetAttendanceForm.controls; }
@@ -68,7 +72,8 @@ export class AttendanceComponent implements OnInit {
   getEmployeeList() {
     this.employeeService.getAllEmployee().subscribe(
       (res: IEmployee[]) => {
-        this.EmployeeList = res['data'];
+        console.log(res);
+        this.EmployeeList = res;
       },
       (err) => {
         console.log(err);
@@ -76,12 +81,31 @@ export class AttendanceComponent implements OnInit {
     )
   }
 
-  onSubmit(){
+  onSearch(){
     this.submitted = true;
     if (this.GetAttendanceForm.invalid) {
       return;
     } else {
-      console.log(this.GetAttendanceForm.value());
+      const {
+        stateId,
+        designationId,
+        districtId,
+        year,
+        empId,
+        month
+      } = this.GetAttendanceForm.value;
+      this.AttendanceServ.getAttendance({
+        stateId: parseInt(stateId),
+        designationId: parseInt(designationId),
+        districtId:  parseInt(districtId),
+        year: parseInt(year),
+        empId: parseInt(empId),
+        month: parseInt(month)
+      }).subscribe((res) => {
+        this.AttendanceList = res['data'];
+      }, (err) => {
+        console.log(err);
+      });
     }
   }
 
