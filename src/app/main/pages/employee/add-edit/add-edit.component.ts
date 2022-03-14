@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+import { IEmployee } from 'src/app/shared/ts';
+
 @Component({
   selector: 'app-add-edit',
   templateUrl: './add-edit.component.html',
@@ -9,26 +11,55 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class AddEditComponent implements OnInit {
   isLinear = true;
   basicInfo: FormGroup;
-  secondFormGroup: FormGroup;
+  employeeDetails: FormGroup;
   selectedFiles: any;
+  EmployeeForm: IEmployee
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.basicInfo = this._formBuilder.group({
-      name: [''],
-      aboutUs: [''],
-      board: [''],
-      campusSize: [''],
-      classTo: [''],
-      classFrom: [''],
-      coedStatus: [''],
-      established: [''],
-      format: [''],
-      ownership: [''],
-      studentFacultyRatio: ['',]
+      empName: ['', Validators.required],
+      empFatherName: ['', Validators.required],
+      dob: ['', Validators.required],
+      mobNo: ['', Validators.required],
+      emailId: ['', Validators.required],
+      gender: [''],
+      image: [''],
+      whatsAppNo: [''],
+      designationId: [''],
+      address1: [''],
+      address2: [''],
+      districtId: [''],
+      stateId: [''],
+      pinCode: [''],
+      esiNo: [''],
+      pfNo: [''],
+      serviceStatus: [''],
+      status: [],
+      doj: ['']
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: [''],
+    this.employeeDetails = this._formBuilder.group({
+      joiningStateId: [],
+      stateName: [''],
+      joiningDistId: [],
+      districtName: [''],
+      locationId: [],
+      locationName: [''],
+      cl: [''],
+      el: [''],
+      sl: [''],
+      pl: [''],
+      panNo: ['', Validators.required],
+      channel: [''],
+      entity: [''],
+      aadharNo: [],
+      bankName: [],
+      ifscCode: [''],
+      accountNo: [''],
+      officialEmailId: [''],
+      empDesigStatus: [],
+      registrationDate: [''],
+      expDate: ['']
     });
   }
   selectFile(event) {

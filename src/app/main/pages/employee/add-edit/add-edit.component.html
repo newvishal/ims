@@ -24,14 +24,14 @@
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                         <mat-label>Name </mat-label>
-                                        <input matInput formControlName="name">
+                                        <input matInput type="text" formControlName="empName">
                                         </mat-form-field>
                                         <!-- <mat-error *ngIf="basicInfo.controls.name.invalid && (basicInfo.controls.name.dirty || basicInfo.controls.name.touched)">Name Is Required</mat-error> -->
                                     </div>
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                         <mat-label>Father Name</mat-label>
-                                            <input matInput min="1" formControlName="campusSize">
+                                            <input matInput type="text" formControlName="empFatherName">
                                         </mat-form-field>
                                         <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                         <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -39,17 +39,17 @@
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                         <mat-label>Gender</mat-label>
-                                        <mat-select>
+                                        <mat-select formControlName="gender">
                                             <mat-option value="">Select</mat-option>
-                                            <mat-option >Male</mat-option>
-                                            <mat-option >Female</mat-option>
+                                            <mat-option value="male">Male</mat-option>
+                                            <mat-option value="female">Female</mat-option>
                                         </mat-select>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                         <mat-label>Dob</mat-label>
-                                        <input matInput type="date"  formControlName="studentFacultyRatio">
+                                        <input matInput type="date"  formControlName="dob">
                                         <!-- <mat-hint align="end">eg. 1-10</mat-hint> -->
                                         </mat-form-field>
                                         <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.errors?.pattern">Please enter a valid ratio</mat-error> -->
@@ -60,14 +60,14 @@
                                   <div class="col-sm-3">
                                       <mat-form-field appearance="outline">
                                       <mat-label>Mobile No </mat-label>
-                                      <input matInput>
+                                      <input type="number" formControlName="mobNo" matInput>
                                       </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.name.invalid && (basicInfo.controls.name.dirty || basicInfo.controls.name.touched)">Name Is Required</mat-error> -->
                                   </div>
                                   <div class="col-sm-3">
                                       <mat-form-field appearance="outline">
                                       <mat-label>Email Id</mat-label>
-                                          <input matInput>
+                                          <input type="text" formControlName="emailId" matInput>
                                       </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                       <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -83,7 +83,7 @@
                                   <div class="col-sm-3">
                                       <mat-form-field appearance="outline">
                                       <mat-label>Whatsapp No.</mat-label>
-                                      <input matInput>
+                                      <input matInput type="number" formControlName="whatsAppNo">
                                       <!-- <mat-hint align="end">eg. 1-10</mat-hint> -->
                                       </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.errors?.pattern">Please enter a valid ratio</mat-error> -->
@@ -94,7 +94,7 @@
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                     <mat-label>Designation</mat-label>
-                                    <mat-select>
+                                    <mat-select formControlName="designationId">
                                       <mat-option value="">Select</mat-option>
                                       <mat-option >Manager</mat-option>
                                       <mat-option >HR</mat-option>
@@ -106,21 +106,21 @@
                                   <div class="col-sm-3">
                                       <mat-form-field appearance="outline">
                                       <mat-label>Address</mat-label>
-                                      <textarea matInput placeholder="Enter Your Address" style="resize: none;"></textarea>
+                                      <textarea matInput formControlName="address1" placeholder="Enter Your Address" style="resize: none;"></textarea>
                                       </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.name.invalid && (basicInfo.controls.name.dirty || basicInfo.controls.name.touched)">Name Is Required</mat-error> -->
                                   </div>
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                     <mat-label>Address2</mat-label>
-                                    <textarea matInput placeholder="Enter Your Address" style="resize: none;"></textarea>
+                                    <textarea matInput formControlName="address2" placeholder="Enter Your Address" style="resize: none;"></textarea>
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.name.invalid && (basicInfo.controls.name.dirty || basicInfo.controls.name.touched)">Name Is Required</mat-error> -->
                                   </div>
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                     <mat-label>State</mat-label>
-                                    <mat-select>
+                                    <mat-select formControlName="stateId">
                                       <mat-option value="">Select</mat-option>
                                       <mat-option >UP</mat-option>
                                       <mat-option >MP</mat-option>
@@ -134,7 +134,7 @@
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                       <mat-label>District</mat-label>
-                                      <mat-select>
+                                      <mat-select formControlName="districtId">
                                         <mat-option value="">Select</mat-option>
                                         <mat-option >UP</mat-option>
                                         <mat-option >MP</mat-option>
@@ -144,14 +144,14 @@
                                   <div class="col-sm-3">
                                       <mat-form-field appearance="outline">
                                       <mat-label>Pincode</mat-label>
-                                      <input matInput>
+                                      <input matInput type="number" formControlName="pinCode">
                                       </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.name.invalid && (basicInfo.controls.name.dirty || basicInfo.controls.name.touched)">Name Is Required</mat-error> -->
                                   </div>
                                   <div class="col-sm-3">
                                       <mat-form-field appearance="outline">
                                       <mat-label>ESI Number</mat-label>
-                                          <input matInput>
+                                          <input matInput type="text" formControlName="esiNo">
                                       </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                       <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -159,7 +159,7 @@
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                     <mat-label>EPF Number</mat-label>
-                                        <input matInput>
+                                        <input matInput type="text" formControlName="pfNo">
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -170,7 +170,7 @@
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                     <mat-label>Pan Number</mat-label>
-                                    <input matInput>
+                                    <input matInput type="text" formControlName="panNo">
                                     <!-- <mat-hint align="end">eg. 1-10</mat-hint> -->
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.errors?.pattern">Please enter a valid ratio</mat-error> -->
@@ -179,7 +179,7 @@
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                     <mat-label>Aadhar Number</mat-label>
-                                    <input matInput>
+                                    <input matInput type="number" formControlName="aadharNo">
                                     <!-- <mat-hint align="end">eg. 1-10</mat-hint> -->
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.errors?.pattern">Please enter a valid ratio</mat-error> -->
@@ -188,14 +188,14 @@
                                   <div class="col-sm-3">
                                       <mat-form-field appearance="outline">
                                       <mat-label>Bank Name</mat-label>
-                                      <input matInput>
+                                      <input matInput type="text" formControlName="bankName">
                                       </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.name.invalid && (basicInfo.controls.name.dirty || basicInfo.controls.name.touched)">Name Is Required</mat-error> -->
                                   </div>
                                   <div class="col-sm-3">
                                       <mat-form-field appearance="outline">
                                       <mat-label>IFSC</mat-label>
-                                          <input matInput>
+                                          <input matInput type="text" formControlName="ifscCode">
                                       </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                       <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -203,7 +203,7 @@
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                     <mat-label>Account Number</mat-label>
-                                        <input matInput>
+                                        <input matInput type="number" formControlName="accountNo">
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -229,13 +229,13 @@
                                 </div>
                           </form>
                         </mat-step>
-                        <mat-step [stepControl]="secondFormGroup" label="Employment Details">
-                          <form [formGroup]="secondFormGroup">
+                        <mat-step [stepControl]="employeeDetails" label="Employment Details">
+                          <form [formGroup]="employeeDetails">
                             <div class="row mt-3">
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Date of joining</mat-label>
-                                <input matInput type="date">
+                                <input matInput type="date" >
                                 <!-- <mat-hint align="end">eg. 1-10</mat-hint> -->
                                 </mat-form-field>
                                 <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.errors?.pattern">Please enter a valid ratio</mat-error> -->
@@ -244,7 +244,7 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Joining State</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="joiningStateId">
                                     <mat-option value="">Select</mat-option>
                                     <mat-option >Male</mat-option>
                                     <mat-option >Female</mat-option>
@@ -254,7 +254,7 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Location Type</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="locationId">
                                     <mat-option value="">Select</mat-option>
                                     <mat-option >Male</mat-option>
                                     <mat-option >Female</mat-option>
@@ -264,7 +264,7 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Location</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="locationId">
                                     <mat-option value="">Select</mat-option>
                                     <mat-option >Male</mat-option>
                                     <mat-option >Female</mat-option>
@@ -276,7 +276,7 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Channel</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="channel">
                                   <mat-option value="">Select</mat-option>
                                   <mat-option >Male</mat-option>
                                   <mat-option >Female</mat-option>
@@ -289,7 +289,7 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Enity</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="entity">
                                     <mat-option value="">Select</mat-option>
                                     <mat-option >Male</mat-option>
                                     <mat-option >Female</mat-option>
@@ -299,7 +299,7 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Status</mat-label>
-                                <mat-select>
+                                <mat-select formControlName="status">
                                   <mat-option value="">Select</mat-option>
                                   <mat-option >DR</mat-option>
                                   <mat-option >NURSING</mat-option>
@@ -310,13 +310,13 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Registration Date</mat-label>
-                                <input matInput type="date">
+                                <input matInput type="date" formControlName="registrationDate">
                                 </mat-form-field>
                               </div>
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Expiry Date</mat-label>
-                                <input matInput type="date">
+                                <input matInput type="date" formControlName="expDate">
                                 </mat-form-field>
                               </div>
                             </div>
