@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
-import { ReportsRoutingModule } from './reports-routing.module';
 import { AttendanceComponent } from './attendance/attendance.component';
-
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
+const routes: Routes = [
+  {
+    path: "attendance",
+    component: AttendanceComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -11,7 +17,8 @@ import { AttendanceComponent } from './attendance/attendance.component';
   ],
   imports: [
     CommonModule,
-    ReportsRoutingModule
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class ReportsModule { }

@@ -3,7 +3,8 @@
     <ol class="breadcrumb"><!-- breadcrumb -->
         <li class="breadcrumb-item"><a href="#">Attendance</a></li>
         <li class="breadcrumb-item active" aria-current="page">Attendance List</li>
-    </ol><!-- End breadcrumb -->
+    </ol>
+    <!-- End breadcrumb -->
     <!-- <div class="ml-auto">
         <div class="input-group">
             
@@ -20,72 +21,74 @@
     <div class="col-md-12 col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="form-label">State</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="br" selected>1</option>
-                                <option value="cz" >2</option>
-                                <option value="de" >2</option>
-                                <option value="pl">4</option>
-                            </select>
+                <form [formGroup]="GetAttendanceForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <select formControlName="stateId" [ngClass]="{ 'is-invalid': submitted && myForm['stateId']?.errors }" name="stateddl" id="" class="form-control">
+                                    <option value="" selected>Select State</option>
+                                    <option [value]="item.stateId" *ngFor="let item of StateList">{{item.stateName}}</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['stateId'].errors?.['required']">Please
+                                    Select State</small>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label class="form-label">District</label>
+                                <select formControlName="districtId" [ngClass]="{ 'is-invalid': submitted && myForm['districtId']?.errors }" name="stateddl" id="" class="form-control">
+                                    <option value="" selected>Select State</option>
+                                    <option [value]="item.districtId" *ngFor="let item of DistrictList">{{item.districtName}}</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['stateId'].errors?.['required']">Please
+                                    Select District</small>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label class="form-label">Designation</label>
+                                <select name="stateddl" id="" class="form-control">
+                                    <option value="br" selected>1</option>
+                                    <option value="cz" >2</option>
+                                    <option value="de" >2</option>
+                                    <option value="pl">4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label class="form-label">Month</label>
+                                <select name="stateddl" id="" class="form-control">
+                                    <option [value]="item" *ngFor="let item of ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];let i=index">
+                                        {{item}} ({{i+1}})</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label class="form-label">Year</label>
+                                <select name="stateddl" id="" class="form-control">
+                                    <option value="br" selected>2022</option>
+                                    <option value="cz" >2</option>
+                                    <option value="de" >3</option>
+                                    <option value="pl">4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label class="form-label">Employee</label>
+                                <input type="text" class="form-control" placeholder="Employee Id">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-6" (click)="showResult = !showResult"> <i class="fe fe-search"></i> Search</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="form-label">District</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="br" selected>1</option>
-                                <option value="cz" >2</option>
-                                <option value="de" >2</option>
-                                <option value="pl">4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="form-label">Designation</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="br" selected>1</option>
-                                <option value="cz" >2</option>
-                                <option value="de" >2</option>
-                                <option value="pl">4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="form-label">Month</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option [value]="item" *ngFor="let item of ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];let i=index">
-                                    {{item}} ({{i+1}})</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="form-label">Year</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="br" selected>2022</option>
-                                <option value="cz" >2</option>
-                                <option value="de" >3</option>
-                                <option value="pl">4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <label class="form-label">Employee Id</label>
-                            <input type="text" class="form-control" placeholder="Employee Id">
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="form-group">
-                            <button class="btn btn-primary mt-6" (click)="showResult = !showResult"> <i class="fe fe-search"></i> Search</button>
-                        </div>
-                    </div>
-                </div>
+                </form>
                 <hr>
                 <div class="table-responsive" *ngIf="showResult">
                     <table id="attendanceexample" class="table table-striped table-bordered text-nowrap w-100">

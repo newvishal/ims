@@ -33,6 +33,11 @@ export class EmployeeService {
                       .pipe(catchError(this.handleError<IEmployee[]>('getAllEmployee', [])));
   }
 
+  searchEmployee(id: number){
+    return this.http.get(environment.apiUrl + `Employee/searchEmployee/${id}`, this.httpOptions)
+                    .pipe(catchError(this.handleError()));
+  }
+
   // saveBankById(detail : IEmployee) {
   //   localStorage.setItem('details', JSON.stringify(detail));
   //   this.subject.next(detail);

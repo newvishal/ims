@@ -190,3 +190,11 @@ export interface IEmployee {
     registrationDate: string,
     expDate: string
 }
+
+export interface IProductType {
+    productId?: number,
+    productName: string,
+    shortCode: string,
+    type: string,
+    status: boolean
+}
