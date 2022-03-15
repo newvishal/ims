@@ -62,11 +62,11 @@
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label class="form-label">Latitude</label>
-                                    <input type="text" formControlName="latitude" value="" id="lat" class="form-control" name="example-text-input" placeholder="eg: 4546550...">
+                                    <input readonly type="text" formControlName="latitude" id="lat" class="form-control" name="example-text-input" placeholder="eg: 4546550...">
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="form-label">Longitude</label>
-                                    <input type="text" formControlName="longitude" value="" id="long"  class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                    <input readonly type="text" formControlName="longitude" id="long"  class="form-control" name="example-text-input" placeholder="eg: UP50...">
                                 </div>
                             </div>
                         </div>
@@ -120,23 +120,3 @@
     </div>
 </div>
 <!-- ROW-1 CLOSED -->
-<script>
-   
-    var x = document.getElementById("demo");
-    
-    function getLocation() {
-       
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-      }
-    }
-    
-    function showPosition(position) {
-      x.innerHTML = "Latitude: " + position.coords.latitude + 
-      "<br>Longitude: " + position.coords.longitude;
-      document.getElementById('lat').value("456465451321")
-    }
-    window.onload(getLocation());
-</script>
