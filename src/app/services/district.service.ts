@@ -42,7 +42,10 @@ export class DistrictService {
     localStorage.setItem('details', JSON.stringify(detail));
     this.subject.next(detail);
   }
-
+  findDistrictByState(listType: number){
+    return this.http.get(`http://demo.abessys.com/getdistrictlistbystate/${listType}`, this.httpOptions)
+                    .pipe(catchError(this.handleError()));
+  }
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);

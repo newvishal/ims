@@ -5,6 +5,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { Observable } from 'rxjs';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { AttendanceService } from 'src/app/services/attendance.service';
+declare var $:any;
 @Component({
   selector: 'app-add-attendance',
   templateUrl: './add-attendance.component.html',
@@ -19,7 +20,34 @@ export class AddAttendanceComponent implements OnInit {
   marAttendanceObj = {};
   constructor(private formBuilder: FormBuilder,public toastr: ToastrManager, private employeeService:EmployeeService, private attendanceService:AttendanceService) { }
   curDate=new Date();
-  ngOnInit(): void {
+    ngOnInit(): void {
+      $(document).ready(function(){
+        alert("hi");
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+          x.innerHTML = "Geolocation is not supported by this browser.";
+          alert("Geolocation is not supported by this browser.");
+        }
+
+
+        var x = document.getElementById("demo");
+      
+        function getLocation() {
+          
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+    
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude + 
+          "<br>Longitude: " + position.coords.longitude;
+          // document.getElementById('lat').value = "456465451321";
+        }
+    });
     this.searchEmpForm = this.formBuilder.group({
       empId: ['', Validators.required]
     });
@@ -31,6 +59,9 @@ export class AddAttendanceComponent implements OnInit {
       districtName:[''],
       locationName:[''],
       designationName:[''],
+      presentStatus:[''],
+      latitude:[''],
+      longitude:[''],
       date:[''],
       status:[''],
       inTime:['00:00'],
@@ -40,17 +71,14 @@ export class AddAttendanceComponent implements OnInit {
   }
   get myForm() { return this.searchEmpForm.controls; }
   showPopup(e){
-    if(e.target.value === "Present"){
+    console.log(e);
+    if(e.target.value === "1"){
        this.time = true;
        this.reason = false;
     }
-    if(e.target.value === "Absent"){
+    if(e.target.value === "0"){
      this.reason = true;
      this.time = false;
-    }
-    if(e.target.value === "Leave"){
-      this.reason = true;
-      this.time = false;
     }
   }
 

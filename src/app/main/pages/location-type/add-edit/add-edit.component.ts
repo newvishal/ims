@@ -20,7 +20,7 @@ export class AddEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.LocationTypeForm = this.formBuilder.group({
-      locationType: [null, Validators.required],
+      locationTypeName: [null, Validators.required],
       shortCode: ['', Validators.required],
     });
 
