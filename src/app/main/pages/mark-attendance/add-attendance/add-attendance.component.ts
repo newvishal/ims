@@ -5,6 +5,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { Observable } from 'rxjs';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { AttendanceService } from 'src/app/services/attendance.service';
+declare var $:any;
 @Component({
   selector: 'app-add-attendance',
   templateUrl: './add-attendance.component.html',
@@ -19,7 +20,8 @@ export class AddAttendanceComponent implements OnInit {
   marAttendanceObj = {};
   constructor(private formBuilder: FormBuilder,public toastr: ToastrManager, private employeeService:EmployeeService, private attendanceService:AttendanceService) { }
   curDate=new Date();
-  ngOnInit(): void {
+    ngOnInit(): void {
+      
     this.searchEmpForm = this.formBuilder.group({
       empId: ['', Validators.required]
     });
@@ -31,26 +33,38 @@ export class AddAttendanceComponent implements OnInit {
       districtName:[''],
       locationName:[''],
       designationName:[''],
+      presentStatus:[''],
+      latitude:[''],
+      longitude:[''],
       date:[''],
       status:[''],
       inTime:['00:00'],
       remark:['']
     });
-
+    $(document).ready(function(){
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+        alert("Geolocation is not supported by this browser.");
+      }
+      function showPosition(position) {
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+        $('#lat').val(position.coords.latitude);
+        $('#long').val(position.coords.longitude);
+      }
+    });
   }
   get myForm() { return this.searchEmpForm.controls; }
   showPopup(e){
-    if(e.target.value === "Present"){
+    console.log(e);
+    if(e.target.value === "1"){
        this.time = true;
        this.reason = false;
     }
-    if(e.target.value === "Absent"){
+    if(e.target.value === "0"){
      this.reason = true;
      this.time = false;
-    }
-    if(e.target.value === "Leave"){
-      this.reason = true;
-      this.time = false;
     }
   }
 
@@ -84,7 +98,7 @@ export class AddAttendanceComponent implements OnInit {
   }
 
   markAttendance(){
-    //  console.log(this.markAttendanceForm.value);
+     console.log(this.markAttendanceForm.value);
     //  console.log(this.marAttendanceObj);
      let finalObj = {
        ...this.marAttendanceObj,
@@ -92,23 +106,23 @@ export class AddAttendanceComponent implements OnInit {
        inTime: this.markAttendanceForm.value['inTime'],
        status:this.markAttendanceForm.value['status'],
        remark:this.markAttendanceForm.value['remark'],
-       inLatitudeLongitude:""
+       inLatitudeLongitude: this.markAttendanceForm.value['latitude'] + "@" + this.markAttendanceForm.value['longitude']
      }
      console.log(finalObj);
-     this.attendanceService.addEmployee(finalObj).subscribe({
-      next: res =>{
-        // console.log(res[0]);
-        this.toastr.successToastr(res['message']);
-        this.markAttendanceForm.reset();
-        this.searchEmpForm.reset({
-          empId:""
-        });
-        this.submitted = false
-      },
-      error: err =>{
-        console.log(err);
-        this.toastr.warningToastr(err);
-      }
-    })
+    //  this.attendanceService.addEmployee(finalObj).subscribe({
+    //   next: res =>{
+    //     // console.log(res[0]);
+    //     this.toastr.successToastr(res['message']);
+    //     this.markAttendanceForm.reset();
+    //     this.searchEmpForm.reset({
+    //       empId:""
+    //     });
+    //     this.submitted = false
+    //   },
+    //   error: err =>{
+    //     console.log(err);
+    //     this.toastr.warningToastr(err);
+    //   }
+    // })
   }
 }

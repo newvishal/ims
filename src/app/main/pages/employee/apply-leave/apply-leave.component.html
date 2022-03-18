@@ -15,7 +15,39 @@
                 <h3 class="mb-0 card-title">Apply Leave</h3>
             </div>
             <div class="card-body">
-                <form [formGroup]="applyLeaveForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="searchEmpForm" (ngSubmit)="searchEmployee()">
+                    <div class="row">
+                            <div class="form-group col-md-3">
+                                <label class="form-label">Employee Id</label>
+                                <input type="text" formControlName="empId" [ngClass]="{ 'is-invalid': submitted2 && myForm2['empId'].errors }" class="form-control" placeholder="eg:EMP1234">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted2 && myForm2['empId'].errors?.['required']">Please
+                                    Enter Employee Id</small>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <button type="submit" class="btn btn-primary mt-6"><i class="fe fe-search"></i> Search</button>
+                            </div>
+                    </div>
+                </form>
+                <table class="table" *ngIf="isShow">
+                    <thead>
+                      <tr>
+                        <th scope="col">EmpId</th>
+                        <th scope="col">Employee Name</th>
+                        <!-- <th scope="col">Father Name</th> -->
+                        <th scope="col">Designation</th>
+                        <th scope="col">Location</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">{{empSearchResult?.['empId']}}</th>
+                        <td>{{empSearchResult?.['empName']}}</td>
+                        <td>{{empSearchResult?.['designationName']}}</td>
+                        <td>{{empSearchResult?.['locationName']}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <form  *ngIf="isShow" [formGroup]="applyLeaveForm" (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -47,9 +79,9 @@
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                 </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empLeaveApplicableId'].errors?.['required']">Please
+                                    Select Employee Leave Applicable</small>
                             </div>
-                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['leaveTypeId'].errors?.['required']">Please
-                                Select Employee Leave Applicable</small>
                         </div>
                         <div class="col-md-3">
                             <div class="form-label">Date from</div>
@@ -78,6 +110,22 @@
                             </div>
                             <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['leaveDayStatus'].errors?.['required']">Please
                                 Select Leave Day Status</small>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Attachment</label>
+                                <input type="file" formControlName="attachment" style="resize: none;" name="" id="" class="form-control" />
+                            </div>
+                            <!-- <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['reason'].errors?.['required']">Please
+                                Enter Reason</small> -->
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">Reason</label>
+                                <textarea formControlName="reason" style="resize: none;" [ngClass]="{ 'is-invalid': submitted && myForm['reason'].errors }" name="stateddl" id="" class="form-control"></textarea>
+                            </div>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['reason'].errors?.['required']">Please
+                                Enter Reason</small>
                         </div>
                     </div>
                     <!-- <div class="row">

@@ -65,8 +65,9 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Approval Status </th>
                         <td mat-cell *matCellDef="let row"> 
                           <mat-chip-list aria-label="Fish selection">
+                            <mat-chip *ngIf="row.approvalStatus == null" color="accent" selected>Pending</mat-chip>
                             <mat-chip *ngIf="row.approvalStatus == 1" color="primary" selected>Approved</mat-chip>
-                            <mat-chip *ngIf="row.approvalStatus == null" color="warn" selected>Reject</mat-chip>
+                            <mat-chip *ngIf="row.approvalStatus == 0" color="warn" selected>Reject</mat-chip>
                           </mat-chip-list>
                         </td>
                       </ng-container>

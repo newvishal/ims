@@ -16,9 +16,13 @@ import { IApplyLeave, ILeaveType, IEmployee } from 'src/app/shared/ts/index';
 export class ApplyLeaveComponent implements OnInit {
   empId = 0;
   applyLeaveForm: FormGroup;
+  searchEmpForm: FormGroup;
   submitted = false;
+  submitted2 = false;
   LeavTypeList: ILeaveType[] = [];
   EmployeeList: IEmployee[] = [];
+  isShow: boolean = true;
+  empSearchResult : object = {};
   constructor(
     public activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -32,13 +36,18 @@ export class ApplyLeaveComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.activatedRoute.snapshot.params['empId']);
     this.empId = parseInt(this.activatedRoute.snapshot.params['empId']);
+    this.searchEmpForm = this.formBuilder.group({
+      empId: ['', Validators.required]
+    });
     this.applyLeaveForm = this.formBuilder.group({
       empId: ['', Validators.required],
       leaveTypeId: ['', Validators.required],
       empLeaveApplicableId: ['', Validators.required],
       dateFrom: ['',Validators.required],
       dateTo:['',Validators.required],
-      leaveDayStatus:['']
+      leaveDayStatus:['',Validators.required],
+      reason:['',Validators.required],
+      attachment:['']
     });
     this.getLeaveTypeList();
     this.getEmployeeList();
@@ -66,7 +75,30 @@ export class ApplyLeaveComponent implements OnInit {
     )
   }
   get myForm() { return this.applyLeaveForm.controls; }
-
+  get myForm2() { return this.searchEmpForm.controls; }
+  searchEmployee(){
+    this.submitted2 = true;
+    if (this.searchEmpForm.invalid) {
+      return;
+    } else {
+       this.employeeService.searchEmployee(parseInt(this.searchEmpForm.value["empId"])).subscribe({
+        next: res =>{
+          console.log(res[0]);
+          this.submitted2 = false;
+          this.empSearchResult = res[0];
+          this.isShow = true;
+          this.searchEmpForm.patchValue({
+            empId: ""
+          });
+          this.toastr.successToastr(res['message']);
+        },
+        error: err =>{
+          console.log(err);
+          this.toastr.warningToastr(err);
+        }
+      })
+    }
+  }
   onSubmit() {
     this.submitted = true;
     if (this.applyLeaveForm.invalid) {

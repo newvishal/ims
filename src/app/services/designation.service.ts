@@ -23,17 +23,17 @@ export class DesignationService {
   constructor(private http: HttpClient) { }
    
   add(designation:IDesignation): Observable<IDesignation> {
-      return this.http.post<IDesignation>(environment.apiUrl + "api/Designation", designation, this.httpOptions)
+      return this.http.post<IDesignation>(environment.apiUrl + "Designation", designation, this.httpOptions)
                       .pipe(catchError(this.handleError<IDesignation>(`addBank`)));
   }
 
   put(designation:IDesignation, id: string): Observable<IDesignation> {
-    return this.http.put<IDesignation>(environment.apiUrl + `api/Designation/${id}`, designation, this.httpOptions)
+    return this.http.put<IDesignation>(environment.apiUrl + `Designation/${id}`, designation, this.httpOptions)
                     .pipe(catchError(this.handleError<IDesignation>(`addBank`)));
   }
 
   find(): Observable<IDesignation[]> {
-      return this.http.get<IDesignation[]>(environment.apiUrl + "api/Designation", this.httpOptions)
+      return this.http.get<IDesignation[]>(environment.apiUrl + "Designation" + "/0", this.httpOptions)
                       .pipe(catchError(this.handleError<IDesignation[]>('getAllBank', [])));
   }
 

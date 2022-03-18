@@ -48,7 +48,7 @@
 
 .app-content {
     min-height: calc(100vh - 50px);
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 0 !important;
     -webkit-transition: margin-left 0.3s ease;
     -o-transition: margin-left 0.3s ease;

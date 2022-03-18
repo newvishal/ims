@@ -17,13 +17,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-label">Location type</label>
-                                <select formControlName="locationType" [ngClass]="{ 'is-invalid': submitted && myForm['locationType'].errors }" name="stateddl" id="" class="form-control">
-                                    <option value="br">1</option>
-                                    <option value="cz">2</option>
-                                    <option value="de">3</option>
-                                    <option value="pl">4</option>
-                                </select>
-                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['locationType'].errors?.['required']">Please
+                                <input formControlName="locationTypeName" [ngClass]="{ 'is-invalid': submitted && myForm['locationTypeName'].errors }" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['locationTypeName'].errors?.['required']">Please
                                     Enter Location type</small>
                             </div>
                         </div>

@@ -14,16 +14,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Location name</label>
-                                <input formControlName="locationName" [ngClass]="{ 'is-invalid': submitted && myForm['locationName']?.errors }" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
-                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['locationName'].errors?.['required']">Please
-                                    Enter Location Name</small>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label class="form-label">Location type </label>
                                 <select formControlName="locTypeId" [ngClass]="{ 'is-invalid': submitted && myForm['locTypeId']?.errors }" name="stateddl" id="" class="form-control">
+                                    <option value="" selected>Select location Type</option>
                                     <option [value]="item?.locTypeId" *ngFor="let item of LocationTypeList">{{item?.locationTypeName}}</option>
                                 </select>
                                 <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['locTypeId'].errors?.['required']">Please
@@ -32,8 +25,16 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label class="form-label">Location name</label>
+                                <input formControlName="locationName" [ngClass]="{ 'is-invalid': submitted && myForm['locationName']?.errors }" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['locationName'].errors?.['required']">Please
+                                    Enter Location Name</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label class="form-label">State</label>
-                                <select formControlName="stateId" [ngClass]="{ 'is-invalid': submitted && myForm['stateId']?.errors }" name="stateddl" id="" class="form-control">
+                                <select formControlName="stateId" (change)="getDistrictByStateList($event)" [ngClass]="{ 'is-invalid': submitted && myForm['stateId']?.errors }" name="stateddl" id="" class="form-control">
                                     <option value="" selected>Select State</option>
                                     <option [value]="item.stateId" *ngFor="let item of StateList">{{item.stateName}}</option>
                                 </select>
@@ -45,14 +46,13 @@
                             <div class="form-group">
                                 <label class="form-label">District </label>
                                 <select formControlName="districtId" [ngClass]="{ 'is-invalid': submitted && myForm['districtId']?.errors }" name="stateddl" id="" class="form-control">
-                                    <option [value]="item.districtId" *ngFor="let item of DistrictList">{{item.districtName}}</option>
+                                    <option value="" selected>Select District</option>
+                                    <option [value]="item.districtId" *ngFor="let item of districtListByState">{{item.districtName}}</option>
                                 </select>
                                 <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['districtId'].errors?.['required']">Please
                                     Select District Name</small>
                             </div>
                         </div>
-                        
-                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Short code</label>
@@ -64,7 +64,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">locationCategory</label>
-                                <input formControlName="locationCategory" [ngClass]="{ 'is-invalid': submitted && myForm['locationCategory']?.errors }" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                <select formControlName="locationCategory" [ngClass]="{ 'is-invalid': submitted && myForm['locationCategory']?.errors }" name="stateddl" id="" class="form-control">
+                                    <option value="" selected>Select Location Category</option>
+                                    <option [value]="item.channelId" *ngFor="let item of ChannelList">{{item.channelName}}</option>
+                                </select>
+                                <!-- <input formControlName="locationCategory" [ngClass]="{ 'is-invalid': submitted && myForm['locationCategory']?.errors }" type="text" class="form-control" name="example-text-input" placeholder="eg: UP50..."> -->
                                 <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['locationCategory'].errors?.['required']">Please
                                     Enter Location Category</small>
                             </div>

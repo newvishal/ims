@@ -45,12 +45,24 @@ export class AttendanceComponent implements OnInit {
     this.getSateList();
     this.getDistrictList();
     this.getEmployeeList();
+    this.getDesignationList();
   }
   get myForm() { return this.GetAttendanceForm.controls; }
   getSateList() {
     this.stateService.find().subscribe(
       (res: IState[]) => {
         this.StateList = res['data'];
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
+  getDesignationList() {
+    this.designationService.find().subscribe(
+      (res: IDesignation[]) => {
+        this.DesignationList = res['data'];
       },
       (err) => {
         console.log(err);

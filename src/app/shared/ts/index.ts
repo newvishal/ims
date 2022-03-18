@@ -198,3 +198,9 @@ export interface IProductType {
     type: string,
     status: boolean
 }
+
+export interface IChannel {
+    channelId?: number,
+    channelName: string,
+    shortCode: string
+}

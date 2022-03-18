@@ -7,7 +7,8 @@ import { DistrictService } from 'src/app/services/district.service';
 import { LocationTypeService } from 'src/app/services/location-type.service';
 import { LocationService } from 'src/app/services/location.service';
 import { StateService } from 'src/app/services/state.service';
-import {IDistrict, IState ,ILocation, ILocationType} from '../../../../shared/ts';
+import { ChannelService } from 'src/app/services/channel.service';
+import {IDistrict, IState ,ILocation, ILocationType, IChannel} from '../../../../shared/ts';
 @Component({
   selector: 'app-add-edit',
   templateUrl: './add-edit.component.html',
@@ -20,6 +21,8 @@ export class AddEditComponent implements OnInit {
   DistrictList: IDistrict[] = [];
   LocationTypeList: ILocationType[] = [];
   StateList: IState[] = [];
+  ChannelList: IChannel[] = [];
+  districtListByState: Array<any> = [];
   constructor(
     private formBuilder: FormBuilder,
     public toastr: ToastrManager,
@@ -27,6 +30,7 @@ export class AddEditComponent implements OnInit {
     public districtService: DistrictService,
     public locationTypeService: LocationTypeService,
     public stateService: StateService,
+    public channelService:ChannelService,
     private _router: Router
   ) { }
   ngOnInit(): void {
@@ -43,6 +47,7 @@ export class AddEditComponent implements OnInit {
     this.getDistrictList();
     this.getLocationTypeList();
     this.getSateList();
+    this.getChannelList();
   }
 
   getLocationTypeList() {
@@ -65,6 +70,16 @@ export class AddEditComponent implements OnInit {
       }
     )
   }
+  getChannelList() {
+    this.channelService.find(0).subscribe(
+      (res: IState[]) => {
+        this.ChannelList = res['data'];
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
 
   getDistrictList() {
     this.districtService.find().subscribe(
@@ -77,6 +92,19 @@ export class AddEditComponent implements OnInit {
     )
   }
 
+  getDistrictByStateList(e) {
+    this.districtService.findDistrictByState(e.target.value).subscribe(
+      (res) => {
+        
+        this.districtListByState = res['data'];
+        console.log(this.districtListByState);
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+  
   patchLocalStorageData() {
     this.locationService.subject.subscribe(res => {
       if(typeof res == 'string') {
