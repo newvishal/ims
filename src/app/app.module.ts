@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { AuthGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +18,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     HttpClientModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

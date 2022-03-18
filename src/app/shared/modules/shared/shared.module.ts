@@ -17,8 +17,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
+import { ConfirmdialogComponent } from '../../component/confirmdialog/confirmdialog.component';
+import { ConfirmdialogService } from 'src/app/services/confirmdialog.service';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfirmdialogComponent
+  ],
   imports: [
     CommonModule,
     MatTableModule,
@@ -35,9 +40,12 @@ import {MatChipsModule} from '@angular/material/chips';
     MatButtonModule,
     MatOptionModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
   ],
-  exports: [ReactiveFormsModule, MatProgressSpinnerModule,MatTooltipModule,MatIconModule, MatFormFieldModule, 
+  providers: [ConfirmdialogService],
+  entryComponents: [ConfirmdialogComponent],
+  exports: [ MatDialogModule,ReactiveFormsModule, MatProgressSpinnerModule,MatTooltipModule,MatIconModule, MatFormFieldModule, 
             MatTableModule, MatPaginatorModule, MatInputModule, MatSortModule, MatCheckboxModule, MatOptionModule,MatStepperModule,
             MatSnackBarModule,MatButtonModule,MatSelectModule,MatChipsModule]
 })

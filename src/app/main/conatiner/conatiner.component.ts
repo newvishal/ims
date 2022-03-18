@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { AuthService } from 'src/app/services/auth.service';
+import { ConfirmdialogService } from 'src/app/services/confirmdialog.service';
 
 declare var $:any;
 @Component({
@@ -11,7 +13,7 @@ declare var $:any;
 export class ConatinerComponent implements OnInit {
   IsProfileShow: Boolean = false;
   IsNotificationShow: Boolean = false;
-  constructor(public router: Router,public toastr: ToastrManager) { }
+  constructor(public router: Router,public toastr: ToastrManager, public auth: AuthService, public confirmModalServ: ConfirmdialogService) { }
 
   ngOnInit(): void {
     $(document).ready(function(){
@@ -126,9 +128,17 @@ export class ConatinerComponent implements OnInit {
     });
   }
   
-  logoutUser(){
-    localStorage.clear();
-    this.router.navigate(["/"]);
-    this.toastr.successToastr("Logged Out Successfully.");
+  logout(){
+      const modalRef = this.confirmModalServ.open("200px", "400px", "Confirm", "Are you Sure ?", true, true, "ok", "cancel");
+      modalRef.afterClosed().subscribe(result => {
+      const { event } = result;
+      if(event === 'Close') {
+          return;
+      }
+      this.auth.logout();
+      this.router.navigate(["/"]);
+      this.toastr.successToastr("Logged Out Successfully.");
+    });
+    
   }
 }

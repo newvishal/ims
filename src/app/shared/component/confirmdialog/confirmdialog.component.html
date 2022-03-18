@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>{{modalData?.title | titlecase}}</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>{{modalData?.description}}</h3>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="confirm()" cdkFocusInitial>{{modalData?.actionButtonText | titlecase}}</button>
+  <button mat-button (click)="close()" *ngIf="modalData.showCancel">{{modalData?.cancelText | titlecase}}</button>
+</mat-dialog-actions>

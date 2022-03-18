@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this._auth.logout();
   }
   
   get myForm() { return this.loginForm.controls; }
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
         next: res =>{
           console.log(res);
           localStorage.setItem('token', res['token']);
-         
+          localStorage.setItem('isLoggedIn', "true");
           this._router.navigate(['/dashboard']);
           this.toastr.successToastr(res['message']);
         },

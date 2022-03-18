@@ -80,7 +80,7 @@
                                 <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['./profile']">
                                     <i class="dropdown-icon mdi mdi-account-outline"></i> Profile
                                 </a>
-                                <a class="dropdown-item" href="javascript:void(0)" (click)="logoutUser()">
+                                <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">
                                     <i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
                                 </a>
                             </div>
@@ -233,7 +233,7 @@
                                             <i class="dropdown-icon mdi mdi-account-outline"></i> Profile
                                         </a>
                                         <a class="dropdown-item" href="#">
-                                            <i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
+                                            <i class="dropdown-icon mdi  mdi-logout-variant" (click)="logout()"></i> Sign out
                                         </a>
                                     </div>
                                 </div>

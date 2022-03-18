@@ -33,4 +33,9 @@ export class AuthService {
       console.log(errorMessage);
       return throwError(errorMessage);
   }
+
+  logout(): void {
+    localStorage.setItem('isLoggedIn', "false");
+    localStorage.removeItem('token');
+  } 
 }
