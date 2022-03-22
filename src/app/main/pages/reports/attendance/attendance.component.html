@@ -26,7 +26,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label class="form-label">State</label>
-                                <select formControlName="stateId" [ngClass]="{ 'is-invalid': submitted && myForm['stateId']?.errors }" name="stateddl" id="" class="form-control">
+                                <select formControlName="stateId" #mySelect (change)="getDistrictByStateList(mySelect.value)" [ngClass]="{ 'is-invalid': submitted && myForm['stateId']?.errors }" name="stateddl" id="" class="form-control">
                                     <option value="" selected>Select State</option>
                                     <option [value]="item.stateId" *ngFor="let item of StateList">{{item.stateName}}</option>
                                 </select>
@@ -38,8 +38,8 @@
                             <div class="form-group">
                                 <label class="form-label">District</label>
                                 <select formControlName="districtId" [ngClass]="{ 'is-invalid': submitted && myForm['districtId']?.errors }" name="stateddl" id="" class="form-control">
-                                    <option value="" selected>Select State</option>
-                                    <option [value]="item.districtId" *ngFor="let item of DistrictList">{{item.districtName}}</option>
+                                    <option value="" selected>Select District</option>
+                                    <option [value]="item.districtId" *ngFor="let item of districtListByState">{{item.districtName}}</option>
                                 </select>
                                 <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['stateId'].errors?.['required']">Please
                                     Select District</small>

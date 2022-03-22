@@ -60,6 +60,7 @@ export class AddEditComponent implements OnInit {
       }
     )
   }
+
   getSateList() {
     this.stateService.find().subscribe(
       (res: IState[]) => {
@@ -70,6 +71,7 @@ export class AddEditComponent implements OnInit {
       }
     )
   }
+
   getChannelList() {
     this.channelService.find(0).subscribe(
       (res: IState[]) => {
@@ -92,8 +94,9 @@ export class AddEditComponent implements OnInit {
     )
   }
 
-  getDistrictByStateList(e) {
-    this.districtService.findDistrictByState(e.target.value).subscribe(
+  getDistrictByStateList(stateId: string) {
+    console.log(stateId);
+    this.districtService.findDistrictByState(parseInt(stateId)).subscribe(
       (res) => {
         
         this.districtListByState = res['data'];
@@ -109,11 +112,13 @@ export class AddEditComponent implements OnInit {
     this.locationService.subject.subscribe(res => {
       if(typeof res == 'string') {
          this.bsubject = JSON.parse(res);
+         this.getDistrictByStateList(this.bsubject['stateId']);
       } else {
         this.bsubject = res;
       }
       console.log(this.bsubject);
       this.LocationForm.patchValue(this.bsubject);
+      this.getDistrictByStateList(this.bsubject['stateId']);
     });
   }
   
