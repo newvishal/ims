@@ -75,7 +75,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   getDesignationList() {
-    this.designationService.find().subscribe(
+    this.designationService.find(0).subscribe(
       (res: IDesignation[]) => {
         this.DesignationList = res['data'];
       },

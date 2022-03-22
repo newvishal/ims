@@ -126,7 +126,7 @@ export class AddEditComponent implements OnInit {
   }
 
   getDesignations(){
-    this.designationService.find().subscribe((res: IDesignation[]) => {
+    this.designationService.find(0).subscribe((res: IDesignation[]) => {
       this.DesignationList = res['data'] as IDesignation[];
     }, (err) => {
       console.log(err);

@@ -8,10 +8,9 @@ export interface IBank {
 
 export interface IDesignation {
     designationId ?: string,
-    designationType: string,
     designationName: string,
     shortCode: string,
-    status ?: boolean
+    category: string
 }
 
 export interface IZone {
