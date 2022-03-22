@@ -44,7 +44,7 @@ export class LocationService {
   }
 
   find(): Observable<ILocation[]> {
-      return this.http.get<ILocation[]>(environment.apiUrl + "Location", this.httpOptions)
+      return this.http.get<ILocation[]>(environment.apiUrl + `Location`, this.httpOptions)
                       .pipe(catchError(this.handleError<ILocation[]>('getAllLocation', [])));
   }
 

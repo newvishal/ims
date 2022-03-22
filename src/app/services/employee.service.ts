@@ -18,19 +18,26 @@ export class EmployeeService {
   }; 
   constructor(private http: HttpClient) { }
    
-  // addEmployee(employee:IEmployee): Observable<IEmployee> {
-  //     return this.http.post<IEmployee>(environment.apiUrl + "Employee", employee, this.httpOptions)
-  //                     .pipe(catchError(this.handleError<IEmployee>(`addEmployee`)));
-  // }
+  addEmployee(formData: any): Observable<any> {
+      return this.http.post<IEmployee>(environment.apiUrl + "Employee/AddEmployee", formData, {headers: new HttpHeaders({
+                          "Authorization": `Bearer ${localStorage.getItem("token")}`
+                      })})
+                      .pipe(catchError(this.handleError<any>(`addEmployee`)));
+  }
 
-  // put(employee:IEmployee, id: string): Observable<IBank> {
-  //   return this.http.put<IBank>(environment.apiUrl + `Employee/${id}`, employee, this.httpOptions)
-  //                   .pipe(catchError(this.handleError<IEmployee>(`put`)));
-  // }
+  getById(id: string): Observable<IEmployee> {
+    return this.http.get<IEmployee>(environment.apiUrl + `Employee/searchemployee/${id}`, this.httpOptions)
+                    .pipe(catchError(this.handleError<IEmployee>(`getByiD`)));
+  }
 
   getAllEmployee(): Observable<IEmployee[]> {
       return this.http.get<IEmployee[]>(environment.apiUrl + "Employee", this.httpOptions)
                       .pipe(catchError(this.handleError<IEmployee[]>('getAllEmployee', [])));
+  }
+
+  getEmployees(): Observable<any[]> {
+      return this.http.get<any[]>(environment.apiUrl + "Employee", this.httpOptions)
+                      .pipe(catchError(this.handleError<any[]>('getAllEmployee', [])));
   }
 
   searchEmployee(id: number){
