@@ -27,8 +27,7 @@ export class UtilityService {
       }),
       responseType: 'text' as 'json'
     },
-    
-  )
+    )
     .pipe(catchError(this.handleError<any>(`imageUpload`)));
   }
 
