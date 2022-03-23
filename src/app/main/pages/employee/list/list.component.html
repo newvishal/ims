@@ -32,45 +32,45 @@
                         </div>
                         <table class="w-100" mat-table [dataSource]="dataSource" matSort>
                           <!-- ID Column -->
-                          <ng-container matColumnDef="empId">
+                          <ng-container matColumnDef="EmpId">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-                            <td mat-cell *matCellDef="let row"> {{row.empId}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.EmpId}} </td>
                           </ng-container>
                           <!-- ID Column -->
-                          <ng-container matColumnDef="empName">
+                          <ng-container matColumnDef="EmpName">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Name </th>
-                            <td mat-cell *matCellDef="let row"> {{row.empName}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.EmpName}} </td>
                           </ng-container>
                           <!-- ID Column -->
-                          <ng-container matColumnDef="doj">
+                          <ng-container matColumnDef="DOJ">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Job </th>
-                            <td mat-cell *matCellDef="let row"> {{row.doj | date: 'mediumDate'}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.DOJ | date: 'mediumDate'}} </td>
                           </ng-container>
                           <!-- Name Column -->
-                          <ng-container matColumnDef="emailId">
+                          <ng-container matColumnDef="EmailId">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Email  </th>
-                            <td mat-cell *matCellDef="let row"> {{row.emailId}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.EmailId}} </td>
                           </ng-container>
                           <!-- Name Column -->
-                          <ng-container matColumnDef="expDate">
+                          <ng-container matColumnDef="ExpDate">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Exp Date </th>
-                            <td mat-cell *matCellDef="let row"> {{row.expDate | date: 'mediumDate'}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.ExpDate | date: 'mediumDate'}} </td>
                           </ng-container>
                       
-                          <ng-container matColumnDef="aadharNo">
+                          <ng-container matColumnDef="AadharNo">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Aadhar </th>
-                            <td mat-cell *matCellDef="let row"> {{row.aadharNo}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.AadharNo}} </td>
                           </ng-container>
     
-                          <ng-container matColumnDef="serviceStatus">
+                          <ng-container matColumnDef="ServiceStatus">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Service Status </th>
-                            <td mat-cell *matCellDef="let row"> {{row.serviceStatus}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.ServiceStatus}} </td>
                           </ng-container>
     
                           <ng-container matColumnDef="actions">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                             <td mat-cell *matCellDef="let row"> 
-                              <button mat-icon-button matTooltip="Click to Edit" (click)="EditEmployee(row.empId)"  class="iconbutton" color="primary">
+                              <button mat-icon-button matTooltip="Click to Edit" (click)="EditEmployee(row)"  class="iconbutton" color="primary">
                                 <mat-icon aria-label="Edit">edit</mat-icon>
                               </button>
                               <!-- <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn">

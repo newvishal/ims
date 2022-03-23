@@ -1,6 +1,6 @@
  import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { BankService } from 'src/app/services/bank.service';
 import { DesignationService } from 'src/app/services/designation.service';
@@ -9,6 +9,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { LocationTypeService } from 'src/app/services/location-type.service';
 import { LocationService } from 'src/app/services/location.service';
 import { StateService } from 'src/app/services/state.service';
+import { UtilityService } from 'src/app/services/utility.service';
 
 import { IState,IDistrict, IEmployee, IDesignation, ILocation, ILocationType, IBank } from 'src/app/shared/ts';
 
@@ -19,6 +20,7 @@ import { IState,IDistrict, IEmployee, IDesignation, ILocation, ILocationType, IB
 })
 export class AddEditComponent implements OnInit {
   isLinear = true;
+  bsubject: any;
   basicInfo: FormGroup;
   employeeDetails: FormGroup;
   selectedFiles: any;
@@ -40,7 +42,9 @@ export class AddEditComponent implements OnInit {
     public locationService: LocationService,
     public bankService: BankService,
     public activeRoute: ActivatedRoute,
-    public toast: ToastrManager) { }
+    public toast: ToastrManager,
+    public router: Router,
+    public utilityService: UtilityService) { }
 
   ngOnInit(): void {
     this.basicInfo = this._formBuilder.group({
@@ -61,6 +65,7 @@ export class AddEditComponent implements OnInit {
       PFNo: [''],
       ServiceStatus: [''],
       DOJ: [''],
+      ImagePath: ['']
     });
     this.employeeDetails = this._formBuilder.group({
       JoiningStateId: ['', Validators.required],
@@ -81,43 +86,118 @@ export class AddEditComponent implements OnInit {
       RegistrationDate: [''],
       ExpDate: ['']
     });
-    this.activeRoute.queryParams.subscribe(params =>{
-      console.log('params===========>',params['id']);
-      this.EmpId = params['id'];
-    })
+    // this.activeRoute.queryParams.subscribe(params =>{
+    //   console.log('params===========>',params['id']);
+    //   this.EmpId = params['id'];
+    // })
     
     this.getDesignations();
     this.getDistricts();
     this.getStates();
     this.getLocations();
     this.getBanks();
-    if(this.EmpId) this.getEmployeeDetails(this.EmpId);
-  }
-  selectFile(event) {
-    this.selectedFiles = event.target.files;
+    this.patchLocalStorageData();
   }
 
-  getEmployeeDetails(EmpId: string) {
-    this.employeeService.getById(EmpId).subscribe((res) => {
-      const empDetails = res[0];
-      this.basicInfo.patchValue(empDetails);
-      this.employeeDetails.patchValue(empDetails);
-      console.log(res);
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+    if(!this.selectedFiles) return
+    let formData = new FormData();
+    formData.append('DocumentFile',  this.selectedFiles[0]);
+    this.utilityService.imageUpload(formData).subscribe((res) => {
+      this.basicInfo.patchValue({
+        ImagePath: res
+      });
     }, (err) => {
       console.log(err);
     })
   }
+
+  patchLocalStorageData() {
+    this.employeeService.subject.subscribe(res => {
+      if(typeof res == 'string') {
+         this.bsubject = JSON.parse(res);
+      } else {
+        this.bsubject = res;
+      }
+      this.basicInfo.patchValue(this.bsubject);
+      this.employeeDetails.patchValue(this.bsubject);
+    });
+  }
+
+  // getEmployeeDetails(EmpId: string) {
+  //   this.employeeService.getById(EmpId).subscribe((res) => {
+  //     const empDetails = res[0];
+  //     this.basicInfo.patchValue(empDetails);
+  //     this.employeeDetails.patchValue(empDetails);
+  //     console.log(res);
+  //   }, (err) => {
+  //     console.log(err);
+  //   })
+  // }
 
   AddEmployee() {
     const finalData = {
       ...this.basicInfo.value,
       ...this.employeeDetails.value
     };
+    
     let formData = new FormData();
     Object.keys(finalData).forEach((key) => {
       formData.append(`${key}`, finalData[key]);
     })
-    if(this.selectedFiles) formData.append('image',  this.selectedFiles[0]);
+    if(this.bsubject.EmpId) {
+      formData.append('EmpId', this.bsubject.EmpId);
+      this.employeeService.updateEmployee(formData).subscribe((res) => {
+        this.toast.successToastr('Created Successfully');
+        this.router.navigate(["dashboard/employee/addEditEmployee"]);
+        localStorage.removeItem('details');
+        this.employeeService.saveEmployeeById({ AadharNo: '',
+        AccountNo: '',
+        Address1: "",
+        Address2: "",
+        BankName: 0,
+        CL: '',
+        Channel: '',
+        DOB: "",
+        DOJ: "",
+        DesignationId: 0,
+        DistrictId: 0,
+        DistrictName: "",
+        EL: 0,
+        ESINo: "",
+        EmailId: "",
+        EmpDesigStatus: '',
+        EmpFatherName: "",
+        EmpName: "",
+        Entity: null,
+        ExpDate: null,
+        Gender: "",
+        IFSCCode: null,
+        Image: null,
+        JoiningDistId: 0,
+        JoiningStateId: 0,
+        LocationId: 0,
+        LocationName: "",
+        MobNo: '',
+        OfficialEmailId: null,
+        PANNo: null,
+        PFNo: "",
+        PL: 0,
+        PinCode: "",
+        RegistrationDate: null,
+        SL: 0,
+        ServiceStatus: "",
+        StateId: 0,
+        StateName: "",
+        Status: false,
+        WhatsAppNo: '' });
+      }, (err) => {
+        this.toast.errorToastr('Somthing Went Wrong');
+      })
+      return
+    }
+    // if(this.selectedFiles) formData.append('image',  this.selectedFiles[0]);
     this.employeeService.addEmployee(formData).subscribe((res) => {
       this.toast.successToastr('Created Successfully');
     }, (err) => {

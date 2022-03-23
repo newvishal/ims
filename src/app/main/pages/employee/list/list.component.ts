@@ -17,7 +17,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ['empId', 'empName',  'doj' , 'emailId' , 'expDate', 'aadharNo', 'serviceStatus', 'actions'];
+  displayedColumns: string[] = ['EmpId', 'EmpName',  'DOJ' , 'EmailId' , 'ExpDate', 'AadharNo', 'ServiceStatus', 'actions'];
   dataSource: MatTableDataSource<IEmployee>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -56,9 +56,9 @@ export class ListComponent implements OnInit {
 
   }
 
-  EditEmployee(EmpId: string) {
-    this.route.navigate(['dashboard/employee/addEditEmployee'],
-     { queryParams: { id: EmpId } })
+  EditEmployee(emp: string) {
+    this.route.navigate(['dashboard/employee/addEditEmployee']);
+    this.employeeService.saveEmployeeById(emp);
   }
 
 }

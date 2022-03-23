@@ -16,6 +16,7 @@
             </div> -->
             <div class="card-body">
                 <div class="row">
+                  {{basicInfo.value | json}}
                     <mat-horizontal-stepper [linear]="true" #stepper style="width: 100%; min-height: 350px;">
                         <mat-step [stepControl]="basicInfo">
                           <form [formGroup]="basicInfo">
@@ -41,8 +42,8 @@
                                         <mat-label>Gender</mat-label>
                                         <mat-select formControlName="Gender">
                                             <mat-option value="">Select</mat-option>
-                                            <mat-option value="male">Male</mat-option>
-                                            <mat-option value="female">Female</mat-option>
+                                            <mat-option value="Male">Male</mat-option>
+                                            <mat-option value="Female">Female</mat-option>
                                         </mat-select>
                                         </mat-form-field>
                                     </div>
