@@ -111,10 +111,18 @@ export class EmployeeService {
   }
 
   handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`);
-
-      return of(result as T);
+    return (error: any) => {
+      console.error(`${operation} failed: ${error}`);
+        // console.log(typeof error)
+        // const { errors } = JSON.parse(error.toString());
+        // let errList = []
+        // Object.keys(errors).forEach(e => {
+        //     if(errors[e]){
+        //       errors[e].forEach(err => errList.push(err))
+        //     }
+        // })
+        // console.log(errList);
+        return throwError(error);
     };
   }
 }
