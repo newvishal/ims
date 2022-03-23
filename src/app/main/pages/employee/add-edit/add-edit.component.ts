@@ -211,7 +211,16 @@ export class AddEditComponent implements OnInit {
     this.employeeService.addEmployee(formData).subscribe((res) => {
       this.toast.successToastr(res);
     }, (err) => {
-      this.toast.errorToastr('Somthing Went Wrong');
+      const { errors } = JSON.parse(err.error);
+        let errList = []
+        Object.keys(errors).forEach(e => {
+            if(errors[e]){
+              errors[e].forEach(err => errList.push(err))
+            }
+        });
+        errList.forEach(e => {
+          this.toast.errorToastr(e);
+        });
     })
   }
 
