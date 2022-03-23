@@ -10,8 +10,6 @@ import {IDesignation} from '../shared/ts';
   providedIn: 'root'
 })
 export class DesignationService {
-  subject = new BehaviorSubject<any>( localStorage.getItem('details') || JSON.stringify({designationId: '', designationType: "", designationName: '', shortCode: "", status: false }));
-
   httpOptions = {
     headers: new HttpHeaders({ 
       'Content-Type': 'application/json; charset=utf-8',
@@ -27,19 +25,14 @@ export class DesignationService {
                       .pipe(catchError(this.handleError<IDesignation>(`addBank`)));
   }
 
-  put(designation:IDesignation, id: string): Observable<IDesignation> {
+  put(designation:IDesignation, id: number): Observable<IDesignation> {
     return this.http.put<IDesignation>(environment.apiUrl + `Designation/${id}`, designation, this.httpOptions)
                     .pipe(catchError(this.handleError<IDesignation>(`addBank`)));
   }
 
-  find(): Observable<IDesignation[]> {
-      return this.http.get<IDesignation[]>(environment.apiUrl + "Designation" + "/0", this.httpOptions)
-                      .pipe(catchError(this.handleError<IDesignation[]>('getAllBank', [])));
-  }
-
-  saveDetails(detail : IDesignation) {
-    localStorage.setItem('details', JSON.stringify(detail));
-    this.subject.next(detail);
+  find(listType: number): Observable<IDesignation[]> {
+    return this.http.get<IDesignation[]>(environment.apiUrl + `Designation/${listType}`, this.httpOptions)
+                    .pipe(catchError(this.handleError<IDesignation[]>('getAllDesignationDetails', [])));
   }
 
   handleError<T>(operation = 'operation', result?: T) {

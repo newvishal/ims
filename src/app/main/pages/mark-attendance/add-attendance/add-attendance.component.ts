@@ -20,8 +20,8 @@ export class AddAttendanceComponent implements OnInit {
   marAttendanceObj = {};
   constructor(private formBuilder: FormBuilder,public toastr: ToastrManager, private employeeService:EmployeeService, private attendanceService:AttendanceService) { }
   curDate=new Date();
-    ngOnInit(): void {
-      
+  
+  ngOnInit(): void {
     this.searchEmpForm = this.formBuilder.group({
       empId: ['', Validators.required]
     });
@@ -55,6 +55,7 @@ export class AddAttendanceComponent implements OnInit {
       }
     });
   }
+
   get myForm() { return this.searchEmpForm.controls; }
   showPopup(e){
     console.log(e);
@@ -96,7 +97,6 @@ export class AddAttendanceComponent implements OnInit {
       })
     }
   }
-
   markAttendance(){
      console.log(this.markAttendanceForm.value);
     //  console.log(this.marAttendanceObj);
@@ -109,20 +109,22 @@ export class AddAttendanceComponent implements OnInit {
        inLatitudeLongitude: this.markAttendanceForm.value['latitude'] + "@" + this.markAttendanceForm.value['longitude']
      }
      console.log(finalObj);
-    //  this.attendanceService.addEmployee(finalObj).subscribe({
-    //   next: res =>{
-    //     // console.log(res[0]);
-    //     this.toastr.successToastr(res['message']);
-    //     this.markAttendanceForm.reset();
-    //     this.searchEmpForm.reset({
-    //       empId:""
-    //     });
-    //     this.submitted = false
-    //   },
-    //   error: err =>{
-    //     console.log(err);
-    //     this.toastr.warningToastr(err);
-    //   }
-    // })
+     this.attendanceService.addEmployee(finalObj).subscribe({
+      next: res =>{
+        // console.log(res[0]);
+        this.toastr.successToastr(res['message']);
+        this.markAttendanceForm.reset();
+        this.searchEmpForm.reset({
+          empId:""
+        });
+        this.submitted = false;
+        this.reason = false;
+        this.time = false;
+      },
+      error: err =>{
+        console.log(err);
+        this.toastr.warningToastr(err);
+      }
+    })
   }
 }

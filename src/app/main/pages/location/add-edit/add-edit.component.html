@@ -34,7 +34,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">State</label>
-                                <select formControlName="stateId" (change)="getDistrictByStateList($event)" [ngClass]="{ 'is-invalid': submitted && myForm['stateId']?.errors }" name="stateddl" id="" class="form-control">
+                                <select formControlName="stateId" #mySelect (change)="getDistrictByStateList(mySelect.value)" [ngClass]="{ 'is-invalid': submitted && myForm['stateId']?.errors }" name="stateddl" id="" class="form-control">
                                     <option value="" selected>Select State</option>
                                     <option [value]="item.stateId" *ngFor="let item of StateList">{{item.stateName}}</option>
                                 </select>

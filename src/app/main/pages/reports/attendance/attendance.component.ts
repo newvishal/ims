@@ -21,7 +21,8 @@ export class AttendanceComponent implements OnInit {
   DistrictList: IDistrict[] = [];
   DesignationList: IDesignation[] = [];
   EmployeeList: IEmployee[] = [];
-  AttendanceList: any = []
+  AttendanceList: any = [];
+  districtListByState: Array<any> = [];
   constructor(
     private formBuilder: FormBuilder,
     public toastr: ToastrManager,
@@ -59,8 +60,22 @@ export class AttendanceComponent implements OnInit {
     )
   }
 
+  getDistrictByStateList(stateId: string) {
+    console.log(stateId);
+    this.districtService.findDistrictByState(parseInt(stateId)).subscribe(
+      (res) => {
+        
+        this.districtListByState = res['data'];
+        console.log(this.districtListByState);
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
   getDesignationList() {
-    this.designationService.find().subscribe(
+    this.designationService.find(0).subscribe(
       (res: IDesignation[]) => {
         this.DesignationList = res['data'];
       },

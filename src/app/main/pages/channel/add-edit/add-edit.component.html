@@ -15,23 +15,27 @@
                 <h3 class="mb-0 card-title">Default forms</h3>
             </div> -->
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Channel Name</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP..">
+                <form [formGroup]="ChannelForm" (ngSubmit)="addChannel()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Channel Name</label>
+                                <input type="text" formControlName="channelName" [ngClass]="{ 'is-invalid': submitted && myForm['channelName'].errors }" class="form-control" name="example-text-input" placeholder="eg: UP..">
+                            </div>
+                            <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['channelName'].errors?.['required']">Please
+                                Enter Channel Name</small>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Short Code</label>
+                                <input type="text" formControlName="shortCode" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Short Code</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
-                        </div>
+                    <div class="col-md-12">
+                        <input type="submit" value="Submit" class="btn btn-primary float-right">
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" value="Submit" class="btn btn-primary float-right">
-                </div>
+                </form>
             </div>
         </div>
     </div>
