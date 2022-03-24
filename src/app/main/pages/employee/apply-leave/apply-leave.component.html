@@ -18,10 +18,10 @@
                 <form [formGroup]="searchEmpForm" (ngSubmit)="searchEmployee()">
                     <div class="row">
                             <div class="form-group col-md-3">
-                                <label class="form-label">Employee Id</label>
-                                <input type="text" formControlName="empId" [ngClass]="{ 'is-invalid': submitted2 && myForm2['empId'].errors }" class="form-control" placeholder="eg:EMP1234">
-                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted2 && myForm2['empId'].errors?.['required']">Please
-                                    Enter Employee Id</small>
+                                <label class="form-label">Employee Code</label>
+                                <input type="text" formControlName="empCode" [ngClass]="{ 'is-invalid': submitted2 && myForm2['empCode'].errors }" class="form-control" placeholder="eg:EMP1234">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted2 && myForm2['empCode'].errors?.['required']">Please
+                                    Enter Employee Code</small>
                             </div>
                             <div class="form-group col-md-3">
                                 <button type="submit" class="btn btn-primary mt-6"><i class="fe fe-search"></i> Search</button>
@@ -54,7 +54,7 @@
                                 <label class="form-label">Employee</label>
                                 <select formControlName="empId" name="stateddl" id="" class="form-control" [ngClass]="{ 'is-invalid': submitted && myForm['empId'].errors }">
                                     <option value="" selected>Select</option>
-                                    <option [value]="item.empId" *ngFor="let item of EmployeeList">{{item.empName}}</option>
+                                    <option [value]="item.EmpId" *ngFor="let item of EmployeeList">{{item.EmpName}}</option>
                                 </select>
                             </div>
                             <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empId'].errors?.['required']">Please
@@ -71,7 +71,7 @@
                             <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['leaveTypeId'].errors?.['required']">Please
                                 Select Leave Type</small>
                         </div>
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-label">Employee Leave Applicable</label>
                                 <select name="stateddl" formControlName="empLeaveApplicableId" id="" class="form-control" [ngClass]="{ 'is-invalid': submitted && myForm['empLeaveApplicableId'].errors }">
@@ -82,7 +82,7 @@
                                 <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empLeaveApplicableId'].errors?.['required']">Please
                                     Select Employee Leave Applicable</small>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-3">
                             <div class="form-label">Date from</div>
                             <div class="custom-file">

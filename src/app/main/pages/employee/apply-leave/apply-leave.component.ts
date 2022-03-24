@@ -22,7 +22,7 @@ export class ApplyLeaveComponent implements OnInit {
   submitted2 = false;
   selectedFiles: any;
   LeavTypeList: ILeaveType[] = [];
-  EmployeeList: IEmployee[] = [];
+  EmployeeList = [];
   isShow: boolean = true;
   empSearchResult : object = {};
   constructor(
@@ -40,12 +40,12 @@ export class ApplyLeaveComponent implements OnInit {
     console.log(this.activatedRoute.snapshot.params['empId']);
     this.empId = parseInt(this.activatedRoute.snapshot.params['empId']);
     this.searchEmpForm = this.formBuilder.group({
-      empId: ['', Validators.required]
+      empCode: ['', Validators.required]
     });
     this.applyLeaveForm = this.formBuilder.group({
       empId: ['', Validators.required],
       leaveTypeId: ['', Validators.required],
-      empLeaveApplicableId: ['', Validators.required],
+      // empLeaveApplicableId: ['', Validators.required],
       dateFrom: ['',Validators.required],
       dateTo:['',Validators.required],
       leaveDayStatus:['',Validators.required],
@@ -97,7 +97,7 @@ export class ApplyLeaveComponent implements OnInit {
     if (this.searchEmpForm.invalid) {
       return;
     } else {
-       this.employeeService.searchEmployee(parseInt(this.searchEmpForm.value["empId"])).subscribe({
+       this.employeeService.searchEmployee(0,this.searchEmpForm.value["empCode"]).subscribe({
         next: res =>{
           console.log(res[0]);
           this.submitted2 = false;
@@ -120,7 +120,7 @@ export class ApplyLeaveComponent implements OnInit {
     if (this.applyLeaveForm.invalid) {
       return;
     } else {
-      this.applyLeaveService.applyLeave({...this.applyLeaveForm.value,leaveTypeId: parseInt(this.applyLeaveForm.value['leaveTypeId']) , empId: parseInt(this.applyLeaveForm.value["empId"]), empLeaveApplicableId: parseInt(this.applyLeaveForm.value["empLeaveApplicableId"]), leaveDayStatus: Boolean(this.applyLeaveForm.value['leaveDayStatus'])} as IApplyLeave).subscribe({
+      this.applyLeaveService.applyLeave({...this.applyLeaveForm.value,leaveTypeId: parseInt(this.applyLeaveForm.value['leaveTypeId']) , empId: parseInt(this.applyLeaveForm.value["empId"]), leaveDayStatus: Boolean(this.applyLeaveForm.value['leaveDayStatus'])} as IApplyLeave).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/employee/apply-leave-list"]);
           this.toastr.successToastr(res['message']);
