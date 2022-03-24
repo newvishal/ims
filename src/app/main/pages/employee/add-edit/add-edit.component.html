@@ -16,7 +16,7 @@
             </div> -->
             <div class="card-body">
                 <div class="row">
-                  <!-- {{basicInfo.value | json}} -->
+                  
                     <mat-horizontal-stepper [linear]="true" #stepper style="width: 100%; min-height: 350px;">
                         <mat-step [stepControl]="basicInfo">
                           <form [formGroup]="basicInfo">
@@ -49,9 +49,12 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
-                                        <mat-label>Dob</mat-label>
-                                        <input matInput type="date"  formControlName="DOB">
-                                        <!-- <mat-hint align="end">eg. 1-10</mat-hint> -->
+                                          <mat-label>Dob</mat-label>
+                                          <input matInput [matDatepicker]="picker" formControlName="DOB">
+                                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                          <mat-datepicker #picker></mat-datepicker>
+                                          <!-- <input matInput type="date"  formControlName="DOB"> -->
+                                          <!-- <mat-hint align="end">eg. 1-10</mat-hint> -->
                                         </mat-form-field>
                                         <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.errors?.pattern">Please enter a valid ratio</mat-error> -->
                                         <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.touched && basicInfo.controls.studentFacultyRatio.errors?.required"> Student Faculty Ratio Is Required</mat-error> -->
@@ -86,11 +89,11 @@
                                 <div class="row mt-3">   
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
-                                    <mat-label>Designation</mat-label>
-                                    <mat-select formControlName="DesignationId">
-                                      <mat-option value="">Select</mat-option>
-                                      <mat-option [value]="item.designationId" *ngFor="let item of DesignationList">{{item.designationName}}</mat-option>
-                                    </mat-select>
+                                      <mat-label>Designation</mat-label>
+                                      <mat-select formControlName="DesignationId">
+                                        <mat-option value="">Select</mat-option>
+                                        <mat-option [value]="item.designationId" *ngFor="let item of DesignationList">{{item.designationName}}</mat-option>
+                                      </mat-select>
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -164,7 +167,9 @@
                                       <mat-label>Service Status</mat-label>
                                       <mat-select formControlName="ServiceStatus">
                                         <mat-option value="">Select</mat-option>
-                                        <mat-option value="test">Active</mat-option>
+                                        <mat-option value="OnRoll">OnRoll</mat-option>
+                                        <mat-option value="Consultant">Consultant</mat-option>
+                                        <mat-option value="Contractual">Contractual</mat-option>
                                       </mat-select>
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.errors?.pattern">Please enter a valid ratio</mat-error> -->
@@ -172,8 +177,10 @@
                                   </div>                                
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
-                                    <mat-label>Date Of Job</mat-label>
-                                        <input matInput type="text" formControlName="DOJ">
+                                          <mat-label>Date Of Job</mat-label>
+                                          <input matInput [matDatepicker]="doj" formControlName="DOJ">
+                                          <mat-datepicker-toggle matSuffix [for]="doj"></mat-datepicker-toggle>
+                                          <mat-datepicker #doj></mat-datepicker>
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -182,13 +189,13 @@
                                     <mat-form-field appearance="outline">
                                       <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
                                       <ng-template #newFile >
-                                          <mat-label>Choose file</mat-label>
+                                          <mat-label>Choose Employee Photo</mat-label>
                                       </ng-template>
                                       <input matInput  >
                                       <button mat-icon-button matSuffix type="button" (click)="fileInput.click()">
                                           <mat-icon>attach_file</mat-icon>
                                       </button>
-                                      <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+                                      <input hidden accept="image/png, image/jpeg" (change)="selectFile($event)" #fileInput type="file" id="file">
                                     </mat-form-field>
                                       <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.errors?.pattern">Please enter a valid ratio</mat-error> -->
                                       <!-- <mat-error *ngIf="basicInfo.controls.studentFacultyRatio.touched && basicInfo.controls.studentFacultyRatio.errors?.required"> Student Faculty Ratio Is Required</mat-error> -->
@@ -306,14 +313,18 @@
                                 </div>
                                 <div class="col-sm-3">
                                   <mat-form-field appearance="outline">
-                                  <mat-label>Registration Date</mat-label>
-                                  <input matInput type="date" formControlName="RegistrationDate">
+                                    <mat-label>Registration Date</mat-label>
+                                    <input matInput [matDatepicker]="RegistrationDate" formControlName="RegistrationDate">
+                                    <mat-datepicker-toggle matSuffix [for]="RegistrationDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #RegistrationDate></mat-datepicker>
                                   </mat-form-field>
                                 </div>
                                 <div class="col-sm-3">
                                   <mat-form-field appearance="outline">
-                                  <mat-label>Expiry Date</mat-label>
-                                  <input matInput type="date" formControlName="ExpDate">
+                                    <mat-label>Expiry Date</mat-label>
+                                    <input matInput [matDatepicker]="ExpDate" formControlName="ExpDate">
+                                    <mat-datepicker-toggle matSuffix [for]="ExpDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #ExpDate></mat-datepicker>
                                   </mat-form-field>
                                 </div>
                             </div>

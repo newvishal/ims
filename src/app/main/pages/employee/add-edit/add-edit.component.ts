@@ -51,20 +51,20 @@ export class AddEditComponent implements OnInit {
       EmpName: ['', Validators.required],
       EmpFatherName: ['', Validators.required],
       DOB: ['', Validators.required],
-      MobNo: ['', Validators.required],
-      EmailId: ['', Validators.required],
-      Gender: [''],
-      WhatsAppNo: [''],
-      DesignationId: [''],
-      Address1: [''],
+      MobNo: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]+$')]],
+      EmailId: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      Gender: ['', Validators.required],
+      WhatsAppNo: ['', Validators.required],
+      DesignationId: ['', [Validators.required]],
+      Address1: ['', Validators.required],
       Address2: [''],
-      DistrictId: [''],
-      StateId: [''],
-      PinCode: [''],
-      ESINo: [''],
-      PFNo: [''],
-      ServiceStatus: [''],
-      DOJ: [''],
+      DistrictId: ['', Validators.required],
+      StateId: ['', Validators.required],
+      PinCode: ['', Validators.required],
+      ESINo: ['', Validators.required],
+      PFNo: ['', Validators.required],
+      ServiceStatus: ['', Validators.required],
+      DOJ: ['', Validators.required],
       ImagePath: ['']
     });
     this.employeeDetails = this._formBuilder.group({
@@ -102,6 +102,12 @@ export class AddEditComponent implements OnInit {
   selectFile(event) {
     this.selectedFiles = event.target.files;
     if(!this.selectedFiles) return
+    const fileSize = this.selectedFiles[0].size;
+    const fileSizeInKB = Math.round(fileSize / 1024);
+    if (fileSizeInKB > 10) {
+      alert('File size max 10kb allowed');
+      return
+    }
     let formData = new FormData();
     formData.append('DocumentFile',  this.selectedFiles[0]);
     this.utilityService.imageUpload(formData).subscribe((res) => {
