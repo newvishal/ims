@@ -114,7 +114,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-label">Attachment</label>
-                                <input type="file" formControlName="attachment" style="resize: none;" name="" id="" class="form-control" />
+                                <input type="file" (change)="selectFile($event)" formControlName="attachment" style="resize: none;" name="" id="" class="form-control" />
                             </div>
                             <!-- <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['reason'].errors?.['required']">Please
                                 Enter Reason</small> -->

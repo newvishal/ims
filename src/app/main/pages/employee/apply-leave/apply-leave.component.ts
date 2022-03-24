@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { ApplyLeaveService } from 'src/app/services/apply-leave.service';
 import { LeaveTypeService } from 'src/app/services/leave-type.service';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { UtilityService } from 'src/app/services/utility.service';
 import { IApplyLeave, ILeaveType, IEmployee } from 'src/app/shared/ts/index';
 @Component({
   selector: 'app-apply-leave',
@@ -19,6 +20,7 @@ export class ApplyLeaveComponent implements OnInit {
   searchEmpForm: FormGroup;
   submitted = false;
   submitted2 = false;
+  selectedFiles: any;
   LeavTypeList: ILeaveType[] = [];
   EmployeeList: IEmployee[] = [];
   isShow: boolean = true;
@@ -30,7 +32,8 @@ export class ApplyLeaveComponent implements OnInit {
     private applyLeaveService: ApplyLeaveService,
     private leaveTypeService: LeaveTypeService,
     private employeeService: EmployeeService,
-    private _router: Router
+    private _router: Router,
+    public utilityService: UtilityService
     ) { }
 
   ngOnInit(): void {
@@ -51,6 +54,19 @@ export class ApplyLeaveComponent implements OnInit {
     });
     this.getLeaveTypeList();
     this.getEmployeeList();
+  }
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+    if(!this.selectedFiles) return
+    let formData = new FormData();
+    formData.append('DocumentFile',  this.selectedFiles[0]);
+    this.utilityService.imageUpload(formData).subscribe((res) => {
+      this.applyLeaveForm.patchValue({
+        attachment: res
+      });
+    }, (err) => {
+      console.log(err);
+    })
   }
   getLeaveTypeList() {
     this.leaveTypeService.find().subscribe(
