@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { ApplyLeaveService } from 'src/app/services/apply-leave.service';
 import { LeaveTypeService } from 'src/app/services/leave-type.service';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { UtilityService } from 'src/app/services/utility.service';
 import { IApplyLeave, ILeaveType, IEmployee } from 'src/app/shared/ts/index';
 @Component({
   selector: 'app-apply-leave',
@@ -19,8 +20,9 @@ export class ApplyLeaveComponent implements OnInit {
   searchEmpForm: FormGroup;
   submitted = false;
   submitted2 = false;
+  selectedFiles: any;
   LeavTypeList: ILeaveType[] = [];
-  EmployeeList: IEmployee[] = [];
+  EmployeeList = [];
   isShow: boolean = true;
   empSearchResult : object = {};
   constructor(
@@ -30,19 +32,20 @@ export class ApplyLeaveComponent implements OnInit {
     private applyLeaveService: ApplyLeaveService,
     private leaveTypeService: LeaveTypeService,
     private employeeService: EmployeeService,
-    private _router: Router
+    private _router: Router,
+    public utilityService: UtilityService
     ) { }
 
   ngOnInit(): void {
     console.log(this.activatedRoute.snapshot.params['empId']);
     this.empId = parseInt(this.activatedRoute.snapshot.params['empId']);
     this.searchEmpForm = this.formBuilder.group({
-      empId: ['', Validators.required]
+      empCode: ['', Validators.required]
     });
     this.applyLeaveForm = this.formBuilder.group({
       empId: ['', Validators.required],
       leaveTypeId: ['', Validators.required],
-      empLeaveApplicableId: ['', Validators.required],
+      // empLeaveApplicableId: ['', Validators.required],
       dateFrom: ['',Validators.required],
       dateTo:['',Validators.required],
       leaveDayStatus:['',Validators.required],
@@ -51,6 +54,19 @@ export class ApplyLeaveComponent implements OnInit {
     });
     this.getLeaveTypeList();
     this.getEmployeeList();
+  }
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+    if(!this.selectedFiles) return
+    let formData = new FormData();
+    formData.append('DocumentFile',  this.selectedFiles[0]);
+    this.utilityService.imageUpload(formData).subscribe((res) => {
+      this.applyLeaveForm.patchValue({
+        attachment: res
+      });
+    }, (err) => {
+      console.log(err);
+    })
   }
   getLeaveTypeList() {
     this.leaveTypeService.find().subscribe(
@@ -81,7 +97,7 @@ export class ApplyLeaveComponent implements OnInit {
     if (this.searchEmpForm.invalid) {
       return;
     } else {
-       this.employeeService.searchEmployee(parseInt(this.searchEmpForm.value["empId"])).subscribe({
+       this.employeeService.searchEmployee(0,this.searchEmpForm.value["empCode"]).subscribe({
         next: res =>{
           console.log(res[0]);
           this.submitted2 = false;
@@ -104,7 +120,7 @@ export class ApplyLeaveComponent implements OnInit {
     if (this.applyLeaveForm.invalid) {
       return;
     } else {
-      this.applyLeaveService.applyLeave({...this.applyLeaveForm.value,leaveTypeId: parseInt(this.applyLeaveForm.value['leaveTypeId']) , empId: parseInt(this.applyLeaveForm.value["empId"]), empLeaveApplicableId: parseInt(this.applyLeaveForm.value["empLeaveApplicableId"]), leaveDayStatus: Boolean(this.applyLeaveForm.value['leaveDayStatus'])} as IApplyLeave).subscribe({
+      this.applyLeaveService.applyLeave({...this.applyLeaveForm.value,leaveTypeId: parseInt(this.applyLeaveForm.value['leaveTypeId']) , empId: parseInt(this.applyLeaveForm.value["empId"]), leaveDayStatus: Boolean(this.applyLeaveForm.value['leaveDayStatus'])} as IApplyLeave).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/employee/apply-leave-list"]);
           this.toastr.successToastr(res['message']);

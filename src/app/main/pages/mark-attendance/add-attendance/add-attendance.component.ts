@@ -75,8 +75,8 @@ export class AddAttendanceComponent implements OnInit {
       return;
     } else {
       //  console.log(this.searchEmpForm.value);
-       let empId = parseInt(this.searchEmpForm.value["empId"]);
-       this.employeeService.searchEmployee(empId).subscribe({
+       let empCode = this.searchEmpForm.value["empCode"];
+       this.employeeService.searchEmployee(0, empCode).subscribe({
         next: res =>{
           // console.log(res[0]);
           this.marAttendanceObj = {

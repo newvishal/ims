@@ -90,9 +90,9 @@ export class EmployeeService {
                     .pipe(catchError(this.handleError<IEmployee>(`getByiD`)));
   }
 
-  getAllEmployee(): Observable<IEmployee[]> {
-      return this.http.get<IEmployee[]>(environment.apiUrl + "Employee", this.httpOptions)
-                      .pipe(catchError(this.handleError<IEmployee[]>('getAllEmployee', [])));
+  getAllEmployee(): Observable<any>{
+      return this.http.get<any[]>(environment.apiUrl + "Employee", this.httpOptions)
+                      .pipe(catchError(this.handleError<any[]>('getAllEmployee', [])));
   }
 
   getEmployees(): Observable<any[]> {
@@ -100,8 +100,8 @@ export class EmployeeService {
                       .pipe(catchError(this.handleError<any[]>('getAllEmployee', [])));
   }
 
-  searchEmployee(id: number){
-    return this.http.get(environment.apiUrl + `Employee/searchEmployee/${id}`, this.httpOptions)
+  searchEmployee(id: number, empCode: string){
+    return this.http.get(environment.apiUrl + `Employee/searchEmployee/${id}/${empCode}`, this.httpOptions)
                     .pipe(catchError(this.handleError()));
   }
 
