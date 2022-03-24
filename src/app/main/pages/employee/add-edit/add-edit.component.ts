@@ -11,7 +11,7 @@ import { LocationService } from 'src/app/services/location.service';
 import { StateService } from 'src/app/services/state.service';
 import { UtilityService } from 'src/app/services/utility.service';
 
-import { IState,IDistrict, IEmployee, IDesignation, ILocation, ILocationType, IBank } from 'src/app/shared/ts';
+import { IState,IDistrict,IEmployee, IDesignation, ILocation, ILocationType, IBank } from 'src/app/shared/ts';
 
 @Component({
   selector: 'app-add-edit',
@@ -86,7 +86,8 @@ export class AddEditComponent implements OnInit {
       OfficialEmailId: [''],
       EmpDesigStatus: ['', Validators.required],
       RegistrationDate: [''],
-      ExpDate: ['']
+      ExpDate: [''],
+      LocTypeId: ['']
     });
     // this.activeRoute.queryParams.subscribe(params =>{
     //   console.log('params===========>',params['id']);
@@ -98,8 +99,10 @@ export class AddEditComponent implements OnInit {
     this.getStates();
     this.getLocations();
     this.getBanks();
+    this.getLocationTypes();
     this.patchLocalStorageData();
   }
+  
   getDistrictByStateList(stateId: string) {
     console.log(stateId);
     this.districtService.findDistrictByState(parseInt(stateId)).subscribe(
@@ -169,23 +172,22 @@ export class AddEditComponent implements OnInit {
     if(this.bsubject.EmpId) {
       formData.append('EmpId', this.bsubject.EmpId);
       this.employeeService.updateEmployee(formData).subscribe((res) => {
-        console.log(res);
-        this.toast.successToastr(res);
+        this.toast.successToastr('Updated Successfully');
         this.router.navigate(["dashboard/employee/"]);
         localStorage.removeItem('details');
         this.employeeService.saveEmployeeById({ AadharNo: '',
         AccountNo: '',
         Address1: "",
         Address2: "",
-        BankName: 0,
+        BankName: '',
         CL: '',
         Channel: '',
         DOB: "",
         DOJ: "",
-        DesignationId: 0,
-        DistrictId: 0,
+        DesignationId: '',
+        DistrictId: '',
         DistrictName: "",
-        EL: 0,
+        EL: '',
         ESINo: "",
         EmailId: "",
         EmpDesigStatus: '',
@@ -196,20 +198,20 @@ export class AddEditComponent implements OnInit {
         Gender: "",
         IFSCCode: null,
         Image: null,
-        JoiningDistId: 0,
-        JoiningStateId: 0,
-        LocationId: 0,
+        JoiningDistId: '',
+        JoiningStateId: '',
+        LocationId: '',
         LocationName: "",
         MobNo: '',
         OfficialEmailId: null,
         PANNo: null,
         PFNo: "",
-        PL: 0,
+        PL: '',
         PinCode: "",
         RegistrationDate: null,
-        SL: 0,
+        SL: '',
         ServiceStatus: "",
-        StateId: 0,
+        StateId: '',
         StateName: "",
         Status: false,
         WhatsAppNo: '' });
@@ -229,7 +231,7 @@ export class AddEditComponent implements OnInit {
     }
     
     this.employeeService.addEmployee(formData).subscribe((res) => {
-      this.toast.successToastr(res);
+      this.toast.successToastr('Added Successfully');
     }, (err) => {
       const { errors } = JSON.parse(err.error);
         let errList = []
@@ -283,6 +285,14 @@ export class AddEditComponent implements OnInit {
       console.log(err);
     });
   } 
+
+  getLocationTypes() {
+    this.locationTypeService.find().subscribe((res: ILocationType[]) => {
+      this.LocationTypeList = res['data'] as ILocationType[];
+    }, (err) => {
+      console.log(err);
+    });
+  }
 
 
 }

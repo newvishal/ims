@@ -216,7 +216,7 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Joining State</mat-label>
-                                <mat-select formControlName="JoiningStateId">
+                                <mat-select formControlName="JoiningStateId" #state (selectionChange)="getDistrictByStateList(state.value)">
                                     <mat-option value="">Select</mat-option>
                                     <mat-option [value]="item.stateId" *ngFor="let item of StateList">{{item.stateName}}</mat-option>
                                 </mat-select>
@@ -227,16 +227,16 @@
                                 <mat-label>Joining District</mat-label>
                                 <mat-select formControlName="JoiningDistId">
                                     <mat-option value="">Select</mat-option>
-                                    <mat-option [value]="item.districtId" *ngFor="let item of districtList">{{item.districtName}}</mat-option>
+                                    <mat-option [value]="item.districtId" *ngFor="let item of districtListByState">{{item.districtName}}</mat-option>
                                 </mat-select>
                                 </mat-form-field>
                               </div>
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                   <mat-label>Location Type</mat-label>
-                                  <mat-select formControlName="LocationId">
+                                  <mat-select formControlName="LocTypeId">
                                       <mat-option value="">Select</mat-option>
-                                      <mat-option [value]="1" *ngFor="let item of LocationList">{{item.locationName}}</mat-option>
+                                      <mat-option [value]="item.locTypeId" *ngFor="let item of LocationTypeList">{{item.locationTypeName}}</mat-option>
                                   </mat-select>
                                 </mat-form-field>
                               </div>

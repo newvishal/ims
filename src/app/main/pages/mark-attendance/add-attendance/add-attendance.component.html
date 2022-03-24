@@ -22,7 +22,7 @@
                 </form>
                 <form [formGroup]="markAttendanceForm" (ngSubmit)="markAttendance()">
                     <div class="row p-2" >
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-none">
                             <div class="form-group">
                                 <label class="form-label">Employee Id</label>
                                 <input type="text" formControlName="empId" class="form-control" readonly name="example-text-input" placeholder="eg: UP50...">
@@ -108,7 +108,7 @@
                         <div class="col-md-4" *ngIf="time">
                             <div class="form-group">
                                 <label class="form-label">Time</label>
-                                <input type="time" formControlName="inTime" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                <input type="time" formControlName="inTime" min="04:20" class="form-control" name="example-text-input" placeholder="eg: UP50...">
                             </div>
                         </div>
                         <div class="col-md-4" *ngIf="reason">
