@@ -149,8 +149,9 @@ export class AddEditComponent implements OnInit {
     if(this.bsubject.EmpId) {
       formData.append('EmpId', this.bsubject.EmpId);
       this.employeeService.updateEmployee(formData).subscribe((res) => {
-        this.toast.successToastr('Created Successfully');
-        this.router.navigate(["dashboard/employee/addEditEmployee"]);
+        console.log(res);
+        this.toast.successToastr(res);
+        this.router.navigate(["dashboard/employee/"]);
         localStorage.removeItem('details');
         this.employeeService.saveEmployeeById({ AadharNo: '',
         AccountNo: '',
@@ -193,15 +194,33 @@ export class AddEditComponent implements OnInit {
         Status: false,
         WhatsAppNo: '' });
       }, (err) => {
-        this.toast.errorToastr('Somthing Went Wrong');
+        const { errors } = JSON.parse(err.error);
+        let errList = []
+        Object.keys(errors).forEach(e => {
+            if(errors[e]){
+              errors[e].forEach(err => errList.push(err))
+            }
+        });
+        errList.forEach(e => {
+          this.toast.errorToastr(e);
+        });
       })
       return
     }
-    // if(this.selectedFiles) formData.append('image',  this.selectedFiles[0]);
+    
     this.employeeService.addEmployee(formData).subscribe((res) => {
-      this.toast.successToastr('Created Successfully');
+      this.toast.successToastr(res);
     }, (err) => {
-      this.toast.errorToastr('Somthing Went Wrong');
+      const { errors } = JSON.parse(err.error);
+        let errList = []
+        Object.keys(errors).forEach(e => {
+            if(errors[e]){
+              errors[e].forEach(err => errList.push(err))
+            }
+        });
+        errList.forEach(e => {
+          this.toast.errorToastr(e);
+        });
     })
   }
 
