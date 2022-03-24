@@ -5,6 +5,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { Observable } from 'rxjs';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { AttendanceService } from 'src/app/services/attendance.service';
+import { UtilityService } from 'src/app/services/utility.service';
 declare var $:any;
 @Component({
   selector: 'app-add-attendance',
@@ -17,13 +18,14 @@ export class AddAttendanceComponent implements OnInit {
   searchEmpForm: FormGroup;
   markAttendanceForm: FormGroup;
   submitted = false;
+  selectedFiles: any;
   marAttendanceObj = {};
-  constructor(private formBuilder: FormBuilder,public toastr: ToastrManager, private employeeService:EmployeeService, private attendanceService:AttendanceService) { }
+  constructor(public utilityService: UtilityService,private formBuilder: FormBuilder,public toastr: ToastrManager, private employeeService:EmployeeService, private attendanceService:AttendanceService) { }
   curDate=new Date();
   
   ngOnInit(): void {
     this.searchEmpForm = this.formBuilder.group({
-      empId: ['', Validators.required]
+      empCode: ['', Validators.required]
     });
     
     this.markAttendanceForm = this.formBuilder.group({
@@ -39,7 +41,8 @@ export class AddAttendanceComponent implements OnInit {
       date:[''],
       status:[''],
       inTime:['00:00'],
-      remark:['']
+      remark:[''],
+      attachmentPath:['']
     });
     $(document).ready(function(){
       if (navigator.geolocation) {
@@ -57,6 +60,21 @@ export class AddAttendanceComponent implements OnInit {
   }
 
   get myForm() { return this.searchEmpForm.controls; }
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+    if(!this.selectedFiles) return
+    let formData = new FormData();
+    formData.append('DocumentFile',  this.selectedFiles[0]);
+    this.utilityService.imageUpload(formData).subscribe((res) => {
+      this.markAttendanceForm.patchValue({
+        attachmentPath: res
+      });
+    }, (err) => {
+      console.log(err);
+    })
+  }
+
   showPopup(e){
     console.log(e);
     if(e.target.value === "1"){
@@ -97,6 +115,7 @@ export class AddAttendanceComponent implements OnInit {
       })
     }
   }
+  
   markAttendance(){
      console.log(this.markAttendanceForm.value);
     //  console.log(this.marAttendanceObj);
@@ -106,25 +125,26 @@ export class AddAttendanceComponent implements OnInit {
        inTime: this.markAttendanceForm.value['inTime'],
        status:this.markAttendanceForm.value['status'],
        remark:this.markAttendanceForm.value['remark'],
-       inLatitudeLongitude: this.markAttendanceForm.value['latitude'] + "@" + this.markAttendanceForm.value['longitude']
+       inLatitudeLongitude: this.markAttendanceForm.value['latitude'] + "@" + this.markAttendanceForm.value['longitude'],
+       attachmentPath: this.markAttendanceForm.value['attachmentPath']
      }
      console.log(finalObj);
-     this.attendanceService.addEmployee(finalObj).subscribe({
-      next: res =>{
-        // console.log(res[0]);
-        this.toastr.successToastr(res['message']);
-        this.markAttendanceForm.reset();
-        this.searchEmpForm.reset({
-          empId:""
-        });
-        this.submitted = false;
-        this.reason = false;
-        this.time = false;
-      },
-      error: err =>{
-        console.log(err);
-        this.toastr.warningToastr(err);
-      }
-    })
+    //  this.attendanceService.addEmployee(finalObj).subscribe({
+    //   next: res =>{
+    //     // console.log(res[0]);
+    //     this.toastr.successToastr(res['message']);
+    //     this.markAttendanceForm.reset();
+    //     this.searchEmpForm.reset({
+    //       empId:""
+    //     });
+    //     this.submitted = false;
+    //     this.reason = false;
+    //     this.time = false;
+    //   },
+    //   error: err =>{
+    //     console.log(err);
+    //     this.toastr.warningToastr(err);
+    //   }
+    // })
   }
 }

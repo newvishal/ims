@@ -10,10 +10,10 @@
                 <form [formGroup]="searchEmpForm" (ngSubmit)="searchEmployee()">
                     <div class="row">
                             <div class="form-group col-md-3">
-                                <label class="form-label">Employee Id</label>
-                                <input type="text" formControlName="empId" [ngClass]="{ 'is-invalid': submitted && myForm['empId'].errors }" class="form-control" placeholder="eg:EMP1234">
-                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empId'].errors?.['required']">Please
-                                    Enter Employee Id</small>
+                                <label class="form-label">Employee Code</label>
+                                <input type="text" formControlName="empCode" [ngClass]="{ 'is-invalid': submitted && myForm['empCode'].errors }" class="form-control" placeholder="eg:EMP1234">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empCode'].errors?.['required']">Please
+                                    Enter Employee Code</small>
                             </div>
                             <div class="form-group col-md-3">
                                 <button type="submit" class="btn btn-primary mt-6"><i class="fe fe-search"></i> Search</button>
@@ -75,6 +75,14 @@
                                 <label class="form-label">Date</label>
                                 <input type="date" formControlName="date" value="{{curDate | date:'yyyy-MM-dd'}}" min="2022-02-07" max="{{curDate | date:'yyyy-MM-dd'}}" class="form-control" name="example-text-input" placeholder="eg: UP50...">
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Attachment</label>
+                                <input type="file" accept="image/jpg, image/png" (change)="selectFile($event)" formControlName="attachmentPath" style="resize: none;" name="" id="" class="form-control" />
+                            </div>
+                            <!-- <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['reason'].errors?.['required']">Please
+                                Enter Reason</small> -->
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
