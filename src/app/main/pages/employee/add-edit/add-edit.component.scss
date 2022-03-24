@@ -5,3 +5,13 @@
     /* max-width: 100%; */
     width: 100%;
 }
+.mat-form-field-wrapper .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 3px 0px 8px 0px !important;
+}
+.mat-form-field-wrapper {
+    padding-bottom: 0px;
+}
+.mat-form-field-infix {
+    padding: 0.5em 0;
+    /* border-top: 0.84375em solid transparent; */
+}

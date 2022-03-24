@@ -31,7 +31,9 @@ export class AddEditComponent implements OnInit {
   LocationTypeList: ILocationType[]= []
   LocationList: ILocation[]= []
   BankList: IBank[] = []
-  EmpId: string
+  EmpId: string;
+  curDate=new Date();
+  districtListByState: Array<any> = [];
   constructor(
     public employeeService: EmployeeService,
     private _formBuilder: FormBuilder,
@@ -98,7 +100,19 @@ export class AddEditComponent implements OnInit {
     this.getBanks();
     this.patchLocalStorageData();
   }
-
+  getDistrictByStateList(stateId: string) {
+    console.log(stateId);
+    this.districtService.findDistrictByState(parseInt(stateId)).subscribe(
+      (res) => {
+        
+        this.districtListByState = res['data'];
+        console.log(this.districtListByState);
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
   selectFile(event) {
     this.selectedFiles = event.target.files;
     if(!this.selectedFiles) return
