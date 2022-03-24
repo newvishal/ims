@@ -10,8 +10,8 @@ import { LocationTypeService } from 'src/app/services/location-type.service';
 import { LocationService } from 'src/app/services/location.service';
 import { StateService } from 'src/app/services/state.service';
 import { UtilityService } from 'src/app/services/utility.service';
-
-import { IState,IDistrict,IEmployee, IDesignation, ILocation, ILocationType, IBank } from 'src/app/shared/ts';
+import { ChannelService } from 'src/app/services/channel.service';
+import { IState,IDistrict,IEmployee, IDesignation, ILocation, ILocationType, IBank, IChannel } from 'src/app/shared/ts';
 
 @Component({
   selector: 'app-add-edit',
@@ -31,6 +31,7 @@ export class AddEditComponent implements OnInit {
   LocationTypeList: ILocationType[]= []
   LocationList: ILocation[]= []
   BankList: IBank[] = []
+  ChannelList: IChannel[] = []
   EmpId: string;
   curDate=new Date();
   districtListByState: Array<any> = [];
@@ -46,6 +47,7 @@ export class AddEditComponent implements OnInit {
     public activeRoute: ActivatedRoute,
     public toast: ToastrManager,
     public router: Router,
+    public channelService:ChannelService,
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
@@ -101,13 +103,13 @@ export class AddEditComponent implements OnInit {
     this.getBanks();
     this.getLocationTypes();
     this.patchLocalStorageData();
+    this.getChannel();
   }
   
   getDistrictByStateList(stateId: string) {
     console.log(stateId);
     this.districtService.findDistrictByState(parseInt(stateId)).subscribe(
       (res) => {
-        
         this.districtListByState = res['data'];
         console.log(this.districtListByState);
       },
@@ -139,12 +141,24 @@ export class AddEditComponent implements OnInit {
   patchLocalStorageData() {
     this.employeeService.subject.subscribe(res => {
       if(typeof res == 'string') {
-         this.bsubject = JSON.parse(res);
+         this.bsubject = JSON.parse(res || '');
+         console.log(this.bsubject)
+         this.getDistrictByStateList(this.bsubject['StateId'] || 0);
       } else {
         this.bsubject = res;
       }
+      console.log(this.bsubject['ExpDate']);
       this.basicInfo.patchValue(this.bsubject);
+      this.basicInfo.patchValue({
+        DOB : this.bsubject['DOJ']?.split('T')[0],
+        DOJ: this.bsubject['DOJ']?.split('T')[0]
+      });
       this.employeeDetails.patchValue(this.bsubject);
+      this.employeeDetails.patchValue({
+        ExpDate : this.bsubject['ExpDate']?.split('T')[0],
+        RegistrationDate: this.bsubject['RegistrationDate']?.split('T')[0]
+      });
+      this.getDistrictByStateList(this.bsubject['StateId'] || 0);
     });
   }
 
@@ -164,7 +178,7 @@ export class AddEditComponent implements OnInit {
       ...this.basicInfo.value,
       ...this.employeeDetails.value
     };
-    
+    console.log(finalData);
     let formData = new FormData();
     Object.keys(finalData).forEach((key) => {
       formData.append(`${key}`, finalData[key]);
@@ -289,6 +303,14 @@ export class AddEditComponent implements OnInit {
   getLocationTypes() {
     this.locationTypeService.find().subscribe((res: ILocationType[]) => {
       this.LocationTypeList = res['data'] as ILocationType[];
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  getChannel() {
+    this.channelService.find(0).subscribe((res: IChannel[]) => {
+      this.ChannelList = res['data'] as IChannel[];
     }, (err) => {
       console.log(err);
     });
