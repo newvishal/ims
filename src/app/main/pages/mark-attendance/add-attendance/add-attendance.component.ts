@@ -30,7 +30,7 @@ export class AddAttendanceComponent implements OnInit {
     const initTimepicker = new TimepickerUI(timepicker, {
       clockType: '24h',
       disabledTime: {
-        interval: `${currentTime[0]}:${currentTime[1]} - 23:30`
+        interval: `${currentTime[0]}:${currentTime[1]} - 23:59`
       }
     });
     initTimepicker.create();
