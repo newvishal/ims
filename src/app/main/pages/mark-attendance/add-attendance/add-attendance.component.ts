@@ -7,6 +7,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { AttendanceService } from 'src/app/services/attendance.service';
 import { UtilityService } from 'src/app/services/utility.service';
 declare var $:any;
+import { TimepickerUI } from "timepicker-ui";
 @Component({
   selector: 'app-add-attendance',
   templateUrl: './add-attendance.component.html',
@@ -24,6 +25,16 @@ export class AddAttendanceComponent implements OnInit {
   curDate=new Date();
   
   ngOnInit(): void {
+    let currentTime = new Date().toTimeString().split(':')
+    const timepicker = <HTMLDivElement>document.querySelector(".default-class");
+    const initTimepicker = new TimepickerUI(timepicker, {
+      clockType: '24h',
+      disabledTime: {
+        interval: `${currentTime[0]}:${currentTime[1]} - 23:30`
+      }
+    });
+    initTimepicker.create();
+
     this.searchEmpForm = this.formBuilder.group({
       empCode: ['', Validators.required]
     });
@@ -40,7 +51,7 @@ export class AddAttendanceComponent implements OnInit {
       longitude:[''],
       date:[''],
       status:[''],
-      inTime:['00:00'],
+      inTime:[`${currentTime[0]}:${currentTime[1]}`],
       remark:[''],
       attachmentPath:['']
     });
@@ -84,6 +95,9 @@ export class AddAttendanceComponent implements OnInit {
     if(e.target.value === "0"){
      this.reason = true;
      this.time = false;
+     this.markAttendanceForm.patchValue({
+      inTime: ''
+     })
     }
   }
 

@@ -105,10 +105,23 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-4" *ngIf="time">
-                            <div class="form-group">
+                        <div class="col-md-4" [ngStyle]="{'display': time ? 'block': 'none'}">
+                            <div class="form-group multiple-open-elements">
                                 <label class="form-label">Time</label>
-                                <input type="time" formControlName="inTime" min="04:20" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                <div class="position-relative default-class">
+                                    <input type="text" class="timepicker-ui-input form-control" formControlName="inTime" readonly />
+                                    <i
+                                        data-open="default-class" 
+                                        class="material-icons position-absolute"
+                                        style="top: 50%; right: -5px; cursor: pointer; transform: translate(-50%, -50%)"
+                                    >
+                                        schedule
+                                    </i>
+                                </div>
+                                <!-- <div class="default-class" >
+                                    <input type="text" class="timepicker-ui-input form-control" formControlName="inTime" />
+                                    <button class="timepicker-ui-button" data-open="default-class">Open</button>
+                                </div> -->
                             </div>
                         </div>
                         <div class="col-md-4" *ngIf="reason">
@@ -121,6 +134,7 @@
                             <button type="button" class="btn btn-primary float-right ml-2">Freeze</button>
                             <button type="submit" class="btn btn-primary float-right ">Save</button>
                         </div>
+                        
                     </div>
                 </form>
             </div>
