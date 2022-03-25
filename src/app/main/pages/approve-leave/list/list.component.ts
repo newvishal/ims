@@ -8,6 +8,7 @@ import { MatSort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IApplyLeave, IApprovedLeave } from '../../../../shared/ts';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmdialogService } from 'src/app/services/confirmdialog.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -18,7 +19,7 @@ export class ListComponent implements OnInit {
   dataSource: MatTableDataSource<IApplyLeave>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public toastr: ToastrManager,public applyLeaveService: ApplyLeaveService,public approveLeaveService:ApproveLeaveService, public route: Router, public fb: FormBuilder) { }
+  constructor(public confirmModalServ: ConfirmdialogService,public toastr: ToastrManager,public applyLeaveService: ApplyLeaveService,public approveLeaveService:ApproveLeaveService, public route: Router, public fb: FormBuilder) { }
   loadingBanks: boolean = false;
   isShow: boolean = false;
   showDropdown: boolean = false;
@@ -81,18 +82,25 @@ export class ListComponent implements OnInit {
   }
   
   approvedLeave(data){
-   console.log(data);
-   this.approveLeaveService.approvedLeave(data).subscribe({
-    next: res =>{
-      this.getApplyLeave();
-      this.showDropdown = false;
-      this.toastr.successToastr(res['message']);
-    },
-    error: err =>{
-      console.log(err);
-      this.toastr.warningToastr(err);
+    console.log(data);
+    const modalRef = this.confirmModalServ.open("200px", "400px", "Confirm", "Are you Sure to Approved this leave ?", true, true, "ok", "cancel");
+    modalRef.afterClosed().subscribe(result => {
+    const { event } = result;
+    if(event === 'Close') {
+        return;
     }
-  })
+    this.approveLeaveService.approvedLeave(data).subscribe({
+      next: res =>{
+        this.getApplyLeave();
+        this.showDropdown = false;
+        this.toastr.successToastr(res['message']);
+      },
+      error: err =>{
+        console.log(err);
+        this.toastr.warningToastr(err);
+      }
+    });
+    });
   }
 
   onSubmit(){
@@ -103,19 +111,27 @@ export class ListComponent implements OnInit {
     console.log(finalObj as IApprovedLeave);
     this.isShow = false;
     console.log(finalObj);
-    this.approveLeaveService.approvedLeave(finalObj as IApprovedLeave).subscribe({
-      next: res =>{
-        this.getApplyLeave();
-        this.showDropdown = false;
-        this.toastr.successToastr(res['message']);
-      },
-      error: err =>{
-        console.log(err);
-        this.toastr.warningToastr(err);
+    const modalRef = this.confirmModalServ.open("200px", "400px", "Confirm", "Are you Sure to Reject this leave ?", true, true, "ok", "cancel");
+    modalRef.afterClosed().subscribe(result => {
+      const { event } = result;
+      if(event === 'Close') {
+          return;
       }
-    })
-    this.reasonForm.reset({
-      remark: ""
+      this.approveLeaveService.approvedLeave(finalObj as IApprovedLeave).subscribe({
+        next: res =>{
+          this.getApplyLeave();
+          this.showDropdown = false;
+          this.toastr.successToastr(res['message']);
+        },
+        error: err =>{
+          console.log(err);
+          this.toastr.warningToastr(err);
+        }
+      })
+      this.reasonForm.reset({
+        remark: ""
+      });
     });
+    
   }
 }

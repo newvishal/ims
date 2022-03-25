@@ -50,9 +50,9 @@
                                     <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                           <mat-label>Dob</mat-label>
-                                          <input matInput [matDatepicker]="picker" formControlName="DOB">
-                                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                          <mat-datepicker #picker></mat-datepicker>
+                                          <input matInput type="date" formControlName="DOB" max="{{curDate | date:'yyyy-MM-dd'}}">
+                                          <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                          <mat-datepicker #picker></mat-datepicker> -->
                                           <!-- <input matInput type="date"  formControlName="DOB"> -->
                                           <!-- <mat-hint align="end">eg. 1-10</mat-hint> -->
                                         </mat-form-field>
@@ -182,9 +182,9 @@
                                   <div class="col-sm-3">
                                     <mat-form-field appearance="outline">
                                           <mat-label>Date Of Job</mat-label>
-                                          <input matInput [matDatepicker]="DOJ"  max="{{curDate | date:'yyyy-MM-dd'}}" formControlName="DOJ">
-                                          <mat-datepicker-toggle matSuffix [for]="DOJ"></mat-datepicker-toggle>
-                                          <mat-datepicker #DOJ></mat-datepicker>
+                                          <input matInput  type="date"  max="{{curDate | date:'yyyy-MM-dd'}}" formControlName="DOJ">
+                                          <!-- <mat-datepicker-toggle matSuffix [for]="DOJ"></mat-datepicker-toggle>
+                                          <mat-datepicker #DOJ></mat-datepicker> -->
                                     </mat-form-field>
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.errors?.pattern">Please enter a valid campus size</mat-error> -->
                                     <!-- <mat-error *ngIf="basicInfo.controls.campusSize.touched && basicInfo.controls.campusSize.errors?.required">Campus Size Is Required</mat-error> -->
@@ -273,7 +273,10 @@
                               <div class="col-sm-3">
                                 <mat-form-field appearance="outline">
                                 <mat-label>Channel</mat-label>
-                                <input matInput type="text" formControlName="Channel">
+                                <mat-select formControlName="Channel">
+                                    <mat-option value="">Select</mat-option>
+                                    <mat-option value="item.channelId" *ngFor="let item of ChannelList">{{item.channelName}}</mat-option>
+                                </mat-select>
                                 </mat-form-field>
                               </div>
                               <div class="col-sm-3">
@@ -331,17 +334,17 @@
                                 <div class="col-sm-3">
                                   <mat-form-field appearance="outline">
                                     <mat-label>Registration Date</mat-label>
-                                    <input matInput [matDatepicker]="RegistrationDate" formControlName="RegistrationDate">
-                                    <mat-datepicker-toggle matSuffix [for]="RegistrationDate"></mat-datepicker-toggle>
-                                    <mat-datepicker #RegistrationDate></mat-datepicker>
+                                    <input matInput type="date" formControlName="RegistrationDate" [max]="curDate">
+                                    <!-- <mat-datepicker-toggle matSuffix [for]="RegistrationDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #RegistrationDate></mat-datepicker> -->
                                   </mat-form-field>
                                 </div>
                                 <div class="col-sm-3">
                                   <mat-form-field appearance="outline">
                                     <mat-label>Expiry Date</mat-label>
-                                    <input matInput [matDatepicker]="ExpDate" formControlName="ExpDate">
-                                    <mat-datepicker-toggle matSuffix [for]="ExpDate"></mat-datepicker-toggle>
-                                    <mat-datepicker #ExpDate></mat-datepicker>
+                                    <input matInput type="date" formControlName="ExpDate" [min]="curDate">
+                                    <!-- <mat-datepicker-toggle matSuffix [for]="ExpDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #ExpDate></mat-datepicker> -->
                                   </mat-form-field>
                                 </div>
                                 <div class="col-sm-3">
@@ -362,7 +365,9 @@
                         </mat-step>
                         <mat-step>
                           <ng-template matStepLabel>Final</ng-template>
-                          <p>You are now done.</p>
+                          <br> <br>
+                          <p class="text-center"><i class="fa fa-check" style="font-size: 25px;"></i></p>
+                          <p class="text-center lead"> <strong>You are now done.</strong> </p>
                           <div class="col-lg-12 mt-3">
                             <button class="float-left btn btn-primary text-uppercase font-size-3" matStepperPrevious>Back</button>
                             <button class="float-right btn btn-primary text-uppercase font-size-3" (click)="AddEmployee()">Submit</button>

@@ -8,6 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { IEmployee } from '../../../../shared/ts'
 import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { isEmpty } from 'rxjs';
 
 
 
@@ -59,6 +60,11 @@ export class ListComponent implements OnInit {
   EditEmployee(emp: string) {
     this.route.navigate(['dashboard/employee/addEditEmployee']);
     this.employeeService.saveEmployeeById(emp);
+  }
+
+  go(){
+      this.employeeService.saveEmployeeById("");
+      this.route.navigate(['dashboard/employee/addEditEmployee']);
   }
 
 }
