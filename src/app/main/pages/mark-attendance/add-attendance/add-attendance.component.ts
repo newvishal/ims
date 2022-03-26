@@ -143,22 +143,22 @@ export class AddAttendanceComponent implements OnInit {
        attachmentPath: this.markAttendanceForm.value['attachmentPath']
      }
      console.log(finalObj);
-    //  this.attendanceService.addEmployee(finalObj).subscribe({
-    //   next: res =>{
-    //     // console.log(res[0]);
-    //     this.toastr.successToastr(res['message']);
-    //     this.markAttendanceForm.reset();
-    //     this.searchEmpForm.reset({
-    //       empId:""
-    //     });
-    //     this.submitted = false;
-    //     this.reason = false;
-    //     this.time = false;
-    //   },
-    //   error: err =>{
-    //     console.log(err);
-    //     this.toastr.warningToastr(err);
-    //   }
-    // })
+     this.attendanceService.addEmployee(finalObj).subscribe({
+      next: res =>{
+        // console.log(res[0]);
+        this.toastr.successToastr(res['message']);
+        this.markAttendanceForm.reset();
+        this.searchEmpForm.reset({
+          empId:""
+        });
+        this.submitted = false;
+        this.reason = false;
+        this.time = false;
+      },
+      error: err =>{
+        console.log(err);
+        this.toastr.warningToastr(err);
+      }
+    })
   }
 }
