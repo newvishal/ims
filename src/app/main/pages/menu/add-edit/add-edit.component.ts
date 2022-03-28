@@ -66,7 +66,7 @@ export class AddEditComponent implements OnInit {
       }
       this.menuService.add(this.MenuForm.value).subscribe({
         next: res =>{
-          this._router.navigate(["dashboard/channel/"]);
+          this._router.navigate(["dashboard/menu/"]);
           this.toast.successToastr(res['message']);
         },
         error: err =>{

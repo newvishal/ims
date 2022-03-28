@@ -210,3 +210,13 @@ export interface IMenu {
     redirectURL: string
     isActive: boolean
 }
+
+export interface IPageAccess {
+    pageAccessId?: number,
+    pageId: number,
+    menuId: number,
+    userId:number,
+    empId:number,
+    roleId:number,
+    status: boolean
+}

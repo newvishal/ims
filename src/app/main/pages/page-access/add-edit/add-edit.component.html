@@ -1,1 +1,88 @@
-<p>add-edit works!</p>
+<!-- PAGE-HEADER -->
+<div class="page-header">
+    <ol class="breadcrumb"><!-- breadcrumb -->
+        <li class="breadcrumb-item"><a href="#">Add Edit Page Access</a></li>
+        <!-- <li class="breadcrumb-item active" aria-current="page">Form Elements</li> -->
+    </ol>
+</div>
+<!-- PAGE-HEADER END -->
+
+<!-- ROW-1 OPEN -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <!-- <div class="card-header">
+                <h3 class="mb-0 card-title">Default forms</h3>
+            </div> -->
+            <div class="card-body">
+                    <form [formGroup]="PageAccessForm" (ngSubmit)="addPageAccess()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Application Page</label>
+                                    <select formControlName="pageId" [ngClass]="{ 'is-invalid': submitted && myForm['pageId']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="" selected>Select Application Page</option>
+                                        <option [value]="item?.pageId" *ngFor="let item of applicationPagesList">{{item?.pageTitle}}</option>
+                                    </select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['pageId'].errors?.['required']">Please
+                                        Select Application Page</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Menu</label>
+                                    <select formControlName="menuId" [ngClass]="{ 'is-invalid': submitted && myForm['menuId']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="" selected>Select Menu</option>
+                                        <option [value]="item?.menuId" *ngFor="let item of menuList">{{item?.menuName}}</option>
+                                    </select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['menuId'].errors?.['required']">Please
+                                        Select Menu</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Employee</label>
+                                    <select formControlName="empId" [ngClass]="{ 'is-invalid': submitted && myForm['empId']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="" selected>Select Employee</option>
+                                        <option [value]="item?.EmpId" *ngFor="let item of empList">{{item?.EmpName}}</option>
+                                    </select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empId'].errors?.['required']">Please
+                                        Select Menu</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Role</label>
+                                    <select formControlName="roleId" [ngClass]="{ 'is-invalid': submitted && myForm['roleId']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="" selected>Select Role</option>
+                                        <option value="1">Administrator</option>
+                                        <option value="2">Admin</option>
+                                        <option value="3">General Manager</option>
+                                        <option value="4">Operational Manager</option>
+                                        <option value="5">State Programme Manager</option>
+                                    </select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['roleId'].errors?.['required']">Please
+                                        Select Role</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Status</label>
+                                    <select formControlName="status" [ngClass]="{ 'is-invalid': submitted && myForm['status']?.errors }" name="" id="" class="form-control">
+                                        <option value="true" selected>True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['status'].errors?.['required']">Please
+                                        Select Status</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="Submit" class="btn btn-primary float-right">
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ROW-1 CLOSED -->
