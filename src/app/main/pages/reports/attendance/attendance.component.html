@@ -83,7 +83,7 @@
                                 <label class="form-label">Employee</label>
                                 <select name="emp" id="" formControlName="empId" class="form-control">
                                     <option value="0">All</option>
-                                    <option [value]="item.empId" *ngFor="let item of EmployeeList">{{item.empName}}</option>
+                                    <option [value]="item['EmpId']" *ngFor="let item of EmployeeList">{{item['EmpName']}}</option>
                                 </select>
                                 <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empId'].errors?.['required']">Please
                                     Select Employee</small>
@@ -97,7 +97,7 @@
                     </div>
                 </form>
                 <hr>
-                <div class="table-responsive" *ngIf="AttendanceList?.length > 0">
+                <!-- <div class="table-responsive" *ngIf="AttendanceList?.length > 0">
                     <table id="attendanceexample" class="table table-striped table-bordered text-nowrap w-100">
                         <thead>
                             <tr>
@@ -118,7 +118,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
             <!-- TABLE WRAPPER -->
         </div>
@@ -126,3 +126,43 @@
     </div>
 </div>
 <!-- ROW-1 CLOSED -->
+
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                      </mat-form-field>
+                      
+                      <div class="">
+                        <!-- <div class="load__spinner" *ngIf="!!loading">
+                          <mat-spinner></mat-spinner>
+                        </div> -->
+                        <table class="w-100" mat-table [dataSource]="dataSource" matSort>
+                          <ng-container *ngFor="let column of initColumns" [matColumnDef]="column.columnDef">
+                            <th [ngClass]="'customWidthClass'" mat-header-cell  *matHeaderCellDef mat-sort-header [id]="column.header"> {{ column.header }} </th>
+                            <td [ngClass]="'customWidthClass'" mat-cell *matCellDef="let row"> {{ row[column.columnDef] }} </td>
+                          </ng-container>
+                         
+    
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      
+                          
+                          <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                          </tr>
+                        </table>
+                      
+                        
+                      </div>
+                      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of attendance"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

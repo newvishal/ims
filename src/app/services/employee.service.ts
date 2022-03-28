@@ -91,7 +91,7 @@ export class EmployeeService {
   }
 
   getAllEmployee(): Observable<any>{
-      return this.http.get<any[]>(environment.apiUrl + "Employee", this.httpOptions)
+      return this.http.get<any[]>(environment.apiUrl + "Employee/0", this.httpOptions)
                       .pipe(catchError(this.handleError<any[]>('getAllEmployee', [])));
   }
 
