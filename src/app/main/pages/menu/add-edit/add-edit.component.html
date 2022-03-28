@@ -1,0 +1,58 @@
+<!-- PAGE-HEADER -->
+<div class="page-header">
+    <ol class="breadcrumb"><!-- breadcrumb -->
+        <li class="breadcrumb-item"><a href="#">Add Edit District</a></li>
+        <!-- <li class="breadcrumb-item active" aria-current="page">Form Elements</li> -->
+    </ol>
+</div>
+<!-- PAGE-HEADER END -->
+
+<!-- ROW-1 OPEN -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <!-- <div class="card-header">
+                <h3 class="mb-0 card-title">Default forms</h3>
+            </div> -->
+            <div class="card-body">
+                    <form [formGroup]="MenuForm" (ngSubmit)="addMenu()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Menu Name</label>
+                                    <input type="text" formControlName="menuName" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['menuName'].errors?.['required']">Please
+                                        Enter Menu Name</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Redirect Url</label>
+                                    <input formControlName="redirectURL" type="text" [ngClass]="{ 'is-invalid': submitted && myForm['redirectURL']?.errors }" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['redirectURL'].errors?.['required']">Please
+                                        Enter Redirect Url</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Is Active</label>
+                                    <select formControlName="isActive" [ngClass]="{ 'is-invalid': submitted && myForm['isActive']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="true" selected>True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['isActive'].errors?.['required']">Please
+                                        Select Status</small>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="Submit" class="btn btn-primary float-right">
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ROW-1 CLOSED -->

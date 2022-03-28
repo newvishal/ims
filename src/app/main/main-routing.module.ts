@@ -130,6 +130,11 @@ const routes: Routes = [
         path: "mark-attendance",
         loadChildren: () =>
           import("./pages/mark-attendance/mark-attendance.module").then((m) => m.MarkAttendanceModule)
+      },
+      {
+        path: "menu",
+        loadChildren: () =>
+          import("./pages/menu/menu.module").then((m) => m.MenuModule)
       }
     ]
   }
