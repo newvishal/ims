@@ -65,7 +65,7 @@ export class AttendanceComponent implements OnInit {
   submitted = false;
   StateList: IState[] = [];
   DesignationList: IDesignation[] = [];
-  EmployeeList: IEmployee[] = [];
+  EmployeeList = [];
   AttendanceList: any = [];
   districtListByState: Array<any> = [];
   constructor(
@@ -132,9 +132,9 @@ export class AttendanceComponent implements OnInit {
 
   getEmployeeList() {
     this.employeeService.getAllEmployee().subscribe(
-      (res: any[]) => {
+      (res) => {
         console.log(res);
-        this.EmployeeList = res;
+        this.EmployeeList = Object.assign([],res);
       },
       (err) => {
         console.log(err);

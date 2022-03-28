@@ -85,19 +85,19 @@ export class EmployeeService {
                     .pipe(catchError(this.handleError<any>(`updateEmployee`)));
   }
 
-  getById(id: string): Observable<IEmployee> {
-    return this.http.get<IEmployee>(environment.apiUrl + `Employee/searchemployee/${id}`, this.httpOptions)
-                    .pipe(catchError(this.handleError<IEmployee>(`getByiD`)));
+  getById(id: string){
+    return this.http.get<any>(environment.apiUrl + `Employee/searchemployee/${id}`, this.httpOptions)
+                    .pipe(catchError(this.handleError()));
   }
 
-  getAllEmployee(): Observable<any>{
-      return this.http.get<any[]>(environment.apiUrl + "Employee/0", this.httpOptions)
-                      .pipe(catchError(this.handleError<any[]>('getAllEmployee', [])));
+  getAllEmployee(){
+      return this.http.get(environment.apiUrl + "Employee", this.httpOptions)
+                      .pipe(catchError(this.handleError()));
   }
 
-  getEmployees(): Observable<any[]> {
+  getEmployees() {
       return this.http.get<any[]>(environment.apiUrl + "Employee", this.httpOptions)
-                      .pipe(catchError(this.handleError<any[]>('getAllEmployee', [])));
+                      .pipe(catchError(this.handleError()));
   }
 
   searchEmployee(id: number, empCode: string){

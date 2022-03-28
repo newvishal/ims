@@ -83,7 +83,7 @@
                                 <label class="form-label">Employee</label>
                                 <select name="emp" id="" formControlName="empId" class="form-control">
                                     <option value="0">All</option>
-                                    <option [value]="item['EmpId']" *ngFor="let item of EmployeeList">{{item['EmpName']}}</option>
+                                    <option [value]="item?.EmpId" *ngFor="let item of EmployeeList">{{item?.EmpName}}</option>
                                 </select>
                                 <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empId'].errors?.['required']">Please
                                     Select Employee</small>
