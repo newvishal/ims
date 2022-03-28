@@ -91,12 +91,12 @@ export class EmployeeService {
   }
 
   getAllEmployee(){
-      return this.http.get(environment.apiUrl + "Employee", this.httpOptions)
+      return this.http.get(environment.apiUrl + "Employee/0", this.httpOptions)
                       .pipe(catchError(this.handleError()));
   }
 
   getEmployees() {
-      return this.http.get<any[]>(environment.apiUrl + "Employee", this.httpOptions)
+      return this.http.get<any[]>(environment.apiUrl + "Employee/0", this.httpOptions)
                       .pipe(catchError(this.handleError()));
   }
 
