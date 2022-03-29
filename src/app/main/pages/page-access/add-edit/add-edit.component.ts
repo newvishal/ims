@@ -86,7 +86,7 @@ export class AddEditComponent implements OnInit {
       return;
     } else {
       if(this.pageAccessId) {
-        this.pageAccessService.put({...this.PageAccessForm.value, pageAccessId: parseInt(`${this.pageAccessId}`), menuId: parseInt(this.PageAccessForm.value['menuId']),pageId: parseInt(this.PageAccessForm.value['pageId']), empId: parseInt(this.PageAccessForm.value['empId']),roleId: parseInt(this.PageAccessForm.value['roleId']), status: Boolean(this.PageAccessForm.get['status'])}, this.pageAccessId).subscribe({
+        this.pageAccessService.put({...this.PageAccessForm.value,userId:0, pageAccessId: parseInt(`${this.pageAccessId}`), menuId: parseInt(this.PageAccessForm.value['menuId']),pageId: parseInt(this.PageAccessForm.value['pageId']), empId: parseInt(this.PageAccessForm.value['empId']),roleId: parseInt(this.PageAccessForm.value['roleId']), status: Boolean(this.PageAccessForm.get['status'])}, this.pageAccessId).subscribe({
           next: res =>{
             this._router.navigate(["dashboard/page-access"]);
             this.toast.successToastr(res['message']);
@@ -98,7 +98,7 @@ export class AddEditComponent implements OnInit {
         })
         return;
       }
-      this.pageAccessService.add({...this.PageAccessForm.value, menuId: parseInt(this.PageAccessForm.value['menuId']),empId: parseInt(this.PageAccessForm.value['empId']),pageId: parseInt(this.PageAccessForm.value['pageId']), roleId: parseInt(this.PageAccessForm.value['roleId']),status: Boolean(this.PageAccessForm.value['status'])}).subscribe({
+      this.pageAccessService.add({...this.PageAccessForm.value,userId:0, menuId: parseInt(this.PageAccessForm.value['menuId']),empId: parseInt(this.PageAccessForm.value['empId']),pageId: parseInt(this.PageAccessForm.value['pageId']), roleId: parseInt(this.PageAccessForm.value['roleId']),status: Boolean(this.PageAccessForm.value['status'])}).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/page-access"]);
           this.toast.successToastr(res['message']);
