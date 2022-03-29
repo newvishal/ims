@@ -95,30 +95,20 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="">Attendance Status</label>
+                                <select name="" id="" class="form-control">
+                                    <option value="TotalWorkingHours">Working Hours</option>
+                                    <option value="InTime">In-out Time</option>
+                                    <option value="Present">Present</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> -->
                 </form>
                 <hr>
-                <!-- <div class="table-responsive" *ngIf="AttendanceList?.length > 0">
-                    <table id="attendanceexample" class="table table-striped table-bordered text-nowrap w-100">
-                        <thead>
-                            <tr>
-                                <th class="wd-15p">State</th>
-                                <th class="wd-15p">District</th>
-                                <th class="wd-15p">Emp Id</th>
-                                <th class="wd-15p">Emp Name</th>
-                                <th class="wd-15p">Designation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of AttendanceList">
-                                <td>{{item['StateId']}}</td>
-                                <td>{{item['DistrictId']}}</td>
-                                <td>{{item['EmpId']}}</td>
-                                <td>{{item['EmpName']}}</td>
-                                <td>{{item['DesignationName']}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
             </div>
             <!-- TABLE WRAPPER -->
         </div>
@@ -133,9 +123,18 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <mat-form-field appearance="standard">
+                      <mat-form-field appearance="standard">
                         <mat-label>Filter</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                      </mat-form-field>
+
+                      <mat-form-field class="float-right">
+                        <mat-label>Attendance Status</mat-label>
+                        <mat-select (selectionChange)="removeColumn($event.value)">
+                          <mat-option value="TotalWorkingHours">Working Hours</mat-option>
+                          <mat-option value="InTime">In-out Time</mat-option>
+                          <mat-option value="Present">Present</mat-option>
+                        </mat-select>
                       </mat-form-field>
                       
                       <div class="">

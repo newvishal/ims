@@ -55,9 +55,11 @@ export class AttendanceComponent implements OnInit {
     { columnDef: 'TotalWorkingHours', header: 'Total Working Hours' },
     { columnDef: 'InTime', header: 'In Time' },
     { columnDef: 'OutTime', header: 'OutTime' },
+    { columnDef: 'DesignationName', header: 'Designation' },
+    { columnDef: 'StateId', header: 'State' },
+    { columnDef: 'DistrictId', header: 'District' },
   ];
   displayedColumns: any[] = this.initColumns.map(col => col.columnDef);
-  
   dataSource: MatTableDataSource<IEmployee>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -184,6 +186,23 @@ export class AttendanceComponent implements OnInit {
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
+    }
+  }
+
+  removeColumn(key: string) {
+    this.displayedColumns = this.initColumns.map(col => col.columnDef);
+    if (this.displayedColumns.length) {
+      console.log(this.displayedColumns)
+      if(key === 'TotalWorkingHours') {
+        this.displayedColumns = this.displayedColumns.filter(e => e == 'EmpName' || e == 'TotalWorkingHours')
+      }
+      if(key === 'InTime') {
+        this.displayedColumns = this.displayedColumns.filter(e => e == 'EmpName' || e == 'InTime' || e == 'OutTime')
+      }
+
+      if(key === 'Present') {
+        this.displayedColumns = this.displayedColumns.filter(e => e != 'TotalWorkingHours' && e != 'InTime' && e != 'OutTime' && e != 'DesignationName'  && e != 'StateId' && e != 'DistrictId')
+      }
     }
   }
 
