@@ -15,41 +15,60 @@
                 <h3 class="mb-0 card-title">Default forms</h3>
             </div> -->
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Document Type</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                {{DoctTypeForm.value | json}}
+                <form [formGroup]="DoctTypeForm" (ngSubmit)="addDocType()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Document Type</label>
+                                <input type="text" formControlName="documentType" [ngClass]="{ 'is-invalid': submitted && myForm['documentType'].errors }" class="form-control" name="example-text-input" placeholder="eg: Basic...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['documentType'].errors?.['required']">Please
+                                    Enter Document Type</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Short code</label>
+                                <input type="text" formControlName="shortCode" [ngClass]="{ 'is-invalid': submitted && myForm['shortCode'].errors }" class="form-control" name="example-text-input" placeholder="eg: 50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['shortCode'].errors?.['required']">Please
+                                    Enter Short Code</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Registration No</label>
+                                <input type="text" formControlName="registrationNo" [ngClass]="{ 'is-invalid': submitted && myForm['registrationNo'].errors }" class="form-control" name="example-text-input" placeholder="eg: 123...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['registrationNo'].errors?.['required']">Please
+                                    Enter Registration No</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Registration Date Require</label>
+                                <select name="" formControlName="registrationDateRequire" [ngClass]="{ 'is-invalid': submitted && myForm['registrationDateRequire'].errors }" id="" class="form-control">
+                                    <option value="true" selected>Yes</option>
+                                    <option value="false" >No</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['registrationDateRequire'].errors?.['required']">Please
+                                    Select Registration Date Require</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Expiry Date</label>
+                                <select name="" formControlName="expiryDateRequire" [ngClass]="{ 'is-invalid': submitted && myForm['expiryDateRequire'].errors }" id="" class="form-control">
+                                    <option value="true" selected>Yes</option>
+                                    <option value="false" >No</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['expiryDateRequire'].errors?.['required']">Please
+                                    Select Expiry Date</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Short code</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
-                        </div>
+                    <div class="col-md-12">
+                        <input type="submit" value="Submit" class="btn btn-primary float-right">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Registration Date</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Yes" selected>Yes</option>
-                                <option value="No" >No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Expiry Date</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Yes" selected>Yes</option>
-                                <option value="No" >No</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" value="Submit" class="btn btn-primary float-right">
-                </div>
+                </form>
             </div>
         </div>
     </div>

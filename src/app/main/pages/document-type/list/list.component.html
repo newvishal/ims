@@ -21,29 +21,69 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="docTypeexample" class="table table-striped table-bordered text-nowrap w-100">
-                        <thead>
-                            <tr>
-                                <th class="wd-15p">Document Type</th>
-                                <th class="wd-15p">Short Code</th>
-                                <th class="wd-15p">Registration Date</th>
-                                <th class="wd-15p">Expiry Date</th>
-                                <th class="wd-20p">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Developer</td>
-                                <td>UP50</td>
-                                <td>UP50</td>
-                                <td>UP50</td>
-                                <td class="btn-list">
-                                    <a href="javascript:void(0)" class="btn btn-icon  btn-primary"> <i class="fe fe-edit"></i> </a>
-                                    <a href="javascript:void(0)" class="btn btn-icon  btn-danger"> <i class="fe fe-delete"></i> </a>
+                    <div class="table-responsive">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Filter</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                          </mat-form-field>
+                          
+                          <div class="mat-elevation-z8">
+                            <div class="load__spinner" *ngIf="!!loading">
+                              <mat-spinner></mat-spinner>
+                            </div>
+                            <table class="w-100" mat-table [dataSource]="dataSource" matSort>
+                              <!-- ID Column -->
+                              <ng-container matColumnDef="docTypeId">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                                <td mat-cell *matCellDef="let row"> {{row.docTypeId}} </td>
+                              </ng-container>
+                              <!-- ID Column -->
+                              <ng-container matColumnDef="documentType">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Type </th>
+                                <td mat-cell *matCellDef="let row"> {{row.documentType}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="shortCode">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Short Code </th>
+                                <td mat-cell *matCellDef="let row"> {{row.shortCode}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="registrationNo">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration No.</th>
+                                <td mat-cell *matCellDef="let row"> {{row.registrationNo}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="registrationDateRequire">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration Date Require </th>
+                                <td mat-cell *matCellDef="let row"> {{row.registrationDateRequire}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="expiryDateRequire">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Expiry Date Require </th>
+                                <td mat-cell *matCellDef="let row"> {{row.expiryDateRequire}} </td>
+                              </ng-container>
+        
+                              <ng-container matColumnDef="actions">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                                <td mat-cell *matCellDef="let row"> 
+                                  <button mat-icon-button matTooltip="Click to Edit" (click)="EditDocType(row)" class="iconbutton" color="primary">
+                                    <mat-icon aria-label="Edit">edit</mat-icon>
+                                  </button>
+                                  <!-- <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn">
+                                    <mat-icon aria-label="Delete">delete</mat-icon>
+                                  </button> -->
                                 </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                              </ng-container>
+            
+                          
+                              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                          
+                              <!-- Row shown when there is no matching data. -->
+                              <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                              </tr>
+                            </table>
+                          
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of District"></mat-paginator>
+                          </div>
+                    </div>
                 </div>
             </div>
             <!-- TABLE WRAPPER -->

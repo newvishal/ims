@@ -220,3 +220,13 @@ export interface IPageAccess {
     roleId:number,
     status: boolean
 }
+
+export interface IDocType {
+    docTypeId?: number,
+    documentType: string,
+    shortCode: string,
+    registrationNo:string,
+    registrationDateRequire:boolean,
+    expiryDateRequire: boolean,
+    status?: boolean
+}
