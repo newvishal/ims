@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
-import { ListComponent } from './list/list.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
+import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   {
@@ -13,15 +13,15 @@ const routes: Routes = [
     component: ListComponent
   },
   {
-    path: "addEditBank",
+    path: "addEditPageAccess",
     component: AddEditComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    ListComponent,
-    AddEditComponent
+    AddEditComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,
@@ -30,4 +30,4 @@ const routes: Routes = [
     SharedModule
   ]
 })
-export class BankModule { }
+export class PageAccessModule { }

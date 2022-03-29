@@ -203,3 +203,20 @@ export interface IChannel {
     channelName: string,
     shortCode: string
 }
+
+export interface IMenu {
+    menuId?: number,
+    menuName: string,
+    redirectURL: string
+    isActive: boolean
+}
+
+export interface IPageAccess {
+    pageAccessId?: number,
+    pageId: number,
+    menuId: number,
+    userId:number,
+    empId:number,
+    roleId:number,
+    status: boolean
+}

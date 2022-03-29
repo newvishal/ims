@@ -130,6 +130,26 @@ const routes: Routes = [
         path: "mark-attendance",
         loadChildren: () =>
           import("./pages/mark-attendance/mark-attendance.module").then((m) => m.MarkAttendanceModule)
+      },
+      {
+        path: "menu",
+        loadChildren: () =>
+          import("./pages/menu/menu.module").then((m) => m.MenuModule)
+      },
+      {
+        path: "application-pages",
+        loadChildren: () =>
+          import("./pages/application-pages/application-pages.module").then((m) => m.ApplicationPagesModule)
+      },
+      {
+        path: "page-access",
+        loadChildren: () =>
+          import("./pages/page-access/page-access.module").then((m) => m.PageAccessModule)
+      },
+      {
+        path: "user-role-access",
+        loadChildren: () =>
+          import("./pages/user-role-access/user-role-access.module").then((m) => m.UserRoleAccessModule)
       }
     ]
   }

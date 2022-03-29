@@ -5,7 +5,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { Observable } from 'rxjs';
 import { DistrictService } from 'src/app/services/district.service';
 import { StateService } from 'src/app/services/state.service';
-import {IDistrict, IState} from '../../../../shared/ts';
+import { IDistrict, IState } from '../../../../shared/ts';
 @Component({
   selector: 'app-add-edit',
   templateUrl: './add-edit.component.html',
@@ -16,7 +16,7 @@ export class AddEditComponent implements OnInit {
   submitted = false;
   bsubject: IDistrict;
   StateList: IState[] = [];
-  constructor(  public stateService: StateService,private formBuilder: FormBuilder,public toastr: ToastrManager,private districtService: DistrictService,private _router: Router) { }
+  constructor(public stateService: StateService,private formBuilder: FormBuilder,public toastr: ToastrManager,private districtService: DistrictService,private _router: Router) { }
 
   ngOnInit(): void {
     this.DistrictForm = this.formBuilder.group({
