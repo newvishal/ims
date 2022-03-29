@@ -15,33 +15,42 @@
                 <h3 class="mb-0 card-title">Default forms</h3>
             </div> -->
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Document Type</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
+                <form [formGroup]="ServiceTypeForm" (ngSubmit)="addServiceType()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Service Type Name</label>
+                                <input type="text" formControlName="serviceTypeName" [ngClass]="{'is-invalid': submitted && myForm['serviceTypeName']?.errors}" class="form-control" name="example-text-input" placeholder="eg: Medical...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['serviceTypeName'].errors?.['required']">Please
+                                    Enter Service Type Name</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Service Short code</label>
+                                <input type="text" class="form-control" formControlName="serviceShortCode" [ngClass]="{'is-invalid': submitted && myForm['serviceShortCode']?.errors}" name="example-text-input" placeholder="eg: M50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['serviceShortCode'].errors?.['required']">Please
+                                    Enter Service Short Code</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Service For</label>
+                                <select name="stateddl" formControlName="serviceFor" [ngClass]="{'is-invalid': submitted && myForm['serviceFor']?.errors}" id="" class="form-control">
+                                    <option value="" selected>Select Service For</option>
+                                    <option value="1">Dr</option>
+                                    <option value="2" >Nursing</option>
+                                    <option value="3" >Other</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['serviceFor'].errors?.['required']">Please
+                                    Select Service For</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Short code</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: UP50...">
-                        </div>
+                    <div class="col-md-12">
+                        <input type="submit" value="Submit" class="btn btn-primary float-right">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Service For</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Dr" selected>Dr</option>
-                                <option value="Nursing" >Nursing</option>
-                                <option value="Other" >Other</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" value="Submit" class="btn btn-primary float-right">
-                </div>
+                </form>
             </div>
         </div>
     </div>

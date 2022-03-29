@@ -230,3 +230,10 @@ export interface IDocType {
     expiryDateRequire: boolean,
     status?: boolean
 }
+
+export interface IServiceType {
+    serviceTypeId?: number,
+    serviceTypeName: string,
+    serviceShortCode: string,
+    serviceFor:number
+}
