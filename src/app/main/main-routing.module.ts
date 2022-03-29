@@ -145,6 +145,11 @@ const routes: Routes = [
         path: "page-access",
         loadChildren: () =>
           import("./pages/page-access/page-access.module").then((m) => m.PageAccessModule)
+      },
+      {
+        path: "user-role-access",
+        loadChildren: () =>
+          import("./pages/user-role-access/user-role-access.module").then((m) => m.UserRoleAccessModule)
       }
     ]
   }

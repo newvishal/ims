@@ -1,1 +1,127 @@
-<p>add-edit works!</p>
+<!-- PAGE-HEADER -->
+<div class="page-header">
+    <ol class="breadcrumb"><!-- breadcrumb -->
+        <li class="breadcrumb-item"><a href="#">Add Edit User Role Access</a></li>
+        <!-- <li class="breadcrumb-item active" aria-current="page">Form Elements</li> -->
+    </ol>
+</div>
+<!-- PAGE-HEADER END -->
+
+<!-- ROW-1 OPEN -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <!-- <div class="card-header">
+                <h3 class="mb-0 card-title">Default forms</h3>
+            </div> -->
+            <div class="card-body">
+                    <form [formGroup]="UserRoleAccessForm" (ngSubmit)="addUserRoleAccess()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Employee</label>
+                                    <select formControlName="empId" [ngClass]="{ 'is-invalid': submitted && myForm['empId']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="" selected>Select Employee</option>
+                                        <option [value]="item?.EmpId" *ngFor="let item of empList">{{item?.EmpName}}</option>
+                                    </select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empId'].errors?.['required']">Please
+                                        Select Menu</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Role</label>
+                                    <select formControlName="roleId" [ngClass]="{ 'is-invalid': submitted && myForm['roleId']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="" selected>Select Role</option>
+                                        <option value="1">Administrator</option>
+                                        <option value="2">Admin</option>
+                                        <option value="3">General Manager</option>
+                                        <option value="4">Operational Manager</option>
+                                        <option value="5">State Programme Manager</option>
+                                    </select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['roleId'].errors?.['required']">Please
+                                        Select Role</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Assign State</label>
+                                    <!-- <select formControlName="assignedStates" [ngClass]="{ 'is-invalid': submitted && myForm['assignedStates']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="" selected>Select State</option>
+                                        <option [value]="item?.stateId" *ngFor="let item of stateList">{{item?.stateName}}</option>
+                                    </select> -->
+                                    <ng-select [items]="stateList" 
+                                        bindLabel="stateName" 
+                                        bindValue="stateId" 
+                                        placeholder="Assign State"
+                                        [multiple]="true"
+                                        formControlName="assignedStates">
+                                    </ng-select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['assignedStates'].errors?.['required']">Please
+                                        Select State</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">District</label>
+                                    <!-- <select formControlName="assignedDistricts" [ngClass]="{ 'is-invalid': submitted && myForm['assignedDistricts']?.errors }" name="stateddl" id="" class="form-control">
+                                        <option value="" selected>Select District</option>
+                                        <option [value]="item.districtId" *ngFor="let item of districtList">{{item.districtName}}</option>
+                                    </select> -->
+                                    <ng-select [items]="districtList" 
+                                        bindLabel="districtName" 
+                                        bindValue="districtId" 
+                                        placeholder="Assign District"
+                                        [multiple]="true"
+                                        formControlName="assignedDistricts">
+                                    </ng-select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['assignedDistricts'].errors?.['required']">Please
+                                        Select District</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Assign Location</label>
+                                    <!-- <select formControlName="assignedLocations" [ngClass]="{ 'is-invalid': submitted && myForm['assignedLocations']?.errors }" name="" id="" class="form-control">
+                                        <option value="" selected>Select Location</option>
+                                        <option [value]="item.locationId" *ngFor="let item of locationList">{{item.locationName}}</option>
+                                    </select> -->
+                                    <ng-select [items]="locationList" 
+                                        bindLabel="locationName" 
+                                        bindValue="locationId" 
+                                        placeholder="Assign Locations"
+                                        [multiple]="true"
+                                        formControlName="assignedLocations">
+                                    </ng-select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['assignedLocations'].errors?.['required']">Please
+                                        Select Location</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Assign Location Type</label>
+                                    <!-- <select formControlName="assignedLocationType" [ngClass]="{ 'is-invalid': submitted && myForm['assignedLocationType']?.errors }" name="" id="" class="form-control">
+                                        <option value="" selected>Select LOcation Type</option>
+                                        <option [value]="item.locTypeId" *ngFor="let item of locationTypeList">{{item.locationTypeName}}</option>
+                                    </select> -->
+                                    <ng-select [items]="locationTypeList" 
+                                        bindLabel="locationTypeName" 
+                                        bindValue="locTypeId" 
+                                        placeholder="Assign Location Type"
+                                        [multiple]="true"
+                                        formControlName="assignedLocationType">
+                                    </ng-select>
+                                    <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['assignedLocationType'].errors?.['required']">Please
+                                        Select Location Type</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="Submit" class="btn btn-primary float-right">
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ROW-1 CLOSED -->
