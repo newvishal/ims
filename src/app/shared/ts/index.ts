@@ -221,6 +221,18 @@ export interface IPageAccess {
     status: boolean
 }
 
+export interface IEmployeeDocument {
+    empDocId ?: number,
+    documentPath?: string,
+    docTypeId: number,
+    empId: number,
+    expiryDate: string,
+    registrationDate: string,
+    remark ?:string,
+    status ?:boolean,
+    documentType ?: string,
+    documentShortCode ?:string
+}
 export interface IDocType {
     docTypeId?: number,
     documentType: string,
