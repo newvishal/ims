@@ -220,3 +220,16 @@ export interface IPageAccess {
     roleId:number,
     status: boolean
 }
+
+export interface IEmployeeDocument {
+    empDocId ?: number,
+    documentPath?: string,
+    docTypeId: number,
+    empId: number,
+    expiryDate: string,
+    registrationDate: string,
+    remark ?:string,
+    status ?:boolean,
+    documentType ?: string,
+    documentShortCode ?:string
+}
