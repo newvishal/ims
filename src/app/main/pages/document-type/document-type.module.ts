@@ -1,10 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
-import { DocumentTypeRoutingModule } from './document-type-routing.module';
 import { ListComponent } from './list/list.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 
+const routes: Routes = [
+  {
+    path: "",
+    component: ListComponent
+  },
+  {
+    path: "addEditDocType",
+    component: AddEditComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -13,7 +25,9 @@ import { AddEditComponent } from './add-edit/add-edit.component';
   ],
   imports: [
     CommonModule,
-    DocumentTypeRoutingModule
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class DocumentTypeModule { }

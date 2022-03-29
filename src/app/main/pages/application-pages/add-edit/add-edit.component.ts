@@ -76,7 +76,7 @@ export class AddEditComponent implements OnInit {
         })
         return;
       }
-      this.applicationPagesService.add({...this.ApplicationPageForm.value, pageType: Boolean(this.ApplicationPageForm.value['pageType']), status: Boolean(this.ApplicationPageForm.value['status'])}).subscribe({
+      this.applicationPagesService.add({...this.ApplicationPageForm.value,menuId: parseInt(this.ApplicationPageForm.value['menuId']), pageType: Boolean(this.ApplicationPageForm.value['pageType']), status: Boolean(this.ApplicationPageForm.value['status'])}).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/application-pages"]);
           this.toast.successToastr(res['message']);
