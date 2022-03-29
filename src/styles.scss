@@ -5,3 +5,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0.2em 0 1em 0;
+}
+
+.mat-form-field-label-wrapper {
+    top: -1.3em;
+    padding-top: 0.84375em;
+}
