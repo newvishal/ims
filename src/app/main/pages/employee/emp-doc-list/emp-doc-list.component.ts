@@ -14,7 +14,7 @@ import { EmployeeDocumentService } from 'src/app/services/employee-document.serv
   styleUrls: ['./emp-doc-list.component.scss']
 })
 export class EmpDocListComponent implements OnInit {
-  displayedColumns: string[] = ['empId', 'docTypeId','expiryDate','registrationDate','documentShortCode','status','actions'];
+  displayedColumns: string[] = ['empId', 'docTypeId','documentPath','expiryDate','registrationDate','documentShortCode','status','actions'];
   dataSource: MatTableDataSource<IEmployeeDocument>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
