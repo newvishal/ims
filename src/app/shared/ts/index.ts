@@ -91,13 +91,12 @@ export interface IMonth {
 
 
 export interface ILeaveLimit {
-    empLeaveApplicableId ?: string,
+    empLeaveApplicableId ?: number,
     leaveTypeId : number,
     empTypeId : number,
     perMonthLeaveAllowed ?: number,
     maxLeaveAllowed ?: number,
-    carryForwardMaxLimit ?: number,
-    status ?: boolean
+    carryForwardMaxLimit ?: number
 }
 
 export interface ILeaveType {
@@ -241,4 +240,21 @@ export interface IDocType {
     registrationDateRequire:boolean,
     expiryDateRequire: boolean,
     status?: boolean
+}
+
+export interface IServiceType {
+    serviceTypeId?: number,
+    serviceTypeName: string,
+    serviceShortCode: string,
+    serviceFor:number
+}
+
+export interface ISubProductType {
+    subProductId?: number,
+    productId: number,
+    subProductName: string,
+    shortCode:string,
+    lfNo:string,
+    expDateStatus:string,
+    uomId:number
 }

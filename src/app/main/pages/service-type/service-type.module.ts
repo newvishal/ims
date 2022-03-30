@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
-import { ServiceTypeRoutingModule } from './service-type-routing.module';
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 import { ListComponent } from './list/list.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 
+const routes: Routes = [
+  {
+    path: "",
+    component: ListComponent
+  },
+  {
+    path: "addEditServiceType",
+    component: AddEditComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -13,7 +24,8 @@ import { AddEditComponent } from './add-edit/add-edit.component';
   ],
   imports: [
     CommonModule,
-    ServiceTypeRoutingModule
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class ServiceTypeModule { }

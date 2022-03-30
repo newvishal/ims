@@ -15,48 +15,61 @@
                 <h3 class="mb-0 card-title">Default forms</h3>
             </div> -->
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Leave Type</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Yes" selected>CL</option>
-                                <option value="No" >Emergency</option>
-                            </select>
+                <form [formGroup]="LeaveLimitForm" (ngSubmit)="addLeaveLimit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Leave Type</label>
+                                <select formControlName="leaveTypeId" [ngClass]="{'is-invalid': submitted && myForm['leaveTypeId']?.errors}" name="stateddl" id="" class="form-control">
+                                    <option value="" selected>Select Leave Type</option>
+                                    <option value="{{item?.leaveTypeId}}" *ngFor="let item of leaveTypeList">{{item?.leaveTypeName}}</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['leaveTypeId'].errors?.['required']">Please
+                                    Select Leave Type</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Employee Type</label>
+                                <select name="stateddl" formControlName="empTypeId" [ngClass]="{'is-invalid': submitted && myForm['empTypeId']?.errors}" id="" class="form-control">
+                                    <option value="" selected>Select Employee Type</option>
+                                    <option value="1">OnRoll</option>
+                                    <option value="2" >Consultant</option>
+                                    <option value="3" >Contractual</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['empTypeId'].errors?.['required']">Please
+                                    Select Employee Type</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Per Month Leave Limit</label>
+                                <input type="number" min="1" formControlName="perMonthLeaveAllowed" [ngClass]="{'is-invalid': submitted && myForm['perMonthLeaveAllowed']?.errors}" class="form-control" name="example-text-input" placeholder="eg: 50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['perMonthLeaveAllowed'].errors?.['required']">Please
+                                    Enter Per Month Leave Limit</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Max Leave Allowed</label>
+                                <input type="text" class="form-control" formControlName="maxLeaveAllowed" [ngClass]="{'is-invalid': submitted && myForm['maxLeaveAllowed']?.errors}" name="example-text-input" placeholder="eg: 50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['maxLeaveAllowed'].errors?.['required']">Please
+                                    Enter Max Leave Allowed</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Carry Forward Max Limit</label>
+                                <input type="text" class="form-control" formControlName="carryForwardMaxLimit" [ngClass]="{'is-invalid': submitted && myForm['carryForwardMaxLimit']?.errors}" name="example-text-input" placeholder="eg: 50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['carryForwardMaxLimit'].errors?.['required']">Please
+                                    Enter CCarry Forward Max Limit</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Employee Type</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="OnRoll" selected>OnRoll</option>
-                                <option value="Consultant" >Consultant</option>
-                                <option value="Contractual" >Contractual</option>
-                            </select>
-                        </div>
+                    <div class="col-md-12">
+                        <input type="submit" value="Submit" class="btn btn-primary float-right">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Per Month Leave Limit</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: 50...">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Max Leave Allowed</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: 50...">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Carry Forward Max Limit</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: 50...">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" value="Submit" class="btn btn-primary float-right">
-                </div>
+                </form>
             </div>
         </div>
     </div>

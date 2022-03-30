@@ -15,41 +15,80 @@
                 <h3 class="mb-0 card-title">Default forms</h3>
             </div> -->
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Product Type</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Yes" selected>CL</option>
-                                <option value="No" >Emergency</option>
-                            </select>
+                <form [formGroup]="SubProductTypeForm" (ngSubmit)="addSubProductType()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Product Type</label>
+                                <select name="stateddl" formControlName="productId" [ngClass]="{'is-invalid': submitted && myForm['productId']?.errors}" id="" class="form-control">
+                                    <option value="" selected>Select Product Type</option>
+                                    <option value="{{item?.productId}}" *ngFor="let item of productTypeList">{{item?.productName}}</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['productId'].errors?.['required']">Please
+                                    Select Product Type</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Sub Product Name</label>
+                                <input type="text" class="form-control" formControlName="subProductName" [ngClass]="{'is-invalid': submitted && myForm['subProductName']?.errors}" name="example-text-input" placeholder="eg: 50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['subProductName'].errors?.['required']">Please
+                                    Enter Sub Product Name</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Short Code</label>
+                                <input type="text" class="form-control" formControlName="shortCode" [ngClass]="{'is-invalid': submitted && myForm['shortCode']?.errors}" name="example-text-input" placeholder="eg: 50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['shortCode'].errors?.['required']">Please
+                                    Enter Short Code</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">lf No</label>
+                                <input type="text" class="form-control" formControlName="lfNo" [ngClass]="{'is-invalid': submitted && myForm['lfNo']?.errors}" name="example-text-input" placeholder="eg: 50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['lfNo'].errors?.['required']">Please
+                                    Enter lf No</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Exp Date Status</label>
+                                <input type="text" class="form-control" formControlName="expDateStatus" [ngClass]="{'is-invalid': submitted && myForm['expDateStatus']?.errors}" name="example-text-input" placeholder="eg: 50...">
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['expDateStatus'].errors?.['required']">Please
+                                    Enter Exp Date Status</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">UOM</label>
+                                <select name="" id="" formControlName="uomId" [ngClass]="{'is-invalid': submitted && myForm['uomId']?.errors}" class="form-control">
+                                    <option value="" selected>Select UOM</option>
+                                    <option value="1" >Ltr</option>
+                                    <option value="2" >Kg</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['uomId'].errors?.['required']">Please
+                                    Select UOM</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <select name="" id="" formControlName="status" [ngClass]="{'is-invalid': submitted && myForm['status']?.errors}" class="form-control">
+                                    <option value="" selected>Select Status</option>
+                                    <option value="true">true</option>
+                                    <option value="false" >false</option>
+                                </select>
+                                <small style="padding: 0px;" class="text-danger" *ngIf="submitted && myForm['status'].errors?.['required']">Please
+                                    Select Status</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Sub Product Name</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: 50...">
-                        </div>
+                    <div class="col-md-12">
+                        <input type="submit" value="Submit" class="btn btn-primary float-right">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Short Code</label>
-                            <input type="text" class="form-control" name="example-text-input" placeholder="eg: 50...">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label">Type</label>
-                            <select name="stateddl" id="" class="form-control">
-                                <option value="Yes" selected>CL</option>
-                                <option value="No" >Emergency</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" value="Submit" class="btn btn-primary float-right">
-                </div>
+                </form>
             </div>
         </div>
     </div>
