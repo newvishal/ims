@@ -4,14 +4,14 @@
         <li class="breadcrumb-item"><a href="#">Employee Document</a></li>
         <li class="breadcrumb-item active" aria-current="page">Employee Document List</li>
     </ol><!-- End breadcrumb -->
-    <!-- <div class="ml-auto">
+    <div class="ml-auto">
         <div class="input-group">
             
-            <a href="javascript:void(0)" class="btn btn-primary button-icon mr-3 mt-1 mb-1" routerLink="./addEditEmployee">
-                <span><i class="fe fe-plus"></i>Add Employee</span>
+            <a href="javascript:void(0)" class="btn btn-primary button-icon mr-3 mt-1 mb-1" routerLink="../../employee/doc-upload">
+                <span><i class="fe fe-plus"></i>Add Employee Doc</span>
             </a>
         </div>
-    </div> -->
+    </div>
 </div>
 <!-- PAGE-HEADER END -->
 
@@ -60,8 +60,8 @@
                           <ng-container matColumnDef="actions">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                             <td mat-cell *matCellDef="let row"> 
-                              <a mat-icon-button matTooltip="Click to upload" [routerLink]="['../doc-upload', row.empDocId]" class="iconbutton" color="primary">
-                                <mat-icon aria-label="Upload">upload</mat-icon>
+                              <a mat-icon-button matTooltip="Click to edit" (click)="EditEmployeeDoc(row)" class="iconbutton" color="primary">
+                                <mat-icon aria-label="edit">edit</mat-icon>
                               </a>
                               <!-- <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn">
                                 <mat-icon aria-label="Delete">delete</mat-icon>

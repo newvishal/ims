@@ -43,10 +43,11 @@ export class EmpDocListComponent implements OnInit {
       console.log(err)
     });
   }
-  EditDesignation(detail: IEmployeeDocument) {
+
+  EditEmployeeDoc(detail: IEmployeeDocument) {
     console.log(detail)
-    this.route.navigate(['dashboard/designation/addEditDesignation'],
-     { queryParams: { id: detail['designationId'] } })
+    this.route.navigate(['dashboard/employee/doc-upload'],
+     { queryParams: { id: detail['empDocId'] } })
   }
 
 }

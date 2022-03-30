@@ -21,7 +21,7 @@ const routes: Routes = [
     component: EmpDocListComponent
   },
   {
-    path: "doc-upload/:empId",
+    path: "doc-upload",
     component: UploadDocComponent
   },
   {

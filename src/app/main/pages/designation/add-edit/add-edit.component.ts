@@ -28,7 +28,7 @@ export class AddEditComponent implements OnInit {
       console.log('params===========>',params['id']);
       this.designationId = params['id'];
     });
-    this.getDesignationDetails(this.designationId);
+    if(this.designationId) this.getDesignationDetails(this.designationId);
   }
 
   createForm() {
@@ -64,7 +64,7 @@ export class AddEditComponent implements OnInit {
           },
           error: err =>{
             console.log(err);
-            this.toast.warningToastr(err);
+            this.toast.errorToastr(err);
           }
         })
         return;
@@ -76,7 +76,7 @@ export class AddEditComponent implements OnInit {
         },
         error: err =>{
           console.log(err);
-          this.toast.warningToastr(err);
+          this.toast.errorToastr(err);
         }
       })
     }
