@@ -10,11 +10,6 @@ import {ILeaveLimit} from '../shared/ts';
   providedIn: 'root'
 })
 export class LeaveLimitService {
-  subject = new BehaviorSubject<any>( localStorage.getItem('details') || JSON.stringify({empLeaveApplicableId: '', leaveTypeId: "", empTypeId: '', perMonthLeaveAllowed: "", maxLeaveAllowed: false,
-   carryForwardMaxLimit: '',
-   status: false
- }));
-
   httpOptions = {
     headers: new HttpHeaders({ 
       'Content-Type': 'application/json; charset=utf-8',
@@ -26,23 +21,18 @@ export class LeaveLimitService {
   constructor(private http: HttpClient) { }
    
   add(LeaveLimit:ILeaveLimit): Observable<ILeaveLimit> {
-      return this.http.post<ILeaveLimit>(environment.apiUrl + "api/LeaveLimit", LeaveLimit, this.httpOptions)
+      return this.http.post<ILeaveLimit>(environment.apiUrl + "EmployeeLeaveLimit", LeaveLimit, this.httpOptions)
                       .pipe(catchError(this.handleError<ILeaveLimit>(`addLeaveLimit`)));
   }
 
-  put(LeaveLimit:ILeaveLimit, id: string): Observable<ILeaveLimit> {
-    return this.http.put<ILeaveLimit>(environment.apiUrl + `api/LeaveLimit/${id}`, LeaveLimit, this.httpOptions)
+  put(LeaveLimit:ILeaveLimit, id: number): Observable<ILeaveLimit> {
+    return this.http.put<ILeaveLimit>(environment.apiUrl + `EmployeeLeaveLimit/${id}`, LeaveLimit, this.httpOptions)
                     .pipe(catchError(this.handleError<ILeaveLimit>(`putLeaveLimit`)));
   }
 
-  find(): Observable<ILeaveLimit[]> {
-      return this.http.get<ILeaveLimit[]>(environment.apiUrl + "api/LeaveLimit", this.httpOptions)
-                      .pipe(catchError(this.handleError<ILeaveLimit[]>('getAllLeaveLimit', [])));
-  }
-
-  saveDetails(detail : ILeaveLimit) {
-    localStorage.setItem('details', JSON.stringify(detail));
-    this.subject.next(detail);
+  find(listType: number): Observable<ILeaveLimit[]> {
+    return this.http.get<ILeaveLimit[]>(environment.apiUrl + `EmployeeLeaveLimit/${listType}`, this.httpOptions)
+                    .pipe(catchError(this.handleError<ILeaveLimit[]>('getAllLeaveLimitDetails', [])));
   }
 
   handleError<T>(operation = 'operation', result?: T) {
