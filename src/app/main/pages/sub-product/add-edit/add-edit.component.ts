@@ -77,7 +77,7 @@ export class AddEditComponent implements OnInit {
             subProductId: parseInt(`${this.subProductId}`),
             productId: parseInt(`${this.SubProductTypeForm.value['productId']}`),
             uomId: parseInt(`${this.SubProductTypeForm.value['uomId']}`),
-            status: Boolean(this.SubProductTypeForm.get['status'])} as ISubProductType, this.subProductId).subscribe({
+            status: Boolean(this.SubProductTypeForm.value['status'])} as ISubProductType, this.subProductId).subscribe({
           next: res =>{
             this._router.navigate(["dashboard/sub-product/"]);
             this.toast.successToastr(res['message']);
@@ -93,7 +93,7 @@ export class AddEditComponent implements OnInit {
         ... this.SubProductTypeForm.value,
         productId: parseInt(`${this.SubProductTypeForm.value['productId']}`),
         uomId: parseInt(`${this.SubProductTypeForm.value['uomId']}`),
-        status: Boolean(this.SubProductTypeForm.get['status'])} as ISubProductType).subscribe({
+        status: Boolean(this.SubProductTypeForm.value['status'])} as ISubProductType).subscribe({
         next: res =>{
           this._router.navigate(["dashboard/sub-product/"]);
           this.toast.successToastr(res['message']);
