@@ -41,13 +41,19 @@
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Doc Type </th>
                             <td mat-cell *matCellDef="let row"> {{row.docTypeId}} </td>
                           </ng-container>
+                          <ng-container matColumnDef="documentPath">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Docs </th>
+                            <td mat-cell *matCellDef="let row"> 
+                              <a href="{{row.documentPath}}" target="_blank" rel="noopener noreferrer">Download</a>
+                            </td>
+                          </ng-container>
                           <ng-container matColumnDef="expiryDate">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Expiry Date </th>
-                            <td mat-cell *matCellDef="let row"> {{row.expiryDate}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.expiryDate | date: 'mediumDate'}} </td>
                           </ng-container>
                           <ng-container matColumnDef="registrationDate">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration Date</th>
-                            <td mat-cell *matCellDef="let row"> {{row.registrationDate}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.registrationDate | date: 'mediumDate'}} </td>
                           </ng-container>
                           <ng-container matColumnDef="documentShortCode">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Short Code</th>
